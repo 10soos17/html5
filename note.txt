@@ -1,0 +1,105 @@
+0406-----
+
+입찰달인최부장
+
+*공부 tip
+자격증: sqld
+
+*youtb
+혼자공부하는 자바, 이것이 자바다 한빛미디어
+JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원가입 화면 디자인
+
+*visual studio code tip
+글꼴설치(p.43) : https://github.com/naver/d2codingfont/blob/master/D2Coding-Ver1.3.2-20180524.zip -> download -> 
+                        vs code > file > preferences > settings > font 설정
+!+enter: html5 표준자동세팅
+tr*5>td*5{$} : emmet 기능으로 자동 써짐
+주석: ctrl / (맥: command /)
+줄맞춤: ctrl + a, ctrl + kf
+
+*extension:
+install live server by Ritwick Dey -> port, 수정 바로 확인 가능
+install Bracket Pair Colorizer by CoenraadS 
+install Material Icon Theme by Philipp Kief by Jun Han -> 태그 변경시, 닫힘도 자동 바뀜
+
+
+*html5
+"UTF-8" 3byte전송
+"euc-kr"
+viewport: mobile에서도 보이도록 함
+
+HR: horizontal
+table 기본구조:
+   <table border="1px">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <td>제목</td>
+                <td>Remarks</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><a href="https://www.naver.com" target="_blank">네이버뉴스</a></td>
+                <td>good</td>
+            </tr>
+        </tbody>
+    </table>
+
+TABLE border="1" cellspacing="0" 
+colspan="5" rowspan="5" align="center"
+TR: table row
+TH: table heading(auto bold, center)
+TD: table data
+BR: break
+REQUIRED
+<div></div> 영역 구분
+<span></span> 본인 영역만 적용됨
+<meta> 추가정보, 검색 시
+<p> 문단 
+<pre> 글자 위치 적용
+<a> 하이퍼링크
+<form method="post" action="test1action.jsp">
+get방식 -> http://127.0.0.1:5500/0407/test1.html?id=soo&pw=123
+post방식 -> body에 보냄, url 노출 안됨
+target="_black" -> 링크를 새창으로 띄움
+<link rel="stylesheet" href="style.css"> css 
+<script src="main.js"></script> js 
+
+<del>네이버</del><ins>최신</ins><sup>뉴스</sup>
+ul, ol, li
+
+path
+<img src="img/a.png" alt="그림이 없음" width="400px">
+<img src="../b.png" alt="그림이 없음" width="400px">
+
+특수문자 사용할때 (https://mine-it-record.tistory.com/273)
+&lt; <
+&gt; >
+
+*css
+justify-content: center;/*전체 컨텐츠를 가운데로*/
+color:inherit; -> html색상을 상속함
+a:hover{
+    text-decoration: underline;
+}
+
+li{ 
+   list-style-type: none; ->list 타입 없애줌
+}
+
+*js
+prompt();
+scanner();
+
+
+*이론
+html java jsp spring
+ajax : 서버 부하 없이 asyncronous 작동하게함
+javascript = ECMAScript
+
+MVC(model view control)
+404 error: 파일 못 찾을 때
+xml
+annotation @
