@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .id{
+            background-color: violet;
+        }
+        .color{
+            color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <h1>log-in</h1>
+    <hr>
+    <form method="get" action="test1.html">
+        <table border="1">
+            <tr>
+                <td><label for="id">ID</label></td>
+                <td><input type="text" class="id color" id="id" name="id" 
+                    placeholder="input ID" maxlength="20" size="10"
+                    autofocus required></td>
+            </tr>
+            <tr>
+                <td><label for="password">PASSWORD</label></td>
+                <td><input type="password" id="password" name="password" 
+                    placeholder="enter PASSWORD" maxlength="20" size="10" 
+                    required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="confirm">&nbsp;
+                    <input type="submit" value="cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
