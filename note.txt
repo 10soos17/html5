@@ -1,5 +1,5 @@
 0406-----
-
+ideakorea@naver.com
 입찰달인최부장
 
 *공부 tip
@@ -14,6 +14,7 @@ JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원�
                         vs code > file > preferences > settings > font 설정
 !+enter: html5 표준자동세팅
 tr*5>td*5{$} : emmet 기능으로 자동 써짐
+h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
 주석: ctrl / (맥: command /)
 줄맞춤: ctrl + a, ctrl + kf
 
@@ -30,6 +31,10 @@ viewport: mobile에서도 보이도록 함
 
 HR: horizontal
 table 기본구조:
+tip. table>tr*6>td*6{$} 번호 부여한 후, colspan, rowspan 합치기
+ex. table>thead>tr>th*6
+    tbody>tr>td*6
+ex.
    <table border="1px">
         <thead>
             <tr>
@@ -68,7 +73,13 @@ target="_black" -> 링크를 새창으로 띄움
 <script src="main.js"></script> js 
 
 <del>네이버</del><ins>최신</ins><sup>뉴스</sup>
-ul, ol, li
+<ul>, <ol>, <li>
+<ul style="list-style-type:circle">
+<ol start="50">
+
+<marquee behavior="alternate" direction="" loop="" bgcolor="" width="100px">과일 목록</marquee> -> 글자 움직임
+
+mailto
 
 path
 <img src="img/a.png" alt="그림이 없음" width="400px">
@@ -77,6 +88,8 @@ path
 특수문자 사용할때 (https://mine-it-record.tistory.com/273)
 &lt; <
 &gt; >
+(http://kor.pe.kr/util/4/charmap2.htm)
+&#38 -> &
 
 *css
 justify-content: center;/*전체 컨텐츠를 가운데로*/
