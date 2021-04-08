@@ -18,6 +18,8 @@ JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원�
 tr*5>td*5{$} : emmet 기능으로 자동 써짐
 h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
 div*5{div 태그 block 형식}
+#id :  <div id="id"></div>
+.classid : <div class="classid"></div>
 
 주석: ctrl / (맥: command /)
 줄맞춤: ctrl + a, ctrl + kf
@@ -166,9 +168,35 @@ path
 
 ===========================css============================================================
 *css
+//디자인하기 전에 기본 마진, 패딩 없애주는 것이 좋음
+ *{
+            margin:0;
+            padding:0;
+            list-style:none;
+            text-decoration: none;
+            color:inherit;
+        }
+
+margin: 0 0 0 0; 위 아래 우 좌
+margin: 0 0; 위아래 우좌
+margin: 0 auto;
+
 display: flex; // block;, inline;, inline-block;
 justify-content: center;/*전체 컨텐츠를 가운데로*/
-color:inherit; -> html색상을 상속함
+color:inherit; -> htm
+
+//border 제외하고 박스 사이즈 자동 맞춰줌
+*{
+    box-sizing: border-box;
+}
+.section1{
+    float: left;
+}
+//
+ .footer{
+    clear: both;
+ }
+
 
 //마우스 올리면
 input:hover, textarea:hover {
