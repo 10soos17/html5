@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:hover, textarea:hover {
+            background-color: chartreuse;
+        }
+        input:active{
+            background-color: rgb(183, 106, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>BOARD</h1>
+    <hr>
+    <form>
+        <table border="1">
+            <tr>
+                <td>이름</td>
+                <td><input type="text" id="name" name="name"
+                    placeholder="이름 입력" autofocus required></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" id="subject" name="subject"
+                    placeholder="제목 입력" required></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea cols="30" rows="5" id="contents" name="contents"
+                    placeholder="내용 입력" required></textarea></td>
+            </tr>
+            <tr>
+                <td>업로드</td>
+                <td><input type="file" id="uploadFile" name="uploadFile"
+                    placeholder="파일 업로드"></td>
+            </tr>
+            <tr>
+                <td>패스워드</td>
+                <td><input type="password" id="password" name="password"
+                    placeholder="패스워드 입력" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="confirm">&nbsp;
+                    <input type="button" value="cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
