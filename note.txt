@@ -17,6 +17,7 @@ tr*5>td*5{$} : emmet 기능으로 자동 써짐
 h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
 주석: ctrl / (맥: command /)
 줄맞춤: ctrl + a, ctrl + kf
+옮기기: alt + 위아래키
 
 *extension:
 install live server by Ritwick Dey -> port, 수정 바로 확인 가능
@@ -69,6 +70,7 @@ REQUIRED
 get방식 -> http://127.0.0.1:5500/0407/test1.html?id=soo&pw=123
 post방식 -> body에 보냄, url 노출 안됨
 target="_black" -> 링크를 새창으로 띄움
+메소드 적용시키려면 obj에 name값 지정해야함
 <link rel="stylesheet" href="style.css"> css 
 <script src="main.js"></script> js 
 
@@ -79,6 +81,31 @@ target="_black" -> 링크를 새창으로 띄움
 
 <marquee behavior="alternate" direction="" loop="" bgcolor="" width="100px">과일 목록</marquee> -> 글자 움직임
 
+//name역할->test3.html
+        function checkForm(){
+            if(document.forms.name.value == ""){
+                alert("이름을 입력하세요.");
+                document.forms.name.focus();
+                return false;
+            }else if(document.forms.subject.value == ""){
+                alert("제목을 입력하세요.");
+                document.forms.subject.focus();
+                return false;
+            }
+        }
+<form name="forms">
+    <fieldset>
+        <table>
+            <tr>
+                <td>
+                <input type="text" id="name" name="name"
+                    placeholder="이름 입력" autofocus required>
+                </td>
+                    ...
+            </tr>
+        </table>
+    </fieldset>
+
 //for역할: label obj 클릭시 id 값이 "id인 obj를 가리킴
 <td><label for="id">ID</label></td>
 <td><input type="text" class="id color" id="id" name="id" 
@@ -88,6 +115,20 @@ target="_black" -> 링크를 새창으로 띄움
 //내용 입력시
 <textarea cols="30" rows="5" id="contents" name="contents"
 placeholder="내용 입력" required></textarea>
+
+//form에서 button, submit 차이(button은 form method적용안됨)
+<td colspan="2" align="center">
+    <input type="button" value="confirm" onclick="checkForm();">&nbsp;
+    <input type="submit" value="cancel" onclick="checkForm();">
+</td>
+
+//==========================select====================================================
+    <select>
+        <optgroup label="subject for Web">
+            <option>CSS</option>
+            <option selected>Oracle</option>
+        </optgroup>
+    </select>
 
 mailto
 
