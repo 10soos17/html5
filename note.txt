@@ -79,6 +79,16 @@ target="_black" -> 링크를 새창으로 띄움
 
 <marquee behavior="alternate" direction="" loop="" bgcolor="" width="100px">과일 목록</marquee> -> 글자 움직임
 
+//for역할: label obj 클릭시 id 값이 "id인 obj를 가리킴
+<td><label for="id">ID</label></td>
+<td><input type="text" class="id color" id="id" name="id" 
+    placeholder="input ID" maxlength="20" size="10"
+    autofocus required></td>
+
+//내용 입력시
+<textarea cols="30" rows="5" id="contents" name="contents"
+placeholder="내용 입력" required></textarea>
+
 mailto
 
 path
@@ -94,9 +104,16 @@ path
 *css
 justify-content: center;/*전체 컨텐츠를 가운데로*/
 color:inherit; -> html색상을 상속함
-a:hover{
+
+//마우스 올리면
+input:hover, textarea:hover {
+    background-color: chartreuse;
     text-decoration: underline;
 }
+//마우스 클릭하면
+input:active{
+     background-color: rgb(183, 106, 255, 0.5);
+ }
 
 li{ 
    list-style-type: none; ->list 타입 없애줌
