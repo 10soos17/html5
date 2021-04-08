@@ -1,111 +1,124 @@
-0406-----
+======================================HTML5===================================================
+0406 ~
+최주정
 ideakorea@naver.com
 입찰달인최부장
-======================================================================================
-*공부 tip
-자격증: sqld
+===========================공부 tip===========================================================
+-자격증
+    sqld
 
-*youtb
-혼자공부하는 자바, 이것이 자바다 한빛미디어
-JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원가입 화면 디자인
+-youtb
+    혼자공부하는 자바, 이것이 자바다 한빛미디어
+    JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원가입 화면 디자인
 
-===========================visual studio code============================================
+===========================visual studio code==================================================
 *visual studio code tip
-글꼴설치(p.43) : https://github.com/naver/d2codingfont/blob/master/D2Coding-Ver1.3.2-20180524.zip -> download -> 
+-글꼴설치(p.43) : https://github.com/naver/d2codingfont/blob/master/D2Coding-Ver1.3.2-20180524.zip -> download -> 
                         vs code > file > preferences > settings > font 설정
-!+enter: html5 표준자동세팅
+-단축키
+    html5 표준자동세팅: !+enter
+    주석: ctrl / (맥: command /)
+    줄맞춤: ctrl + a, ctrl + kf
+    옮기기: alt + 위아래키
 
-tr*5>td*5{$} : emmet 기능으로 자동 써짐
-h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
-div*5{div 태그 block 형식}
-#id :  <div id="id"></div>
-.classid : <div class="classid"></div>
+-emmet 기능
+    tr*5>td*5{$}
+    h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
+    div*5{div 태그 block 형식}
+    #id :  <div id="id"></div>
+    .class : <div class="class"></div>
 
-주석: ctrl / (맥: command /)
-줄맞춤: ctrl + a, ctrl + kf
-옮기기: alt + 위아래키
 
-*extension:
-install live server by Ritwick Dey -> port, 수정 바로 확인 가능
-install Bracket Pair Colorizer by CoenraadS 
-install Material Icon Theme by Philipp Kief by Jun Han -> 태그 변경시, 닫힘도 자동 바뀜
+-extension:
+    install live server by Ritwick Dey -> port, 수정 바로 확인 가능
+    install Bracket Pair Colorizer by CoenraadS 
+    install Material Icon Theme by Philipp Kief by Jun Han -> 태그 변경시, 닫힘도 자동 바뀜
 
-===========================크롬 tip============================================
+===========================크롬 tip=======================================================
 개발자도구: f12
 ===========================이론===========================================================
-*이론
-html java jsp spring
-ajax : 서버 부하 없이 asyncronous 작동하게함
-javascript = ECMAScript
+-html java jsp spring
+-ajax : 서버 부하 없이 asyncronous 작동하게함
+-javascript = ECMAScript
 
-MVC(model view control)
-404 error: 파일 못 찾을 때
-xml
-annotation @
+-MVC(model view control)
+-404 error: 파일 못 찾을 때
+-xml
+-annotation @
+
 ===========================html5===========================================================
-*html5
-"UTF-8" 3byte전송
-"euc-kr"
-viewport: mobile에서도 보이도록 함
+-특수문자 사용할때 
+    (https://mine-it-record.tistory.com/273)
+    &lt; <
+    &gt; >
+    (http://kor.pe.kr/util/4/charmap2.htm)
+    &#38 -> &
 
-//무작위 텍스트 쓸때
-lorem5(5개단어)
-lorem*5(5줄)
+-meta tag
+    추가정보, 검색 시
+    "UTF-8" 3byte전송
+    "euc-kr"
+    viewport: mobile에서도 보이도록 함
 
-copyright tag:  &copy; &#169;
+-
+    <link rel="stylesheet" href="style.css"> css 
+    <script src="main.js"></script> js 
 
-HR: horizontal
-table 기본구조:
-tip. table>tr*6>td*6{$} 번호 부여한 후, colspan, rowspan 합치기
-ex. table>thead>tr>th*6
-    tbody>tr>td*6
-ex.
-   <table border="1px">
-        <thead>
-            <tr>
-                <th>번호</th>
-                <td>제목</td>
-                <td>Remarks</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td><a href="https://www.naver.com" target="_blank">네이버뉴스</a></td>
-                <td>good</td>
-            </tr>
-        </tbody>
-    </table>
+-무작위 텍스트 쓸때
+    lorem5(5개단어)
+    lorem*5(5줄)
 
-TABLE border="1" cellspacing="0" 
-colspan="5" rowspan="5" align="center"
+-copyright tag:  &copy; &#169;
+
+-mailto
+
+-path
+    <img src="img/a.png" alt="그림이 없음" width="400px">
+    <img src="../b.png" alt="그림이 없음" width="400px">
+
+-table 기본구조
+    tip. table>tr*6>td*6{$} 번호 부여한 후, colspan, rowspan 합치기
+
+    ex. table>thead>tr>th*6
+        tbody>tr>td*6
+    ex.
+    <table border="1px">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <td>제목</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><a href="https://www.naver.com" target="_blank">네이버뉴스</a></td>
+                    <td>good</td>
+                </tr>
+            </tbody>
+        </table>
 TR: table row
 TH: table heading(auto bold, center)
 TD: table data
-BR: break
-REQUIRED
-<div></div> 영역 구분
-<span></span> 본인 영역만 적용됨
-<meta> 추가정보, 검색 시
-<p> 문단 
-<pre> 글자 위치 적용
-<a> 하이퍼링크
-<form method="post" action="test1action.jsp">
-get방식 -> http://127.0.0.1:5500/0407/test1.html?id=soo&pw=123
-post방식 -> body에 보냄, url 노출 안됨
-target="_black" -> 링크를 새창으로 띄움
-메소드 적용시키려면 obj에 name값 지정해야함
-<link rel="stylesheet" href="style.css"> css 
-<script src="main.js"></script> js 
+border="1" cellspacing="0" 
+colspan="5" rowspan="5" align="center"
 
-<del>네이버</del><ins>최신</ins><sup>뉴스</sup>
-<ul>, <ol>, <li>
-<ul style="list-style-type:circle">
-<ol start="50">
+-foam
+    <form method="post" action="test1action.jsp">
+    get방식 -> http://127.0.0.1:5500/0407/test1.html?id=soo&pw=123
+    post방식 -> body에 보냄, url 노출 안됨
+    target="_black" -> 링크를 새창으로 띄움
+    메소드 적용시키려면 obj에 name값 지정해야함
 
-<marquee behavior="alternate" direction="" loop="" bgcolor="" width="100px">과일 목록</marquee> -> 글자 움직임
+    -form에서 button, submit 차이(button은 form method적용안됨)
+        <td colspan="2" align="center">
+            <input type="button" value="confirm" onclick="checkForm();">&nbsp;
+            <input type="submit" value="cancel" onclick="checkForm();">
+        </td>
 
-//name역할->test3.html
+    -name역할
+        ex. test3.html
+
         function checkForm(){
             if(document.forms.name.value == ""){
                 alert("이름을 입력하세요.");
@@ -117,36 +130,46 @@ target="_black" -> 링크를 새창으로 띄움
                 return false;
             }
         }
-<form name="forms">
-    <fieldset>
-        <table>
-            <tr>
-                <td>
-                <input type="text" id="name" name="name"
-                    placeholder="이름 입력" autofocus required>
-                </td>
-                    ...
-            </tr>
-        </table>
-    </fieldset>
+        <form name="forms">
+            <fieldset>
+                <table>
+                    <tr>
+                        <td>
+                        <input type="text" id="name" name="name"
+                            placeholder="이름 입력" autofocus required>
+                        </td>
+                            ...
+                    </tr>
+                </table>
+            </fieldset>
 
-//for역할: label obj 클릭시 id 값이 "id인 obj를 가리킴
-<td><label for="id">ID</label></td>
-<td><input type="text" class="id color" id="id" name="id" 
-    placeholder="input ID" maxlength="20" size="10"
-    autofocus required></td>
+    -for역할
+        label obj 클릭시 id 값이 "id인 obj를 가리킴
+        <td><label for="id">ID</label></td>
+        <td><input type="text" class="id color" id="id" name="id" 
+            placeholder="input ID" maxlength="20" size="10"
+            autofocus required></td>
 
-//내용 입력시
-<textarea cols="30" rows="5" id="contents" name="contents"
-placeholder="내용 입력" required></textarea>
+-<HR> horizontal
+-<BR> break
+-영역구분
+    <div></div> 영역 구분
+    <span></span> 본인 영역만 적용됨
 
-//form에서 button, submit 차이(button은 form method적용안됨)
-<td colspan="2" align="center">
-    <input type="button" value="confirm" onclick="checkForm();">&nbsp;
-    <input type="submit" value="cancel" onclick="checkForm();">
-</td>
+-<p> 문단 
+-<pre> 글자 위치 적용
+-<a> 하이퍼링크
 
-==========================select
+-<del>네이버</del><ins>최신</ins><sup>뉴스</sup>
+
+-목록
+    <ul>, <ol>, <li>
+    <ul style="list-style-type:circle">
+    <ol start="50">
+
+-<marquee behavior="alternate" direction="" loop="" bgcolor="" width="100px">과일 목록</marquee> -> 글자 움직임
+
+-select
     <select>
         <optgroup label="subject for Web">
             <option>CSS</option>
@@ -154,21 +177,14 @@ placeholder="내용 입력" required></textarea>
         </optgroup>
     </select>
 
-mailto
+-textarea
+    내용 입력시
+    <textarea cols="30" rows="5" id="contents" name="contents"
+    placeholder="내용 입력" required></textarea>
 
-path
-<img src="img/a.png" alt="그림이 없음" width="400px">
-<img src="../b.png" alt="그림이 없음" width="400px">
-
-특수문자 사용할때 (https://mine-it-record.tistory.com/273)
-&lt; <
-&gt; >
-(http://kor.pe.kr/util/4/charmap2.htm)
-&#38 -> &
 
 ===========================css============================================================
-*css
-//디자인하기 전에 기본 마진, 패딩 없애주는 것이 좋음
+-디자인하기 전에 기본 마진, 패딩 없애주는 것이 좋음
  *{
             margin:0;
             padding:0;
@@ -177,43 +193,52 @@ path
             color:inherit;
         }
 
-margin: 0 0 0 0; 위 아래 우 좌
-margin: 0 0; 위아래 우좌
-margin: 0 auto;
-
-display: flex; // block;, inline;, inline-block;
-justify-content: center;/*전체 컨텐츠를 가운데로*/
-color:inherit; -> htm
-
-//border 제외하고 박스 사이즈 자동 맞춰줌
-*{
-    box-sizing: border-box;
-}
-.section1{
-    float: left;
-}
-//
- .footer{
-    clear: both;
- }
+-display: flex; // block;, inline;, inline-block;
+-justify-content: center; /*전체 컨텐츠를 가운데로*/
+-color:inherit;
 
 
-//마우스 올리면
-input:hover, textarea:hover {
-    background-color: chartreuse;
-    text-decoration: underline;
-}
-//마우스 클릭하면
-input:active{
-     background-color: rgb(183, 106, 255, 0.5);
- }
+-hover
+    마우스 올리면
+    input:hover, textarea:hover {
+        background-color: chartreuse;
+        text-decoration: underline;
+    }
 
-li{ 
-   list-style-type: none; ->list 타입 없애줌
-}
+-active
+    마우스 클릭하면
+    input:active{
+        background-color: rgb(183, 106, 255, 0.5);
+    }
+
+-list 타입 없애줌
+    li{ 
+        list-style-type: none;
+    }
+
+-margin
+    margin: 0 0 0 0; 위 아래 우 좌
+    margin: 0 0; 위아래 우좌
+    margin: 0 auto;
+
+-box-sizing: border-box;
+    border 제외하고 박스 사이즈 자동 맞춰줌
+    *{
+        box-sizing: border-box;
+    }
+
+-float
+    .section1{
+        float: left;
+    }
+
+-clear
+    Do not allow floating elements on the left or the right side
+    .footer{
+        clear: both; // none|left|right|both|initial|inherit;
+    }
 
 ===========================js==============================================================
-*js
 prompt();
 scanner();
 
