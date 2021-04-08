@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>4장</h1>
+    <h3>09 다음 입력 양식을 만드시오.</h3>
+    <form>
+        <fieldset>
+            <h1>글 작성하기</h1>
+                <table>
+                    <tr>
+                        <td><label for="name" class="name">작성자</label></td>
+                        <td><input id="name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id" class="id">아이디</label></td>
+                        <td><input id="id" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="mail" class="mail">이메일</label></td>
+                        <td><input id="mail" type="email"> @
+                            <input id="mail" type="email"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="mobile" class="mobile">휴대폰</label></td>
+                        <td>
+                        <select id="number_f">
+                            <option selected>010</option>
+                            <option>070</option>
+                            <option>031</option>
+                            <option>02</option>
+                        </select>
+                        - <input id="number_s"> - <input id="number_t">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="subject" class="subject">글제목</label></td>
+                        <td><input id="subject" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="contents" class="contents">내용</label></td>
+                        <td><textarea cols="30" rows="5" id="contents" name="contents"
+                            placeholder="" required></textarea></td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" id="submit" name="submit" value="제출"></td>
+                    </tr>
+                </table>
+        </fieldset>
+    </form>
+
+</body>
+</html>
