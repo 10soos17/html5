@@ -10,7 +10,8 @@ ideakorea@naver.com
 -youtb
     혼자공부하는 자바, 이것이 자바다 한빛미디어
     JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원가입 화면 디자인
-
+-블로그
+    css형광펜효과
 ===========================visual studio code==================================================
 *visual studio code tip
 -글꼴설치(p.43) : https://github.com/naver/d2codingfont/blob/master/D2Coding-Ver1.3.2-20180524.zip -> download -> 
@@ -22,7 +23,9 @@ ideakorea@naver.com
     옮기기: alt + 위아래키
 
 -emmet 기능
-    tr*5>td*5{$}
+    tr*5>td*5{$} : innerHTML에 숫자 자동 증가 생성
+    div#id{value} : {}안에 넣은 값을 innerHTML에 생성 -> <div id="id">value</div>
+    div#id[value] : []안에 넣은 값을 태그의 요소로 생성 -> <div id="id" value=""></div>
     h1.#beta : <h1 class="" id="beta"></h1> 자동 써짐
     div*5{div 태그 block 형식}
     #id :  <div id="id"></div>
@@ -97,11 +100,11 @@ ideakorea@naver.com
                 </tr>
             </tbody>
         </table>
-TR: table row
-TH: table heading(auto bold, center)
-TD: table data
-border="1" cellspacing="0" 
-colspan="5" rowspan="5" align="center"
+    TR: table row
+    TH: table heading(auto bold, center)
+    TD: table data
+    border="1" cellspacing="0" 
+    colspan="5" rowspan="5" align="center"
 
 -foam
     <form method="post" action="test1action.jsp">
@@ -144,7 +147,7 @@ colspan="5" rowspan="5" align="center"
             </fieldset>
 
     -for역할
-        label obj 클릭시 id 값이 "id인 obj를 가리킴
+        label obj 클릭시 id 값이 "id"인 obj를 가리킴
         <td><label for="id">ID</label></td>
         <td><input type="text" class="id color" id="id" name="id" 
             placeholder="input ID" maxlength="20" size="10"
@@ -159,6 +162,8 @@ colspan="5" rowspan="5" align="center"
 -<p> 문단 
 -<pre> 글자 위치 적용
 -<a> 하이퍼링크
+    새창으로 띄우기 target="_blank"
+    자기창에 띄우기 target="_self"
 
 -<del>네이버</del><ins>최신</ins><sup>뉴스</sup>
 
@@ -185,19 +190,18 @@ colspan="5" rowspan="5" align="center"
 
 ===========================css============================================================
 -디자인하기 전에 기본 마진, 패딩 없애주는 것이 좋음
- *{
-            margin:0;
-            padding:0;
-            list-style:none;
-            text-decoration: none;
-            color:inherit;
-        }
+    *{
+        margin:0;
+        padding:0;
+        list-style:none;
+        text-decoration: none;
+        color:inherit;
+    }
 
 -display: flex; // block;, inline;, inline-block;
--justify-content: center; /*전체 컨텐츠를 가운데로*/
+-justify-content: center; /*전체 컨텐츠를 가운데로*/ ,flex-start; flex-end; space-around; space-between;
 -color:inherit;
-
-
+-단위: %, em(배수), px
 -hover
     마우스 올리면
     input:hover, textarea:hover {
@@ -237,6 +241,49 @@ colspan="5" rowspan="5" align="center"
     .footer{
         clear: both; // none|left|right|both|initial|inherit;
     }
+
+-속성 우선 적용해야할 때(!important)(자주쓰지말것)
+.a{
+    color: yellowgreen !important;
+}
+
+-글자 앞이나 뒤에 특정 글씨나 컨텐츠 넣을때
+(선택자::after(or before), 속성content)
+        .a h1::after{
+            content:"";
+            display: inline-block;
+            height:20px;
+            width:20px;
+            background-color: black;
+        }
+        .b h1::before{
+            content:"$"
+        }
+
+-선택자 선택하는 법(child  etc)
+        h1:first-child{
+            color:orangered
+        }
+        h1:last-child{
+            color:rgb(147, 206, 147);
+        }
+        h1:nth-child(2n+1){
+            color:indigo;
+        }
+
+        a[target=_blank]{
+            background: brown;
+        }
+        a[target=_self]{
+            background: greenyellow;
+        }
+
+-자손선택자 유의점
+    아래 적용안되는 원인(개발자도구로 확인해보면  table > tbody > tr > th)
+
+        table > tr > th{
+            color: red;
+        }
 
 ===========================js==============================================================
 prompt();
