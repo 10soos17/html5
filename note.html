@@ -5,11 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+
+        .grandwrap{
+            width:100%;
+        }
+        #header{
+            width: 100%;
+            background: red;
+            margin: 0 auto; 
+        }
+        #wrap{
+            width: 100%; margin: 0 auto;
+            overflow: hidden;
+        }
+        #aside{
+            width: 10%; float: left;
+            /*background-color: blue;*/
+        }
+        #content{
+            width:90%; float:left;
+            background-color: green;
+        }
+        #footer{
+            width: 100%;
+            background: rgb(119, 72, 72);
+            margin: 0px auto;  
+        }
+        .menu{
+            list-style-type: none;
+        }
+
+        .menu_font{
+
+            background-color: rgb(157, 255, 0);
+            border: 5px solid;
+            border-color: rgb(0, 0, 0);
+            border-radius: 50px;
+            box-shadow: 10px 10px 10px rgb(139, 112, 0);
+
+            position:relative;
+            font-size: 2em;
+            font-style:normal;
+            font-weight: bold;
+            text-align: center;
+            line-height: 70px;
+            text-decoration: none;
+            color:rgb(0, 0, 0);
+        }
+
+        .menu > a{
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        
-    </header>
-    
+    <div class="grandwrap">
+        <div id="header">
+            <header>HTML5</header>
+        </div>
+
+        <div id="wrap">
+            <div id="aside">
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" class="menu_font">tip</a></li>
+                    <li><a href="#" class="menu_font">tools</a></li>
+                    <li><a href="#" class="menu_font">HTML5</a></li>
+                    <li><a href="#" class="menu_font">CSS3</a></li>
+                    <li><a href="#" class="menu_font">JavaScript</a></li>
+                    <li><a href="#" class="menu_font">Java</a></li>
+                    <li><a href="#" class="menu_font">Spring</a></li>
+                </ul>
+            </nav>
+            </div>
+            
+            <div id="content">
+                <section>
+                    <article>
+                        <h1>Lorem ipsum dolor sit amet.</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam recusandae quibusdam quaerat cum. Quidem exercitationem aperiam culpa fugiat vero sit incidunt, consequatur, cum a cupiditate non est dolore accusamus error!</p>
+                    </article>
+                </section>
+            </div>
+        </div>
+
+        <div id="footer">
+            <footer>
+                <address>서울특별시</address>
+                &copy; Made by 
+            </footer>
+        </div>
+    </div>
 </body>
 </html>

@@ -198,6 +198,33 @@ ideakorea@naver.com
         color:inherit;
     }
 
+-좌표(position:, z-index:)
+    절대: absolute(좌표(0,0)으로 생성),fixed;(특정 좌표에 고정)
+    상대: relative, static;
+
+    z-index:;
+
+    부모, 자식 관계에서 절대, 상대 위치 잘 잡는 것이 중요함.(ex. 0409_test8.html)
+
+-overflow 옵션
+    hidden, scroll
+
+-img url
+    body{
+        background-image: url('../abc.jpeg');
+    }
+
+-font
+    body{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size:;
+        font-style:;
+        font-weight:;
+     }
+
+-수직정렬
+line-height: 100px;(높이만큼)
+
 -display: flex; // block;, inline;, inline-block;
 -justify-content: center; /*전체 컨텐츠를 가운데로*/ ,flex-start; flex-end; space-around; space-between;
 -color:inherit;
