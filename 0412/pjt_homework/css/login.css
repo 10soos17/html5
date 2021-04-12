@@ -1,0 +1,37 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    background-color: black;
+    color:burlywood;
+}
+.forms{
+    border: 1px burlywood;
+}
+.table{
+    background-color:black;
+    color:burlywood;
+
+}
+#id{
+    border-radius: 10px;
+    background-color: burlywood;
+    opacity: 0.3;
+}
+#password{
+    border-radius: 10px;
+    background-color: burlywood;
+    opacity: 0.3;
+}
+#login{
+    height:50px;
+    text-align: right;
+    background-color:black;
+    color:burlywood;
+    border-radius: 10px;
+    border: 0 1px solid burlywood;
+    margin: 3px 0;
+
+}
