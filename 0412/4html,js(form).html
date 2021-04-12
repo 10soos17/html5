@@ -7,7 +7,19 @@
     <title>Document</title>
     <script>
         function checkForm(){
-            document.forms.name.value
+            if(document.forms.name.value == ""){
+                alert("이름을 입력하세요.");
+                document.forms.name.focus();
+                return false;
+            }else if(document.forms.phone.value == ""){
+                alert("전화번호를 입력하세요.");
+                document.forms.phone.focus();
+                return false;
+            }else if(document.forms.address.value == ""){
+                alert("주소를 입력하세요.");
+                document.forms.address.focus();
+                return false;
+            }
         }
     </script>
 </head>
@@ -18,19 +30,16 @@
         <table border="1">
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="name"
-                    required autofocus></td>
+                <td><input type="text" name="name" autofocus></td>
             </tr>
             <tr>
                 <td>전화번호</td>
-                <td><input type="text"  
-                    required></td>
+                <td><input type="text" name="phone"></td>
             </tr>
             <tr>
                 <td>주소</td>
                 <td>
-                    <input type="text"  
-                   required size="50">
+                    <input type="text" name="address" size="50">
                 </td>
             </tr>
             <tr>

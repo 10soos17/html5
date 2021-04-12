@@ -221,7 +221,7 @@ ideakorea@naver.com
         clear: both;
     }
 -overflow 옵션
-    hidden, scroll
+    hidden(clear:both 와 유사), scroll
 
 -img url
     body{
@@ -261,7 +261,7 @@ line-height: 100px;(높이만큼)
         list-style-type: none;
     }
 
--margin
+-margin(auto는 중앙정렬과 유사)
     margin: 0 0 0 0; 위 아래 우 좌
     margin: 0 0; 위아래 우좌
     margin: 0 auto;
@@ -277,7 +277,7 @@ line-height: 100px;(높이만큼)
         float: left;
     }
 
--clear
+-clear(overflow: hidden 과 유사)
     Do not allow floating elements on the left or the right side
     .footer{
         clear: both; // none|left|right|both|initial|inherit;
