@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkForm(){
+            document.forms.name.value
+        }
+    </script>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <hr>
+    <form action="" name="forms">
+        <table border="1">
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name="name"
+                    required autofocus></td>
+            </tr>
+            <tr>
+                <td>전화번호</td>
+                <td><input type="text"  
+                    required></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>
+                    <input type="text"  
+                   required size="50">
+                </td>
+            </tr>
+            <tr>
+                <td>하고싶은 말</td>
+                <td><textarea cols="50" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td align="center">
+                    남자<input type="radio" name="gender" value="m" checked>
+                    여자<input type="radio" name="gender" value="f">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="확인" onclick="checkForm()">
+                    <input type="reset" value="취소">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -196,16 +196,30 @@ ideakorea@naver.com
         list-style:none;
         text-decoration: none;
         color:inherit;
+        box-sizing: border-box; (자동으로 패딩 값 고려해서 처리해줌)
     }
 
 -좌표(position:, z-index:)
     절대: absolute(좌표(0,0)으로 생성),fixed;(특정 좌표에 고정)
     상대: relative, static;
 
-    z-index:;
+    z-index: 숫자 클수록 앞에 위치함
 
     부모, 자식 관계에서 절대, 상대 위치 잘 잡는 것이 중요함.(ex. 0409_test8.html)
+    ex. 자식에게 absolute 키워드 주려면,
+         부모에 width, height 속성, relative 키워드 줘야함.
 
+-단위
+    vh:브라우저 크기를 우선순위
+    %
+    px
+
+-특정태그 전, 후 지정 (::after)
+    section::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
 -overflow 옵션
     hidden, scroll
 
