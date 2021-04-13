@@ -375,6 +375,71 @@ line-height: 100px;(높이만큼)
 
 ===========================js==============================================================
 prompt();
-scanner();
+
+===========================java=====================================================
+int, float, char, boolean, string
+
+var let const 
+this
+instanceof 
+typeof
+true false
+null
+new 
+delete  
+function class
+return 
+in 
+with
+
+if else 
+for while do
+break continue 
+case switch
+try catch finally defalut throw
+
+-var vs let
+
+함수 밖 선언 후,
+함수 내에서 재선언 : 둘다 가능하나 함수 밖 변수와 별개
+함수 내에서 재할당 : 둘 다 가능
+함수 밖 재선언 : var 만 가능
 
 
+ex1.
+    var d = 1;
+    let e =1;
+    function test(){
+        var d = 2;
+        let e = 2;
+        console.log(d,e); //2,2
+    }
+    test();
+    console.log(d,e); //1,1
+
+ex2.
+    var d = 1;
+    let e =1;
+    function test(){
+        d= 2;
+        e=2;
+        console.log(d,e); //2,2
+    }
+    test();
+    console.log(d,e);//2,2
+
+ex3.
+    var d = 1;
+    let e =1;
+    function test(){
+        var d= 2;
+        let e=2;
+        console.log(d,e); //2,2
+    }
+    test();
+    var d= 3;
+    let e=3; //error
+    console.log(d,e);
+    
+    -선언함수와 익명함수
+        js는 선언함수를 먼저 읽음
