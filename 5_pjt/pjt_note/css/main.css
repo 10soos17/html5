@@ -1,0 +1,250 @@
+/*rgb(119, 72, 72);
+rgb(157, 255, 0);
+rgb(255, 0, 98);*/
+/*=========================================================*/
+.grandwrap{
+    width:100%;
+}
+#header{
+    width: 100%;
+    height: 30px;
+    margin: 0 auto; 
+
+    font-size: 15px;
+    font-style: bold;
+    text-align: left;
+    line-height: 30px;
+    background: rgb(0,0,0);/*rgb(119, 72, 72);*/
+    color:rgb(255, 255, 255);
+
+    overflow: hidden;
+
+}
+#wrap{
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
+
+    background-color: rgb(0, 0, 0);/*208, 255, 0*/
+    color: white;
+}
+#aside{
+    width: 13%; 
+    float: left;
+}
+#content{
+    width:87%; 
+    float:right;
+    padding:10px;
+}
+
+#footer{
+    width: 100%;
+    height: 30px;
+    margin: 0px auto;
+
+    font-size: 11px;
+    font-style: italic;
+    text-align: left;
+    line-height: 15px;
+
+    line-height: 11x;
+
+    background: rgb(0,0,0);/*rgb(119, 72, 72);*/
+    color:rgb(255, 255, 255);
+
+    overflow: hidden;
+}
+/*===================================================*/
+#email{
+    text-decoration: none;
+    color:white;
+}
+/*===================================================*/
+.menu > a{
+    display: block;
+}
+.menu{
+    position:fixed;
+    top:120px;
+    left: 0px;
+}
+.menu_style{
+    width:60px;
+    height:20px;
+    margin: 10px;
+
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 5px solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px rgb(139, 112, 0);
+
+    position:relative;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+
+    overflow: hidden;
+}
+
+#btn_top{
+    position:fixed;
+    top:50px;
+    right:5%;
+    padding:0px;
+
+    width:30px;
+    height:30px;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 5px solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(139, 112, 0);
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+    
+}
+#btn_bottom{
+    position:fixed;
+    top:490px;
+    right:5%;
+    padding:0px;
+
+    width:30px;
+    height:30px;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 5px solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(139, 112, 0);
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+
+/*=================serachbox========================*/
+#searchBox{
+    display: none;
+    position:fixed;
+    top:540px;
+    right: 5%;
+    box-shadow: 5px 5px 5px rgb(139, 112, 0);
+}
+#search_text{
+
+    width:80px;
+    height:20px;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: 0px solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 0%;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+#search_number{
+
+    width:40px;
+    height:22px;
+
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 3px solid;
+    border-color: rgb(0, 0, 0,0);
+    border-radius: 0%;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+#search_up{
+    
+    width:25px;
+    height:22px;
+
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 0px solid;
+    border: 3px solid;
+    border-color: rgb(0, 0, 0,0);
+    border-radius: 0%;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+#search_down{
+
+    width:25px;
+    height:22px;
+
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 0px solid;
+    border: 3px solid;
+    border-color: rgb(0, 0, 0,0);
+    border-radius: 0%;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+#search_close{
+
+    width:25px;
+    height:22px;
+
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+
+    border: 0px solid;
+    border: 3px solid;
+    border-color: rgb(0, 0, 0,0);
+    border-radius: 0%;
+
+    background-color: rgb(157, 255, 0);
+    color:rgb(0, 0, 0);
+}
+
+mark {
+    background-color: rgb(255, 221, 223);
+    color: black;
+}
