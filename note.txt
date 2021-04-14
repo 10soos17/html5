@@ -10,6 +10,7 @@ ideakorea@naver.com
 -youtb
     혼자공부하는 자바, 이것이 자바다 한빛미디어
     JSP Ajax 회원가입 기능 구현하기 1강 - 프로젝트 소개 및 회원가입 화면 디자인
+    김학성의 초급 알고리즘
 -블로그
     css형광펜효과
 -호스팅사이트
@@ -68,6 +69,9 @@ ideakorea@naver.com
 -annotation @
 
 ===========================html5===========================================================
+prompt();
+scanner();
+
 -특수문자 사용할때 
     (https://mine-it-record.tistory.com/273)
     &lt; <
@@ -392,9 +396,6 @@ line-height: 100px;(높이만큼)
 
 
 ===========================js==============================================================
-prompt();
-
-===========================java=====================================================
 int, float, char, boolean, string
 
 var let const 
@@ -415,6 +416,19 @@ for while do
 break continue 
 case switch
 try catch finally defalut throw
+
+- = == ===
+    = assignment operator
+    == comparison operator
+    === both values and data types are the same.
+
+-수 변환
+    Number(sum / 3); parseInt(sum / 3); parseFlaot(sum / 3);
+    Math.round(sum / 3); Math.ceil(sum / 3); Math.floor(sum / 3);
+    (sum / 3).toExponential(3);
+    (sum / 3).toPrecision(3);
+    지수표기법, 유효숫자표기법
+    (http://mwultong.blogspot.com/2005/12/c-scientific-notation.html)
 
 -var vs let vs const 
 (https://medium.com/@yeon22/javascript-var-let-const%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90-9fab5c264c9c)
@@ -472,3 +486,5 @@ ex3.
     
     -선언함수와 익명함수
         js는 선언함수를 먼저 읽음
+
+===========================java=====================================================

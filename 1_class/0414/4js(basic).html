@@ -10,9 +10,77 @@
 
 <body>
     <script>
-        console.log('Hello world "HTML"');
+        /*var kor = parseInt(prompt("국어 점수를 입력하세요."));//95;
+        var eng = parseInt(prompt("영어 점수를 입력하세요."));//96;
+        var math = parseInt(prompt("수학 점수를 입력하세요."));//97;
+        var sum = kor + eng + math;
+        var avg = (sum / 3).toExponential();//.toPrecision(3);(http://mwultong.blogspot.com/2005/12/c-scientific-notation.html)
+
+
+        if (avg >= 90 && avg <= 100) {
+            document.write("SUM: " + sum + "AVERAGE: " + avg + ", A grade");
+            if (avg > 95) {
+                document.write("SUM: " + sum + "AVERAGE: " + avg + ", A+ grade");
+            } else {
+                document.write("SUM: " + sum + "AVERAGE: " + avg + ", A- grade");
+            }
+        } else if (avg >= 80) {
+            document.write("SUM: " + sum + "AVERAGE: " + avg + ", B grade");
+        } else if (avg >= 70) {
+            document.write("SUM: " + sum + "AVERAGE: " + avg + ", C grade");
+        } else if (avg >= 60) {
+            document.write("SUM: " + sum + "AVERAGE: " + avg + ", D grade");
+        } else {
+            document.write("SUM: " + sum + "AVERAGE: " + avg + ", F grade");
+        }*/
+
+        //let num = parseInt(prompt("number?"));
+
+        function operate(num) {
+            let sum = 0;
+            let factorial = 1;
+
+            for (let i = 1; i <= num; i++) {
+                sum += i;
+                factorial *= i;
+            }
+
+            console.log(sum, factorial);
+        }
+        // operate(num);
+
+        function tree() {
+
+            for (let i = 0; i < 10; i++) {
+                for (let j = 9 - i; j < 10; j++) {
+                    for (let k = j; k < 10; k++) {
+                        document.write("*");
+                    }
+                    document.write("s");
+                }
+                document.write("q");
+
+            }
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= i; j++) {
+                    for (let k = 1; k <= j; k++) {
+                        document.write("*");
+                    }
+                    document.write("<br>");
+                }
+                document.write("<br>");
+            }
+
+
+
+
+        }
+
+        tree();
+
     </script>
-    &copy;
+
+
 </body>
 
 </html>
