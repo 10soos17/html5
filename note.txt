@@ -39,6 +39,21 @@ ideakorea@naver.com
     install live server by Ritwick Dey -> port, 수정 바로 확인 가능
     install Bracket Pair Colorizer by CoenraadS 
     install Material Icon Theme by Philipp Kief by Jun Han -> 태그 변경시, 닫힘도 자동 바뀜
+    install Prettier by Prettier Code formatter -> 자동 수정 설치 후,settings.json < .editorconfig < .prettierrc(https://uxgjs.tistory.com/150)
+        ex. "prettier.useEditorConfig": true,
+            "editor.formatOnSave": true,
+            "editor.formatOnPaste": true,
+            "editor.formatOnType": true,
+            "[javascript]": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode"
+            },
+            "[html]": {
+                "editor.defaultFormatter": "vscode.html-language-features"
+            },
+            "[css]": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode"
+            }
+
 
 ===========================크롬 tip=======================================================
 개발자도구: f12
@@ -192,6 +207,9 @@ ideakorea@naver.com
 
 
 ===========================css============================================================
+-id, class, name값
+    id가 가장 우선
+    
 -디자인하기 전에 기본 마진, 패딩 없애주는 것이 좋음
     *{
         margin:0;
@@ -398,13 +416,24 @@ break continue
 case switch
 try catch finally defalut throw
 
--var vs let
+-var vs let vs const 
+(https://medium.com/@yeon22/javascript-var-let-const%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90-9fab5c264c9c)
+
+선언 시,
+var, let은 변수 선언시 초기 값을 주지 않아도 되지만 
+const는 반드시 초기값을 할당.
+
+hoisting할 때, 
+var는 값이 할당되어있지 않으면 undefined 값을 넣음 -> 따라서 할당 전 사용해도 에러 안남
+let, const는 자동으로 초기값 할당하지 않음. -> 따라서 할당 전 사용하면 error
+(cf. 변수가 선언되고 해당 변수에 값이 할당되기 전까지를 TDZ)
+
+
 
 함수 밖 선언 후,
 함수 내에서 재선언 : 둘다 가능하나 함수 밖 변수와 별개
 함수 내에서 재할당 : 둘 다 가능
 함수 밖 재선언 : var 만 가능
-
 
 ex1.
     var d = 1;
