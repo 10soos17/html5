@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function one() {
+            var output = 0;
+            var i = 0;
+
+            console.log("i:", i);
+
+            while (i < 100) {
+                i++;
+                output += i;
+            }
+            console.log("i:", i);
+            console.log(output);
+
+        }
+
+        function two() {
+
+            var output = 0;
+            var i = 1;
+
+            console.log("i:", i);
+
+            while (i <= 100) {
+
+                output += i;
+                i++;
+            }
+            console.log("i:", i);
+            console.log(output);
+
+        }
+        //one();
+        //two();
+        function one() {
+
+            var i = 0;
+            j = i++; //i값을 j에 할당 후, +
+
+            console.log("i:", i, "j", j);
+
+        }
+
+        function two() {
+
+            var i = 0;
+            j = ++i; //+ 후, i값을 j에 할당
+
+            console.log("i:", i, "j", j);
+
+        }
+        one();
+        two();
+
+    </script>
+</body>
+
+</html>

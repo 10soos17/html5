@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<h1>5장 </h1>
+
+<h3>1. 관 련 있는 것끼리 연결하시오.</h3>
+<h6>(1) 기본 선택자</h6>
+<h6>①-ⓒ 전체선택자, *</h6>
+<h6>②-ⓓ 태그선택자, h1</h6>
+<h6>③-ⓑ 아이디선택자, #id</h6>
+<h6>④-ⓐ 클래스선택자, .header</h6>
+
+<h6>(2) 자손 선택자와 후손 선택자</h6>
+<h6>①-ⓐ 선택자A>선택자B, 자손선택자</h6>
+<h6>②-ⓑ 선택자A 선택자B, 후손선택자</h6>
+
+<h3>2. 다 음 질문에 OX를 표시하시오. </h3>
+<h6>(1) 자손은 후손보다 넓은 개념입니다. (    x    )</h6>
+<h6>(2) div > h1, h2는 “div 태그 아래”의 “h1 태그와 h2 태그”를 선택하는 선택자입니다.  (    x    )</h6>
+<h6>>(3) CSS도 HTML처럼 <!-- 주석 --> 형태로 주석을 사용합니다. (    x      )  </h6>
+<h6>>(4) 2em은 2배를 나타내는 크기 단위입니다. (    o      )</h6>
+<h6>(5) 색상 단위에서 투명도를 지정할 때는 argb() 등을 사용합니다. (    x    )</h6>
+<h6>(6) URL을 지정할 때는 url() 형태의 코드를 사용합니다. (     o     )</h6>
+
+
+<h3>3. 다 음 코드에서 선택자가 어떤 태그를 선택하는지 설명하시오.</h3>
+<h6>(1) header a (header 태그의 후손 중에 a 태그를 선택합니다.)</h6>
+<h6>(2) header > * > h1 (header 태그의 모든 자손들을 선택 후, 그 자손이 h1인 태그를 선택합니다.)</h6>
+<h6>(3) header > div:first-child > a (header 태그의 자손 중에 div 태그를 선택한 후, div 태그의 형제들 중에 첫번째를 선택한 후, 그 자손인 a태그를 선택합니다.)</h6>
+<h6>(4) header a:first-child (header 태그의 후손 중에 a 태그를 선택한 후, a 태그의 형제들 중에 첫 번째를 선택합니다.)</h6>
+<h6>(5) div > h1, h2 (div 태그의 자손 중에 h1과 h2인 태그를 선택합니다.)</h6>
+<h6>(6) .title.card (클래스 이름이 title card라는 클래스를 선택합니다.)</h6>
+
+<h3>4. 다음 HTML 구조에서 음영으로 표시된 태그를 선택할 수 있는 선택자를 3개 이상 만드시오.</h3>
+<h6>.head-item, .head > td, table > tr:first-child > td 등등</h6>
+
+<h3>5. 다음 코드에서 선택자가 어떤 태그를 선택하는지 적으시오.</h3>
+
+<h6>•선택자 1번: header a 코드에서 모든 a 태그를 선택한다.</h6>
+<h6>•선택자 2번: header > * > h1 코드에 있는 h1 태그를 하나 선택한다.</h6>
+<h6>•선택자 3번: header > * > *:first-child > a > h1 태그 아래의 a 태그와 nav 태그의 첫 번째 자식인 div 태그 내부의 a 태그를 선택한다.</h6>
+<h6>•선택자 4번: header a:first-child 코드에 있는 모든 a 태그를 선택한다.</h6>
+
+<h3>6. 다 음 HTML 구조에서 음영으로 표시된 태그를 선택할 수 있는 선택자를 3개 이상 만드시오.</h3>
+
+<h6>(#first, .active, div.active, ul > li:first-child, li#first 등등)</h6>
+
+<h3>7. 다 음 코드의 실행 결과를 예측하시오.</h3>
+
+<h6>(style 태그내 li태그의 첫번째 자손에 해당하는 
+a태그의 color스타일 속성값이 red로 설정됨에 따라, 
+li태그내 하위 5개 a태그의 모든 글자색이 모두 빨간색으로 표시됩니다.)</h6>
+
+
+<h3>8. 다음 중에서 CSS에서 사용할 수 없는 크기 단위는? (2번)</h3>
+<h3>① cm ② m ③ em ④ px</h3>
+
+
+<h3>9. 다음 스타일이 적용되는 태그 너비를 구하시오.</h3>
+
+<h3>.box {</h3><br>
+    <h3> width: 100px; height: 100px;</h3><br>
+    <h3> margin: 0 20px;  padding: 10px 0px;  border: 5px solid black;</h3><br>
+<h3>}</h3>
+
+<h6>(전테 태그(border, margin,paddig 포함시켜서) 150px)</h6>
+    
+</body>
+</html>
