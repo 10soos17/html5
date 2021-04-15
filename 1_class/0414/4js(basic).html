@@ -71,12 +71,49 @@
                 document.write("<br>");
             }
 
-
-
-
         }
 
-        tree();
+        //tree();                  
+
+        function test() {
+
+
+            for (var i = 0; i < 10; i++) {
+                for (var j = 9 - i; j < 10; j++) {
+                    for (var k = j; k < 10; k++) {
+                        document.write("*");
+                        //document.write(`3_${i}${j}${k}`, "\t");
+                    }
+
+                    document.write("<br>");
+                    //document.write(`2_${i}${j}${k}`, "\t");
+                }
+
+                document.write("<br>");
+                //document.write(`1_${i}${j}${k}`, "\t");
+
+            }
+            /*
+                        document.write("====================================");
+                        document.write("<br>");
+            
+                        for (var l = 1; l <= 10; l++) {
+                            for (var m = 1; m <= l; m++) {
+                                for (var n = 1; n <= m; n++) {
+                                    document.write(`3_${l}${m}${n}`, "\t");
+                                }
+            
+                                document.write(`2_${l}${m}${n}`, "\t");
+                            }
+            
+                            document.write(`1_${l}${m}${n}`, "\t");
+                        }
+             */
+        }
+
+
+
+        test();
 
     </script>
 

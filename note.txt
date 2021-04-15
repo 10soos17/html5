@@ -417,6 +417,10 @@ break continue
 case switch
 try catch finally defalut throw
 
+-식별자
+    특수문자는 _, $만 사용 가능
+    숫자로 시작 안됨
+
 - = == ===
     = assignment operator
     == comparison operator
@@ -441,8 +445,6 @@ hoisting할 때,
 var는 값이 할당되어있지 않으면 undefined 값을 넣음 -> 따라서 할당 전 사용해도 에러 안남
 let, const는 자동으로 초기값 할당하지 않음. -> 따라서 할당 전 사용하면 error
 (cf. 변수가 선언되고 해당 변수에 값이 할당되기 전까지를 TDZ)
-
-
 
 함수 밖 선언 후,
 함수 내에서 재선언 : 둘다 가능하나 함수 밖 변수와 별개
@@ -487,4 +489,12 @@ ex3.
     -선언함수와 익명함수
         js는 선언함수를 먼저 읽음
 
+-3중 for문
+(https://sungwooki.tistory.com/entry/4%EC%9D%BC-%EC%B0%A8-JAVA-for%EB%AC%B8%EC%9C%BC%EB%A1%9C-3%EB%8B%A83%EB%8B%A8-%EA%B5%AC%EA%B5%AC%EB%8B%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0-3%EC%A4%91-for%EB%AC%B8-%ED%95%98%EB%8B%A8%EC%9C%BC%EB%A1%9C-1%EC%94%A9-%EC%A6%9D%EA%B0%80%ED%95%98%EB%A9%B0-9%EB%8B%A8%EA%B9%8C%EC%A7%80-%EC%A6%9D%EA%B0%80)
+    가로 3중 범위
+    세로 2중 범위
+    전체 세로 1중 범위
+
+-eval()
+    문자로 표현 된 JavaScript 코드를 실행하는 함수
 ===========================java=====================================================
