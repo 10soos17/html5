@@ -594,3 +594,71 @@ https://coffee-mark.tumblr.com/post/60403617223/java?is_related_post=1
             순이.보드를닦는다();
         }
     }
+
+- 접근 제어
+    public(전체공개) > protected(상속 or 패키지 내부) > default(패키지 내부) > private(클래스 내부)
+    public 클래스의 경우에는 파일명이 클래스명과 동일하지 않으면 에러가 발생. 
+    즉, 외부에서 가져다 쓰는 public 클래스의 경우에는 
+    컴파일한 class이름이 동일해야 외부에서 직접 찾아가서 접근할 수 있으므로 당연할 수 밖에 없는 것 같다
+
+- 객체
+
+- super(부모), this(자신)
+
+- 변수 타입
+    public, static, final
+
+- 데이터 타입
+    byte, short, long, int, float, double, char, boolean, void
+
+-Wrapper(클래스)
+    byte, Short, Long, Integer, Float, Double, Character, Boolean, Void
+
+-Wrapper(boxing, unboxing한다고 표현함)
+    int를 Integer에 넣으면 Boxing, 다시 Integer를 int로 꺼내오면 UnBoxing
+    *Integer와 int는 자동변환 지원됨 
+    ex)
+    Integer(int value)   // 생성자로 35같은 int를 Integer로 바꾼다.
+    Integer(String s)     // 생성자로 “35”같은 String을 Integer로 바꾼다. 
+    static int parseInt(String s) // 정적메소드로 “35”같은 String을 정수 int로 바꿔
+    static String toString(int i)  // 정적메소드로 35를 “35”로 바꿔준다.
+    String toString()  // Integer클래스 안에 담긴 정수(35)를 “35”로 바꾼다.
+    int intValue()  // Integer클래스 안에 담긴 정수(35)를 35로 바꾼다
+
+-generics(<>안에는 클래스타입만 저장 가능)
+    ex. ArrayList<String>, ArrayList<Integer>, <String>myMethod(), <Integer>myMethod()
+
+- Collection(배열같은 자료구조, 크기 생각 안해도 됨) 
+
+- stream(writer class, reader class)
+
+- override(상속 받은 자가 메소드 재정의, 다중상송 불가), overroading(메소드의 인수만 다르면 새로 정의 가능)
+
+- class, abstract(메소드 이름만 정하고 실제 정의하지 않은 것), interface(상수와 메소드 이름만으로 구성)
+
+- extends(클래스를 상속), implements(인터페이스를 구현)
+
+-예외 처리(Error, Exception)
+    * Error : 실행 중 심각한 오류. 개발자가 코딩할 때 따로 처리할 건 없음
+    * Exception : 실행 중 발생가능한 예외 상황. 코딩할 때 예외 처리 방식 정해야함(CheckedException)
+                (단, RuntimeException : 실행 중 발생하는 예외이지만, 코딩할 때 처리할 필요는 없음)(UncheckedException)
+    
+    -> Exception 클래스에 대해서만 개발시에 처리해주면 된다.(RuntimeExcepton 제외)
+        Throwable 클래스를 상속하는데, 메소드 중에 다음 2가지가 주로 쓰임.
+        * String getMessage()    - 상세 오류 메시지를 제공
+        * void printStackTrace()  - 오류발생 시, 메소드 호출 경로가 저장된 스택의 내용을 출력
+
+- 멀티스레드(Thread class, Runnable interface)
+    반드시 start() 후에 run()메소드를 호출
+    ex.
+    Thread t = new MyThread(); 
+    t.start();
+
+    ex.
+    Runnable r = new MyThread2(); // 스레드에 시킬일이 포함된 runnable구현 클래스 
+    Thread t = new Thread(r); // runnable인터페이스를 이용해서 스레드를 만든다. 
+    t.start(); // start를 호출해서 스레드에 일을 시키다.
+
+- 동시성 제어
+    synchronized
+    wait() 메소드, notifyAll() 메소드, notify() 메소드
