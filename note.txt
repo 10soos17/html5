@@ -399,6 +399,40 @@ line-height: 100px;(높이만큼)
     가로: @media(orientation:landscape)
 
 
+===========================jquery==============================================================
+
+-비교
+
+    - 이벤트로드
+        window.onload() = function(){};
+        $(document).ready(function(){});
+
+    - 텍스트 추출
+        innerHTML, textContent
+        html() - 처음 1개 출력, text() - 글자로 모두 출력
+
+    - css 속성 값 읽기
+        .style.속성 - 속성명 '-'사용 불가 / .style['속성'] - 속성명 '-'사용 가능
+        .css( , )
+
+    - css 속성 값 추출
+        .속성(웹표준일경우) / getAttribute(웹 표준 아닐 경우)
+        attr()
+
+    - css 속성 값 지정
+        .속성(웹표준일경우) / setAttribute(웹 표준 아닐 경우)
+        attr( , )
+
+    -기본 태그 속성 없애는 법
+        결과 false 로
+        .preventDefault(), .stopPropagation()
+
+- jquery hover action  
+    $('').hover(mouseenter이벤트, mouseleave이벤트)
+
+- $('').method(function(e){});
+
+-on(연결), off(제거)
 
 ===========================js==============================================================
 int, float, char, boolean, string
