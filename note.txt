@@ -74,7 +74,6 @@ https://blog.daum.net/celab
 
 ===========================html5===========================================================
 prompt();
-scanner();
 
 -특수문자 사용할때 
     (https://mine-it-record.tistory.com/273)
@@ -133,11 +132,11 @@ scanner();
     border="1" cellspacing="0" 
     colspan="5" rowspan="5" align="center"
 
--foam
+-form
     <form method="post" action="test1action.jsp">
     get방식 -> http://127.0.0.1:5500/0407/test1.html?id=soo&pw=123
     post방식 -> body에 보냄, url 노출 안됨
-    target="_black" -> 링크를 새창으로 띄움
+    target="_blank" -> 링크를 새창으로 띄움
     메소드 적용시키려면 obj에 name값 지정해야함
 
     -form에서 button, submit 차이(button은 form method적용안됨)
