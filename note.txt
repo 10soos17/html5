@@ -543,13 +543,45 @@ ex3.
 ==============================================================================================
 ===========================java===============================================================
 ==============================================================================================
+- eclipse ide for java developers (2020. 03 설치함)
+    -맥 한글깨짐 현상 https://hyo-dadak.tistory.com/32
 
-https://coffee-mark.tumblr.com/post/60403617223/java?is_related_post=1
+- java 설명 https://coffee-mark.tumblr.com/post/60403617223/java?is_related_post=1
 
-java 객체 문서
-https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+- java 객체 문서 https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
 
--기본 컴파일 및 실행 과정
+- 설치 tip
+    - download - https://java.com/ko/download/manual.jsp
+                 https://www.oracle.com
+
+    - mac 설명 - https://s2junn.tistory.com/83
+    - mac 설치, 삭제 - https://blog.naver.com/adonise007/221556545884
+
+    * eclipse - jdk version 11 이상 사용 권장
+    * jdk 8 와의 차이점 - 모듈화, jdk 8은 java SE의 모든 표준 API가 import 만으로 사용가능
+                        11 이후 버전은 java.base에 포함된 패키지만 사용 가능.
+                        따라서 다른 모듈을 사용하려면 모듈 기술자(module-info.java)에 의존성 모듈을 등록해야 함.
+    - 환경변수 등록
+        bash 사용시, vi ~/.bashrc
+        zsh 사용시, vi ~/.zshrc
+
+        1. 
+            export JAVA_HOME = /Library/Java/JavaVirtualMachines/jdk-16.jdk
+
+            or
+
+        2. 여러버전 환경변수 등록
+            export JAVA_HOME=$(~/usr/libexec/java_home -v 1.8)
+            export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$JAVA_HOME"
+            alias java8='export JAVA_HOME=$(~/usr/libexec/java_home -v 1.8)'
+            alias java16='export JAVA_HOME=$(~/usr/libexec/java_home -v 16)'
+
+    - 삭제
+        sudo rm -fr /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin 
+        sudo rm -fr /Library/PreferencePanes/JavaControlPanel.prefPane 
+        sudo rm -fr ~/Library/Application\ Support/Oracle/Java
+
+- 기본 컴파일 및 실행 과정
     Java compiler 는 .java 파일을 .class 라는 Java byte code 로 변환 시켜줍니다.
     하지만 Byte Code 는 기계어가 아니기 때문에 OS에서 바로 실행 되지 않습니다.
     이 때 JVM(Java Virtual Machine)이 Btyte Code 를 이해할 수 있도록 해석
@@ -566,14 +598,14 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
         파일명.class (생성) - 바이너리코드(바이트코드)
         java 파일명(실행)
 
--Java platform(J2SE, J2EE, J2ME)
+- Java platform(J2SE, J2EE, J2ME)
 
--JDK
+- JDK
     JRE(JVM+각종API+app배포기술) +  각종개발에 필요한 실행파일(javac.exe))
 
--JVM(java.exe)
+- JVM(java.exe)
 
-    -크게 3부분
+    - 크게 3부분
         - JAVA Source : 사용자가 작성한 JAVA 코드
         - JAVA Compiler　: JAVA 코드를 Byte Code로 변환
         1. Class loader subSystem(클래스 파일을 로딩한 뒤 검증하고 초기화)
@@ -598,12 +630,12 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
                 e. pc registers(Thread가 생성 될 때마다 생성되는 공간/현재 실행되는 부분의 명령과 주소를 저장)
         3. Execution engine(클래스 파일(바이트코드)를 플랫폼에 맞는 기계어로 변환시켜 실행)
 
-    -하는일
+    - 하는일
         1. 메모리를 할당
         2. bytecode를 interpreter 형태로 OS에 맞추어 번역, 실행
         3. 변역, 실행 시 최적화 수행 (메모리 관리 Garbage Collection)
 
--project 작성 기본 틀
+- project 작성 기본 틀
 
     package project1;
 
@@ -647,10 +679,10 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
 - 데이터 타입
     byte, short, long, int, float, double, char, boolean, void
 
--Wrapper(클래스)
+- Wrapper(클래스)
     byte, Short, Long, Integer, Float, Double, Character, Boolean, Void
 
--Wrapper(boxing, unboxing한다고 표현함)
+- Wrapper(boxing, unboxing한다고 표현함)
     int를 Integer에 넣으면 Boxing, 다시 Integer를 int로 꺼내오면 UnBoxing
     *Integer와 int는 자동변환 지원됨 
     ex)
@@ -661,7 +693,7 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
     String toString()  // Integer클래스 안에 담긴 정수(35)를 “35”로 바꾼다.
     int intValue()  // Integer클래스 안에 담긴 정수(35)를 35로 바꾼다
 
--generics(<>안에는 클래스타입만 저장 가능)
+- generics(<>안에는 클래스타입만 저장 가능)
     ex. ArrayList<String>, ArrayList<Integer>, <String>myMethod(), <Integer>myMethod()
 
 - Collection(배열같은 자료구조, 크기 생각 안해도 됨) 
@@ -674,7 +706,7 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
 
 - extends(클래스를 상속), implements(인터페이스를 구현)
 
--예외 처리(Error, Exception)
+- 예외 처리(Error, Exception)
     * Error : 실행 중 심각한 오류. 개발자가 코딩할 때 따로 처리할 건 없음
     * Exception : 실행 중 발생가능한 예외 상황. 코딩할 때 예외 처리 방식 정해야함(CheckedException)
                 (단, RuntimeException : 실행 중 발생하는 예외이지만, 코딩할 때 처리할 필요는 없음)(UncheckedException)
@@ -698,7 +730,3 @@ https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
 - 동시성 제어
     synchronized
     wait() 메소드, notifyAll() 메소드, notify() 메소드
-
-    //https://blog.naver.com/adonise007/221556545884
-    https://blog.naver.com/dhqkgo/222164723481
-    
