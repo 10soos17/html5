@@ -545,6 +545,10 @@ ex3.
 ==============================================================================================
 - eclipse ide for java developers (2020. 03 설치함)
     -맥 한글깨짐 현상 https://hyo-dadak.tistory.com/32
+    Windows의 이클립스 인코딩 설정은 기본적 "MS949" 입니다. 
+    맥의 이클립스 인코딩과 비교하여, 동일한 인코딩을 맞추시고 작업하시면 됩니다.
+    참고로, "MS949"는 "EUC-KR"의 확장형이기 때문에 서로 호환되며, "ASCII"와 "UTF-8"도 서로 호환됩니다만, "EUC-KR"과 "UTF-8"은 호환되지 않습니다.
+    인코딩 설정은 [Preferences] - [General] - [Workspac]에서 변경할 수 있습니다.
 
 - java 설명 https://coffee-mark.tumblr.com/post/60403617223/java?is_related_post=1
 
@@ -730,3 +734,9 @@ ex3.
 - 동시성 제어
     synchronized
     wait() 메소드, notifyAll() 메소드, notify() 메소드
+
+
+
+////////
+학원 eclipse encoding  방식 확인하기
+vs code, eclipse - 둘다 utf8으로 만들기
