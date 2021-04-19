@@ -593,8 +593,33 @@ ex3.
             컨테이너 삭제	 $ docker rm [컨테이너 명]
 
     - 윈도우
-         다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
+        - 다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
+        
+        - 도커 설치
+            [windows 설치 -docker]
+            https://blog.naver.com/jazzkim12/222040523447
+            1설치 전, 작업관리자에서 가상화 활성화 여부 확인하기
+            제어판>프로그램 및 기능>windows 기능 켜기/끄기
+            : hyper-v 관리도구 전부 체크해두기, 가상 머신 플랫폼도 체크하기
+            2도커사이트에서 윈도우 버전 설치
+            https://docs.docker.com/toolbox/toolbox_install_windows/
 
+            https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
+            3에러 발생시 시도
+            Cmd에서
+            DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
+            -> bcdedit /set hypervisorlaunchtype auto 로 변경
+            4기본명령어
+            docker version
+            docker container ls -a
+            docker images
+            docker run -it ubuntu bash
+            docker start “컨테이너이름”
+            docker attach “컨테이너이름”(실행중인 컨테이너 다시 들어갈때)
+            docker stop “컨테이너이름”
+            docker rm “컨테이너이름”
+            docker rmi “이미지이름”
+            docker container rename “기존이름” “새이름”
 - 계정 추가, 권한
     https://namubada.net/219?category=777141
 
@@ -610,7 +635,12 @@ ex3.
                 AddVMOption -Duser.language=ko
                 AddVMOption -Duser.country=KR
 
+- characterset 확인
+    AL32UTF8 권장
+    http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
+    select * from nls_database_parameters where parameter='NLS_CHARACTERSET';
 
+    
 
 -type  
     VARCHAR2()
@@ -652,9 +682,9 @@ ex3.
 - cursor, trigger
 
 
-
 //docker 상태 저장하는것
 //sql 한글 설정
+//1 윈도우에서 직접 설치 2 docker로 연동해서 사용해보기
 ==============================================================================================
 ===========================java===============================================================
 ==============================================================================================
@@ -850,6 +880,17 @@ ex3.
     synchronized
     wait() 메소드, notifyAll() 메소드, notify() 메소드
 
+- package, import
+    https://blog.naver.com/jkdmswn02023/221982415880
+    - 같은 패키지 - import 필요없음.
+    - 다른 패키지
+        - 패키지 경로 확인 후, 
+            import 경로.*(모든파일), import 경로.클래스명(특정클래스만)
+
+    -이클립스 실습 
+        - location : /Users/soos/Desktop/git/lecture/lecture_choongang/eclipse/two/src/two/B.java
+        - path : /two/src/two/B.java
+        - import two.B;//import two.*; (패키지명만 쓰기)
 
 
 ////////
