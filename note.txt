@@ -360,6 +360,9 @@ line-height: 100px;(높이만큼)
             color: red;
         }
 
+-scroll option
+    https://circlash.tistory.com/610
+
 ===========================media query=====================================================
 -767 / 768-959 / 960
 -장치에 따라 설정 달리 하기 위한 용도
@@ -539,7 +542,119 @@ ex3.
 
 -eval()
     문자로 표현 된 JavaScript 코드를 실행하는 함수
+==============================================================================================
+===========================oracle=============================================================
+==============================================================================================
+- oracle-xe-11g 설치
 
+    - 처음 id/pw : system / oracle(or 1234)
+    - http port: 8080(나중에 바꾸기) / database port : 1521
+
+    - 맥
+        설치 방법1: https://blog.naver.com/ahahw/221805861698
+                        https://whitepaek.tistory.com/38
+                        https://whitepaek.tistory.com/40
+
+        설치 방법2: https://namubada.net/282?category=773787
+
+        992  docker search oracle-xe-11g
+        993  pull jaspeen/oracle-xe-11g
+        994  docker pull jaspeen/oracle-xe-11g
+        995  docker -run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g
+        996  docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11;
+        997  docker images
+        998  docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g;
+        999  docker ps
+        1002  docker exec -it oracle11g sqlplus
+        user: system
+        password: 1234
+
+        -> 이후 접속 후, 
+            - 계정 생성
+                create user 'soos(아이디)' identified by '비번';
+            - 권한 설정
+                GRANT CONNECT, RESOURCE TO soos(아이디);
+            -계정 상태 확인
+                select username,account_status,lock_date from dba_users;
+
+     *docker 기본 명령어*
+            버전 확인	 $ docker -v
+            이미지 다운로드	 $ docker pull [이미지 명]
+            다운로드된 이미지 목록	 $ docker images
+            컨테이너 생성	 $ docker create [옵션] [이미지 명]
+            컨테이너 생성 및 실행	 $ docker run [옵션] [이미지 명]
+            컨테이너 실행	 $ docker start [컨테이너 명]
+            컨테이너 재실행	 $ docker restart [컨테이너 명]
+            컨테이너 접속	 $ docker attach [컨테이너 명]
+            컨테이너 정지	 $ docker stop [컨테이너 명]
+            실행중인 컨테이너 목록	 $ docker ps
+            정지된 컨테이너 목록	 $ docker ps -a
+            컨테이너 명 변경	 $ docker rename [기존 컨테이너 명] [새로운 컨테이너 명]
+            컨테이너 삭제	 $ docker rm [컨테이너 명]
+
+    - 윈도우
+         다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
+
+- 계정 추가, 권한
+    https://namubada.net/219?category=777141
+
+- sqldeveloper 설치
+    - 맥 
+        다운로드 : https://www.oracle.com/tools/downloads/sqldev-downloads.html
+        설치 방법 : https://blog.naver.com/wkdgpwjd007/222271070913
+
+        -접속 오류시
+            cd /Users/soos/Desktop/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin
+            vi sqldeveloper.conf 
+            -> 아래 두 줄 추가
+                AddVMOption -Duser.language=ko
+                AddVMOption -Duser.country=KR
+
+
+
+-type  
+    VARCHAR2()
+    NUMBER()
+
+-명령어
+    select * from tab;
+    set linesize 100(원하는크기);
+
+    alter user hr(개체) account unlock(권한 언락);
+    alter user hr identified by 1234;
+    conn hr/1234;
+
+    select * from hr(객체).departments(table이름);
+    select department_name(필드명) from hr.departments;
+    desc departments;
+
+    create table tbluser (bunho number(3), name varchar2(20) not null, password varchar2(20) not null);
+    insert into tbluser values(1, 'hong gil dong', '1234');
+    update tbluser set name='lee sun min' where bunho=1;
+    delete from tbluser where bunho =1;
+
+    select * from tbluser order by bunho (desc); -> ex. desc 옵션 - lifo 형식으로 게시판 만들어야할 때 사용
+    select * from sungjuk where kor >= 100;
+
+    select avg(kor) from sungjuk;
+
+    select bunho, name, kor+eng+math from sungjuk;
+    select bunho, name, kor+eng+math (as) sum, (kor+eng+math)/3 (as) avg from sungjuk
+
+    select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
+
+- 명령어 종류
+    dml(data manupulate language) / dcl(data control language) / ddl(data define language)
+
+
+- 무결성, database 정규화(normalization)
+
+- cursor, trigger
+
+
+
+//docker 상태 저장하는것
+//sql 한글 설정
 ==============================================================================================
 ===========================java===============================================================
 ==============================================================================================
