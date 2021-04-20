@@ -622,6 +622,12 @@ ex3.
             docker container rename “기존이름” “새이름”
 - 계정 추가, 권한
     https://namubada.net/219?category=777141
+    
+    기본 계정
+    sys - super user, conn sys /as sysdba, 비번1234
+    system
+    scott
+    hr
 
 - sqldeveloper 설치
     - 맥 
@@ -640,11 +646,19 @@ ex3.
     http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
     select * from nls_database_parameters where parameter='NLS_CHARACTERSET';
 
-    
+- source 파일 불러올때
+    @절대경로;
+    ex. @C:\temp\emp_example.sql;
 
 -type  
     VARCHAR2()
     NUMBER()
+
+-option
+    null, not null, unique(값이 겹치면 에러남)
+    PRIMARY KEY(not null + unique + index) - table당 하나 설정, error(ORA-02449: unique/primary keys in table referenced by foreign keys)
+    FK(foreign key) - 미리 설정되어있는 값만 넣어야 함, error(ORA-02291: integrity constraint (HR.FK_DNO) violated - parent key not found)
+
 
 -명령어
     select * from tab;
@@ -656,7 +670,7 @@ ex3.
 
     select * from hr(객체).departments(table이름);
     select department_name(필드명) from hr.departments;
-    desc departments;
+    desc departments; - 테이블 구조 학인
 
     create table tbluser (bunho number(3), name varchar2(20) not null, password varchar2(20) not null);
     insert into tbluser values(1, 'hong gil dong', '1234');
@@ -673,9 +687,14 @@ ex3.
 
     select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
 
-- 명령어 종류
-    dml(data manupulate language) / dcl(data control language) / ddl(data define language)
+    column clusterid format a5;
 
+- 명령어 종류
+    dml(data manupulate language)-select insert update delete 
+    dcl(data control language)-r grant  
+    ddl(data define language)-schema를  create alter drop
+
+    taransaction - commit, rollback
 
 - 무결성, database 정규화(normalization)
 

@@ -1,0 +1,24 @@
+create table customer(id varchar(20) not null, pwe varchar(20) not null, name varchar(20) not null, phone varchar(30), address varchar(200));
+
+insert into customer values('id001', '1234', 'a', 2, '010-1111-2222', 'seoul');
+column id format a5;
+column pwd format a5;
+SQL> column phone format a13;
+SQL> column name format a10;
+SQL> colmn address format a10;
+
+create table customer(id varchar(10) unique, pwd varchar(10) not null);
+insert into customer values('111', '11111');
+insert into customer values('222', '11111');
+alter table customer add name varchar2(20);
+alter table customer drop column pwd;
+
+
+- source 파일 불러올때
+@절대경로;
+@C:\temp\emp_example.sql;
+
+select SALARY, SALARY+300 AS "bonus", SALARY * 1.2 FROM EMPLOYEE
+WHERE SALARy < 3000;
+SELECT SALARY, SALARY+NYL(COMMISSION,0) bonus, COMMISSION FROM EMPLOYEE;
+SELECT * FROM EMPLOYEE WHERE COMMISSION IS NULL;
