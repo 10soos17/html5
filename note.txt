@@ -566,8 +566,11 @@ ex3.
         998  docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g;
         999  docker ps
         1002  docker exec -it oracle11g sqlplus
+        
+        exec -it ps이름 /bin/bash
+
         user: system
-        password: 1234
+        password: oracle(or 1234)
 
         -> 이후 접속 후, 
             - 계정 생성
@@ -591,6 +594,8 @@ ex3.
             정지된 컨테이너 목록	 $ docker ps -a
             컨테이너 명 변경	 $ docker rename [기존 컨테이너 명] [새로운 컨테이너 명]
             컨테이너 삭제	 $ docker rm [컨테이너 명]
+            태그 docker tag ip:port/[컨테이너 명] [id]]/[이름]:[tag명]
+            push docker push ip:port/[id]]/[이름]:[tag명]
 
     - 윈도우
         - 다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
@@ -609,17 +614,7 @@ ex3.
             Cmd에서
             DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
             -> bcdedit /set hypervisorlaunchtype auto 로 변경
-            4기본명령어
-            docker version
-            docker container ls -a
-            docker images
-            docker run -it ubuntu bash
-            docker start “컨테이너이름”
-            docker attach “컨테이너이름”(실행중인 컨테이너 다시 들어갈때)
-            docker stop “컨테이너이름”
-            docker rm “컨테이너이름”
-            docker rmi “이미지이름”
-            docker container rename “기존이름” “새이름”
+
 - 계정 추가, 권한
     https://namubada.net/219?category=777141
     
@@ -688,6 +683,8 @@ ex3.
     select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
 
     column clusterid format a5;
+
+    drop table CUSTOMER;
 
 - 명령어 종류
     dml(data manupulate language)-select insert update delete 
