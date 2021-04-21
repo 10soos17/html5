@@ -15,9 +15,11 @@ class grade{
 	int avg;
 
 	void set(int number) {
+		
 		for(int i=0; i<grades.length;i++,a++) {
 			grades[i] = a;
 		}
+		
 		if(number > 90) {
 			this.grade = grades[0];
 		}else if(number <= 90 && number > 80) {
@@ -32,20 +34,20 @@ class grade{
 		}
 	}
 	
-	int get() {
+	char get() {
 
-		return this.grade;
+		return grade;
 		
 	}
 	
-	void set_average(int one, int two) {
+	void set_sumAverage(int one, int two) {
 		kor = one;
 		eng = two;
 		this.sum = kor + eng;
 		this.avg = sum / 2;
 
 	}
-	int[] get_average() {
+	int[] get_sumAverage() {
 
 		this.output[0] = this.sum;
 		this.output[1] = this.avg;
@@ -66,9 +68,6 @@ class grade{
 		
 		return four;
 	}
-	
-	
-	
 }
 
 public class practice {
@@ -76,21 +75,21 @@ public class practice {
 
 	public static void main(String[] args) {
 		
-		int number = 30;
+		int number = 92;
 		int korean = 100;
 		int english = 90;
 
 		grade one = new grade();
 		
 		one.set(number);
-		int myGrade = one.get();
+		char myGrade = one.get();
 		System.out.println(myGrade);
 		
-		one.set_average(100, 90);
-		int myOutput[] = one.get_average();
-		System.out.println("sum:" +myOutput[0]+ "avg:" +myOutput[1]);
+		one.set_sumAverage(100, 90);
+		int myOutput[] = one.get_sumAverage();
+		System.out.println("sum:" + myOutput[0]+ "avg:" + myOutput[1]);
 		
-		System.out.println(one.div(20,3));
+		System.out.println(one.div(10,3));
 
 
 
