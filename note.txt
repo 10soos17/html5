@@ -545,90 +545,31 @@ ex3.
 ==============================================================================================
 ===========================oracle=============================================================
 ==============================================================================================
-- oracle-xe-11g 설치
 
-    - 처음 id/pw : system / oracle(or 1234)
-    - http port: 8080(나중에 바꾸기) / database port : 1521
+---------------------------환경 만들기
+- 맥
+    설치 방법1: https://blog.naver.com/ahahw/221805861698
+                https://whitepaek.tistory.com/38
+                https://whitepaek.tistory.com/40
 
-    - 맥
-        설치 방법1: https://blog.naver.com/ahahw/221805861698
-                        https://whitepaek.tistory.com/38
-                        https://whitepaek.tistory.com/40
+    설치 방법2: https://namubada.net/282?category=773787
 
-        설치 방법2: https://namubada.net/282?category=773787
-
-        992  docker search oracle-xe-11g
-        993  pull jaspeen/oracle-xe-11g
-        994  docker pull jaspeen/oracle-xe-11g
-        995  docker -run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g
-        996  docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11;
-        997  docker images
-        998  docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g;
-        999  docker ps
-        1002  docker exec -it oracle11g sqlplus
-        user: system
-        password: 1234
-
-        -> 이후 접속 후, 
-            - 계정 생성
-                create user 'soos(아이디)' identified by '비번';
-            - 권한 설정
-                GRANT CONNECT, RESOURCE TO soos(아이디);
-            -계정 상태 확인
-                select username,account_status,lock_date from dba_users;
-
-     *docker 기본 명령어*
-            버전 확인	 $ docker -v
-            이미지 다운로드	 $ docker pull [이미지 명]
-            다운로드된 이미지 목록	 $ docker images
-            컨테이너 생성	 $ docker create [옵션] [이미지 명]
-            컨테이너 생성 및 실행	 $ docker run [옵션] [이미지 명]
-            컨테이너 실행	 $ docker start [컨테이너 명]
-            컨테이너 재실행	 $ docker restart [컨테이너 명]
-            컨테이너 접속	 $ docker attach [컨테이너 명]
-            컨테이너 정지	 $ docker stop [컨테이너 명]
-            실행중인 컨테이너 목록	 $ docker ps
-            정지된 컨테이너 목록	 $ docker ps -a
-            컨테이너 명 변경	 $ docker rename [기존 컨테이너 명] [새로운 컨테이너 명]
-            컨테이너 삭제	 $ docker rm [컨테이너 명]
-
-    - 윈도우
-        - 다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
+- 윈도우
+    - 다운로드 : https://www.oracle.com/database/technologies/xe-prior-releases.html
         
-        - 도커 설치
-            [windows 설치 -docker]
-            https://blog.naver.com/jazzkim12/222040523447
-            1설치 전, 작업관리자에서 가상화 활성화 여부 확인하기
+    - 도커 설치
+        [windows 설치 -docker]
+        https://blog.naver.com/jazzkim12/222040523447
+        1설치 전, 작업관리자에서 가상화 활성화 여부 확인하기
             제어판>프로그램 및 기능>windows 기능 켜기/끄기
             : hyper-v 관리도구 전부 체크해두기, 가상 머신 플랫폼도 체크하기
-            2도커사이트에서 윈도우 버전 설치
+        2도커사이트에서 윈도우 버전 설치
             https://docs.docker.com/toolbox/toolbox_install_windows/
-
             https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
-            3에러 발생시 시도
+        3에러 발생시 시도
             Cmd에서
             DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
             -> bcdedit /set hypervisorlaunchtype auto 로 변경
-            4기본명령어
-            docker version
-            docker container ls -a
-            docker images
-            docker run -it ubuntu bash
-            docker start “컨테이너이름”
-            docker attach “컨테이너이름”(실행중인 컨테이너 다시 들어갈때)
-            docker stop “컨테이너이름”
-            docker rm “컨테이너이름”
-            docker rmi “이미지이름”
-            docker container rename “기존이름” “새이름”
-- 계정 추가, 권한
-    https://namubada.net/219?category=777141
-    
-    기본 계정
-    sys - super user, conn sys /as sysdba, 비번1234
-    system
-    scott
-    hr
-
 - sqldeveloper 설치
     - 맥 
         다운로드 : https://www.oracle.com/tools/downloads/sqldev-downloads.html
@@ -645,6 +586,101 @@ ex3.
     AL32UTF8 권장
     http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
     select * from nls_database_parameters where parameter='NLS_CHARACTERSET';
+
+----------------------------[DOCKER & oracle-xe-11g]----------------------------------------------------
+1.도커 환경 만들기
+
+    docker search 원하는이미지이름 (도커에서 오라클 이미지 찾기)
+    (docker search oracle-xe-11g )
+    docker pull 이미지이름(결과 중에 하나 pull)
+    (docker pull oracle-xe-11g)
+    docker images(잘 받아졌나 확인)
+    docker run —name 새이름 -d -p hostport:hostport -p oracleport:oracleport 이미지이름
+    (docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g;)
+
+    *** 디렉터리 복사할때
+    docker run —name 새이름 -d -p 내포트:내포트 -p 오라클포트:오라클포트 -v 복사할로컬디렉토리경로:옮길컨테이너디렉터리 이미지이름
+    (docker run --name oracle -d -p 9999:9999 -p 1521:1521 -v //Users/soos/Desktop/git/lecture/lecture_choongang/3_oracle/2_source:/tmp soo1017/oracle11g;)
+            
+    docker ps(컨테이너에 올라갔는지 확인)
+    docker exec -it 이름 sqlplus(sqlplus 실행)
+    (docker exec -it oracle11g sqlplus)
+    docker exec -it 이름 bin/bash(bash 실행)
+    (docker exec -it oracle11g bin/bash)
+
+    ***
+    docker pull 내계정/원하는이름;
+    docker commit 이름 내계정/원하는이름;
+    docker push 내계정/원하는이름;
+            
+2 linux 환경 만들기
+    (exec -it 컨이너이름 /bin/bash)
+
+    (
+    루트계정 비번 설정->
+    apt-get패키지받기(vi, sudo, yum)->
+    사용자 추가->
+    사용자한테 권한 주기(sudoers파일에 작성)->
+    한글설정
+    )
+
+    #표시: root 계정 / $표시: 타계정 / su 계정명(계정 바꾸기)
+
+    passwd(#상태에서 루트비번설정)
+
+    apt-get update
+    apt-get upgrade
+    apt-get install vim
+    apt-get install sudo
+
+    adduser 계정명
+    cd /etc (sudoers 위치로 이동)
+    chmod 777 sudoers(파일 수정 권한 주기)
+    vi sudoers -> 계정명 ALL=(ALL:ALL) ALL (추가한 계정에 대한 권한 주기)
+    chmod 444 sudoers(파일 읽기 권한만 주기)
+
+    apt-get install locales
+    locale
+    locale -a
+    localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
+    LC_ALL=ko_KR.utf8 bash
+
+    (화살표키설정하는법
+    체크apt-get install yum
+    yum install rlwrap
+    .bashrc -> alias sqlplus ='rlwarp sqlplus'
+    # . .bashrc
+    )
+
+3.sqlplus 환경 만들기
+
+    - 기본 계정
+        sys - super user, conn sys /as sysdba, 비번1234
+        system
+        scott
+        hr
+
+    select username, account_status, lock_date from dba_users;(현재 계정 확인)
+    create user 계정명 identified by 비번;(계정 생성)
+    ( create user soos identified by '비번’;)
+    grant connect, resource to 계정명;(계정에 권한)
+    (grant connect, resource to soos;)
+
+    alter user 계정명 account unlock;(기존 계정에 권한)
+    (alter user hr account unlock;)
+    alter user 계정명 identified by 비번(기존 계정에 비번)
+    (alter user hr identified by 1234;)
+
+    conn 계정/비번
+
+    select * from tab(기존 테이블 상태 확인)
+
+    @경로 (파일 실행)
+
+    commit;
+    rollback;
+
+--------------------------------사용법 
 
 - source 파일 불러올때
     @절대경로;
@@ -689,6 +725,8 @@ ex3.
 
     column clusterid format a5;
 
+    drop table CUSTOMER;
+
 - 명령어 종류
     dml(data manupulate language)-select insert update delete 
     dcl(data control language)-r grant  
@@ -701,9 +739,6 @@ ex3.
 - cursor, trigger
 
 
-//docker 상태 저장하는것
-//sql 한글 설정
-//1 윈도우에서 직접 설치 2 docker로 연동해서 사용해보기
 ==============================================================================================
 ===========================java===============================================================
 ==============================================================================================
@@ -859,12 +894,14 @@ ex3.
     static int parseInt(String s) // 정적메소드로 “35”같은 String을 정수 int로 바꿔
     static String toString(int i)  // 정적메소드로 35를 “35”로 바꿔준다.
     String toString()  // Integer클래스 안에 담긴 정수(35)를 “35”로 바꾼다.
-    int intValue()  // Integer클래스 안에 담긴 정수(35)를 35로 바꾼다
+    int intValue()  // Integer클래스 안에 담긴 정수(35)를 35로 바꾼
+
+- Collection(배열같은 자료구조, 크기 생각 안해도 됨) & Map https://blog.naver.com/blaxh1101/221563857171 , https://blog.naver.com/tatha0346/222220994550
+    Collection - List(LinkedList, Stack, Vector, ArrayList), Set(HashSet, SortedSet(TreeSet))
+    Map - Hashtable, HashMap, SortedMap(TreeMap)
 
 - generics(<>안에는 클래스타입만 저장 가능)
     ex. ArrayList<String>, ArrayList<Integer>, <String>myMethod(), <Integer>myMethod()
-
-- Collection(배열같은 자료구조, 크기 생각 안해도 됨) 
 
 - stream(writer class, reader class)
 

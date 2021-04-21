@@ -1,3 +1,5 @@
+=======0420=======
+
 create table customer(id varchar(20) not null, pwe varchar(20) not null, name varchar(20) not null, phone varchar(30), address varchar(200));
 
 insert into customer values('id001', '1234', 'a', 2, '010-1111-2222', 'seoul');
@@ -22,3 +24,52 @@ select SALARY, SALARY+300 AS "bonus", SALARY * 1.2 FROM EMPLOYEE
 WHERE SALARy < 3000;
 SELECT SALARY, SALARY+NYL(COMMISSION,0) bonus, COMMISSION FROM EMPLOYEE;
 SELECT * FROM EMPLOYEE WHERE COMMISSION IS NULL;
+
+=======0421=======
+글자관련
+연산관련
+날짜관련
+형변환관련(TO_CHAR, TO_NUMBER, TO_)
+비교관련(NVLIF(expr1, expr2), COALESCE(,...,),
+        DECODE(표현식, 조건1, 결과1,
+                        조건2, 결과2,
+                        조건3, 결과3,  
+                        기본결과n)
+
+select ename, upper(ename), lower(ename), initcap(ename) from employee;
+select * from employee where lower(job)='clerk';  
+select * from employee where initcap(job) = 'CLErk' or upper(job) = 'CLERK';
+select concat(ename, job) from employee; -> error
+select substr(job,2,3) from employee;
+alter table employee add idtest char(14);
+update employee set idtest='777777-1234567';
+
+select substr(idtest,8,1),substr(idtest,1,2)||'년'
+,substr(idtest,3,2)||'월',substr(idtest,5,2)||'일' from employee;
+
+update employee set idtest='666666-2333333' where eno=7499;
+
+select sysdate from dual;
+update employee set idtest='999999-24444' where eno=7521;
+select substr(idtest,8,1) from employee;
+select substr(trim(idtest),8,1) from employee;
+
+select eno,mod(eno, 1000) from employee;
+select 10000 * 11 from employee;
+select round(salary, -3) from employee;
+select round(salary / 3, 2) from employee;
+
+select ename, hiredate, to_char(hiredate, 'YY-MM'), to_char(hiredate, 'YYYY/MM/DD day')
+, to_char(hiredate, 'YYYY/MM/DD HH12:MM:DD') from employee;
+
+* L : 원 표시
+select ename, to_char(salary, 'L999,999') from employee;
+select ename, to_char(salary, 'L000,999,999') from employee;
+select ename, dno, decode(dno, 10, 'ACCOUNTING, 20, 'RESEARCH', 30, 'SALES', 40, 'operation', 'default') as DNAME from employee;
+select ename, dno, decode(substr(trim(idtest),8,1), 1, 'MALE', 2, 'FEMALE', 'default') as DNAME from employee;
+
+select substr(hiredate,1,2)년도, substr(hiredate,4,2)달 from employee;
+select * from employee where SUBSTR(HIREDATE, 4, 3) = 'APR';
+
+
+
