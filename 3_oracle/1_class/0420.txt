@@ -13,6 +13,7 @@ create table customer(id varchar(10) unique, pwd varchar(10) not null);
 insert into customer values('111', '11111');
 insert into customer values('222', '11111');
 alter table customer add name varchar2(20);
+alter table customer modify name varchar2(20);
 alter table customer drop column pwd;
 
 
@@ -71,5 +72,32 @@ select ename, dno, decode(substr(trim(idtest),8,1), 1, 'MALE', 2, 'FEMALE', 'def
 select substr(hiredate,1,2)년도, substr(hiredate,4,2)달 from employee;
 select * from employee where SUBSTR(HIREDATE, 4, 3) = 'APR';
 
+=======0422=======
+
+select count(*) from employee;
+select avg(salary) from employee;
+select sum(salary) from employee;
+ select max(salary) from employee;
+ select min(salary) from employee;
+ select * from employee where salary=5000;
+ select ename, job from employee where salary=800;
+ select distinct dno from employee; - distinct 중복 제거
+ select count(distinct dno) from employee;
+ ...group by dno; 그룹지어 구분할때
+
+ select dno, sum(salary), avg(salary) 부서평균급여 from employee group by dno order by sum(salary) desc;
+
+*inner join / group by / order by
+ select employee.dno, dname, sum(salary), avg(salary) dsalary from employee 
+ inner join department on employee.dno = department.dno 
+ group by employee.dno, dname 
+ order by sum(salary) desc;
+
+SELECT shippername,count(shippername) FROM [Orders] inner join shippers inner join customers on orders.shipperid=shippers.shipperid and
+customers.customerid=orders.customerid group by shipperName having count(shippername)>60
+order by count(shippername) desc
+
+SELECT * FROM v$sqltext
 
 
+*리눅스 sqlplus 언어 설정하는법
