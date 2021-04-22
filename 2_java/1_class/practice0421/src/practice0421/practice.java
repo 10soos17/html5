@@ -56,30 +56,26 @@ class grade{
 	}
 	
 	//19-12번 
-	int div(int one, int two) {
-		int three = one;
-		int four = one;
-		
-		three = three / two;
-		
-		while(four > two) {
-			four -= two;
+	int sub(int one, int two) {
+
+		while(one > two) {
+			one -= two;
 		}
 		
-		return four;
+		return one;
 	}
 }
 
 public class practice {
-	
 
 	public static void main(String[] args) {
 		
 		int number = 92;
 		int korean = 100;
 		int english = 90;
+		int abs = -1;
 
-		grade one = new grade();
+		/*(grade one = new grade();
 		
 		one.set(number);
 		char myGrade = one.get();
@@ -89,7 +85,18 @@ public class practice {
 		int myOutput[] = one.get_sumAverage();
 		System.out.println("sum:" + myOutput[0]+ "avg:" + myOutput[1]);
 		
-		System.out.println(one.div(10,3));
+		System.out.println(one.sub(10,3));*/
+		
+		p0422 two = new p0422();
+		
+		two.setPlus(korean,english);
+		//System.out.println(two.getPlus());
+		//two.count(10);
+		//System.out.println(two.getAvg());
+		//System.out.println(two.sub(20,3));
+		//System.out.println(two.absolute(abs));
+		System.out.println(two.setGrade());
+		System.out.println(two.setGrade());
 
 
 

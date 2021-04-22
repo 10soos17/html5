@@ -912,7 +912,7 @@ https://dev.mysql.com/downloads/file/?id=503091
 
 - stream(writer class, reader class)
 
-- override(상속 받은 자가 메소드 재정의, 다중상송 불가), overroading(메소드의 인수만 다르면 새로 정의 가능)
+- override(상속 받은 자가 메소드 재정의, 다중상속 불가), overroading(메소드의 인수만 다르면 새로 정의 가능)
 
 - class, abstract(메소드 이름만 정하고 실제 정의하지 않은 것), interface(상수와 메소드 이름만으로 구성)
 
