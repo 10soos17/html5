@@ -1,4 +1,5 @@
 package practice0421;
+import java.util.ArrayList;
 
 
 class grade{
@@ -92,15 +93,11 @@ public class practice {
 		two.setPlus(korean,english);
 		//System.out.println(two.getPlus());
 		//two.count(10);
-		//System.out.println(two.getAvg());
+		System.out.println(two.getAvg());
 		//System.out.println(two.sub(20,3));
 		//System.out.println(two.absolute(abs));
-		System.out.println(two.setGrade());
-		System.out.println(two.setGrade());
-
-
-
-		
+		two.setGrade();
+		System.out.println(two.getGrade());
 
 	}
 

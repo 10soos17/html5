@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
-<entry loc="/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home" stamp="1618974801564"/>
-<entry loc="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home" stamp="1612785332000"/>
-<entry loc="C:\Program Files\Java\jre1.8.0_281" stamp="1618551844229"/>
-<entry loc="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home" stamp="1618649163681"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home" stamp="1618974801564"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home" stamp="1612785332000"/>
+    <entry loc="C:\Program Files\Java\jre1.8.0_281" stamp="1618551844229"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home" stamp="1618649163681"/>
 </dirs>

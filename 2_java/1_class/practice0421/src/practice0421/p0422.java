@@ -1,26 +1,47 @@
 package practice0421;
 import java.util.ArrayList;
 
+//... instanceof ...
+//.getClass() 
+
 public class p0422{
 	float eng;
 	float kor;
 	float avg;
 	float sum;
-	float grade;
 	
+	String grade;
 	ArrayList<String> grades = new ArrayList<String>();
 
-	ArrayList setGrade() {
-		grades.clear();
-		grades.add(0,"A");
-		grades.add(1,"B");
-		grades.add(2,"C");
+	void setGrade() {
+		//char '', "" / String ""
+		//datatype 지정하지 않은 경우, 'A'숫자  "A" 문자로 인식됨 
 		
-		return grades;
+		grades.clear();
+		grades.add("A");
+		grades.add("B");
+		grades.add("C");
+		grades.add("D");
+		grades.add("F");
+		
+		if(avg > 89) {
+			this.grade = grades.get(0);
+		}else if(avg < 90 && avg > 79) {
+			this.grade = grades.get(1);
+		}else if(avg < 80 && avg > 69) {
+			this.grade = grades.get(2);
+		}else if(avg < 70 && avg > 59) {
+			this.grade = grades.get(3);
+		}else {
+			this.grade = grades.get(4);
+		}
+	
+	}
+	
+	String getGrade() {
+		return this.grade;
 	}
 
-	
-	
 
 	void setPlus(float a, float b) {
 		this.eng = a;

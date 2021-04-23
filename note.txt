@@ -596,7 +596,7 @@ ex3.
 
     *** 디렉터리 복사할때
     docker run —name 새이름 -d -p 내포트:내포트 -p 오라클포트:오라클포트 -v 복사할로컬디렉토리경로:옮길컨테이너디렉터리 이미지이름
-    (docker run --name oracle -d -p 9999:9999 -p 1521:1521 -v //Users/soos/Desktop/git/lecture/lecture_choongang/3_oracle/2_source:/tmp soo1017/oracle11g;)
+    (docker run --name oracle -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/git/lecture/lecture_choongang/3_oracle/2_source:/tmp soo1017/oracle11g;)
     C:\Users\user\Desktop\choongang\3_oracle\2_source
     docker run --name oracle11 -d -p 9999:9999 -p 1521:1521 -v C:\Users\user\Desktop\choongang\3_oracle\2_source:\tmp soo1017/oracle11g;
 
@@ -920,6 +920,13 @@ https://dev.mysql.com/downloads/file/?id=503091
 
 - 데이터 타입
     byte, short, long, int, float, double, char, boolean, void
+    
+-single, double quotation mark
+	char '', "" 가능
+    String "" 만 가능
+	datatype 지정하지 않은 경우, 'A'숫자  "A" 문자로 인식 
+    System.out.println("H"+"A"); //HA
+	System.out.println('H'+'a'); //169
 
 - Wrapper(클래스)
     byte, Short, Long, Integer, Float, Double, Character, Boolean, Void
