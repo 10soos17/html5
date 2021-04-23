@@ -1,5 +1,5 @@
 =======0420=======
-
+(create, insert, update, drop, rename, alter, truncate)
 create table customer(id varchar(20) not null, pwe varchar(20) not null, name varchar(20) not null, phone varchar(30), address varchar(200));
 
 insert into customer values('id001', '1234', 'a', 2, '010-1111-2222', 'seoul');
@@ -16,6 +16,8 @@ alter table customer add name varchar2(20);
 alter table customer modify name varchar2(20);
 alter table customer drop column pwd;
 
+alter table gender add seq number(2);   
+insert into gender(seq) values(1);
 
 - source 파일 불러올때
 @절대경로;
@@ -101,3 +103,90 @@ SELECT * FROM v$sqltext
 
 
 *리눅스 sqlplus 언어 설정하는법
+
+=======0422=======
+select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
+select * from test where substr(ename, 2,1) = '길';
+
+
+- subquery
+(()안을 먼저실행))
+select ename, salary from employee where salary > (select salary from employee where ename='SCOTT');
+
+select rownum, employee.* from employee;
+select rownum, employee.* from employee where rownum between 1 and 3; -> error
+select * from (select rownum num, employee.* from employee) where num between 4 and 6; -> ()안을 먼저 실행
+
+- 다중행 서브쿼리(in/any,some/all/exist)
+(단일행비교연산자(>,<,=,등)와 다중행비교연산자(IN,ANY,SOME,ALL,EXISTS)를 사용)
+
+All(전부 일치해야 참), ANY(메인쿼리 조건이 서브쿼리 검색 결과와 하나 이상 일치하면 참)
+select * from employee where dno=30;
+select * from department where dno=30;
+select * from employee where salary < any(select salary from employee where dno=30);
+select * from employee where salary < all(select salary from employee where dno=30);
+- in('=ANY'와 같음)
+select * from employee where salary in(select salary from employee where dno=30);
+
+-zipcode 실습(sqldeveloper에서 import,export)
+(테이블 만들고 파일 import 실행)
+source: https://cafe.naver.com/ceois?iframe_url=/MyCafeIntro.nhn%3Fclubid=29556559
+
+CREATE TABLE ZIPCODE (ZIPCODE VARCHAR2(14), SIDO VARCHAR2(8), GUGUN VARCHAR2(34), 
+DONG VARCHAR2(52), RI VARCHAR2(30), BLDG VARCHAR2(80), BUNJI VARCHAR2(34), SEQ NUMBER(10,0), 
+PRIMARY KEY (SEQ));
+
+select count(*) from zipcode;
+select sido, gugun, count(*) from zipcode group by sido, gugun order by sido;
+
+-DBA DATA 사전
+(USER DBA DATA 사전 유저가 오라클 디비에서 생성했던 것들을 확인하는 것(자동생성됨))
+(user_tables(테이블), user_constraints(제약조건) 확인)
+select * from user_tables;
+select * from user_tables where table_name in ('DEPARTMENT', 'EMPLOYEE', 'SALGRADE');
+select * from user_constraints;
+select * from user_constraints where constraint_name = 'PK_DEPT';
+
+select * from department;
+delete from department where dno=50;
+
+-트랜잭션
+(commit)
+
+-데이터무결성 제약조건
+NOT NULL
+unique(모든 로우에 대해서 유일한 값 갖도록(=새 데이터 추가시, 값은 값을 못 넣는 것))
+primary key(not null+unipue)
+foreign key(칼럼 값이 항상 존재해야 함)
+check(범위 조건 지정) 
+
+drop constraint
+disable constraint
+enable constraint
+
+ex. 
+(unique)
+create table 무결성(id number(5) not null unique);
+insert into 무결성 values(1);
+insert into 무결성 values(1); -> error(unique 제약조건 때문에)
+(check)
+create table gender(sex char(5) default '남', seq number(2));
+insert into gender values(null, 1); -> '남'생성
+
+-테이블 복사해서 생성
+create table emp as select * from employee where dno=10;
+select * from emp;
+create table emp1 as select * from employee where dno=20;
+select * from emp1;
+
+select * from emp union select * from emp1;(합집합)
+select * from employee union all select * from emp1;(?)
+select * from employee minus select * from emp1;(차집합)
+select * from employee intersect select * from emp1;(교집합)
+
+-view table
+create view emp2 as select * from employee where dno=20;
+create view emp3 as select ename, loc from employee, department where department.dno=employee.dno;
+drop view emp3;
+
+

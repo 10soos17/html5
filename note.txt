@@ -582,10 +582,6 @@ ex3.
                 AddVMOption -Duser.language=ko
                 AddVMOption -Duser.country=KR
 
-- characterset 확인
-    AL32UTF8 권장
-    http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
-    select * from nls_database_parameters where parameter='NLS_CHARACTERSET';
 
 ----------------------------[DOCKER & oracle-xe-11g]----------------------------------------------------
 1.도커 환경 만들기
@@ -647,12 +643,34 @@ ex3.
     localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
     LC_ALL=ko_KR.utf8 bash
 
+        -alias custum(https://cafe.naver.com/linuxcare/72424)
+            vi ~/.bash_aliases
+
+            alias settingon='TERM=linux || TERM=ansi'(vi 키패드 오류때문에 바꿈export TERM=linux, export TERM=ansi)
+            alias korean='localedef -f UTF-8 -i ko_KR ko_KR.UTF-8 || LC_ALL=ko_KR.utf8 bash'
+
+            source ~/.bash_aliases
+
+    - client측 oracle characterset 설정
+        vi ~/.bashrc
+
+        export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+        source ~/.bashrc
+        (cf. 윈도우 : 시스템 등록정보 -> 고급 -> 환경변수(N)에 다음 추가 NLS_LANG AMERICAN_AMERICA.AL32UTF8)
+
     (화살표키설정하는법
     체크apt-get install yum
     yum install rlwrap
     .bashrc -> alias sqlplus ='rlwarp sqlplus'
     # . .bashrc
     )
+
+    if[ "$TERM" = "xterm-256color" ]; then
+    echo "      | \ _ / \      ________________"
+    echo "    /           \    | Hello~ 안녕~ |"
+    echo "   | * ^ ____ ^ *|   ----------------"
+    fi  
 
 3.sqlplus 환경 만들기
 
@@ -675,9 +693,18 @@ ex3.
 
     conn 계정/비번
 
-    *한글세팅
+    - server 측 oracle characterset 설정(oracle server와 client의 characterset 일치시켜줘야함)
+    https://m.blog.naver.com/tpgpfkwkem0/221485965035
+
+    AL32UTF8 권장
+    http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
+    https://colt357.tistory.com/entry/oracle-sqlplus-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81
+
+    select * from nls_database_parameters where parameter='NLS_CHARACTERSET'; (AL32UTF8인지 확인하기)
     conn sys /as sysdba
-    update NLS_DATABASE_PARAMETERS set parameter='KO16KSC5601' where parameter='NLS_CHARACTERSET'
+    shutdown immediate
+    startup (restrict)
+    alter database character set INTERNAL_USE AL32UTF8; (KO16KSC5601)
 
     select * from tab(기존 테이블 상태 확인)
 
@@ -685,6 +712,9 @@ ex3.
 
     commit;
     rollback;
+
+    shutdown immediate
+    startup (restrict)
 
 --------------------------------사용법 
 
@@ -745,6 +775,8 @@ ex3.
 - cursor, trigger
 ===========================mysql==================================================================
 https://dev.mysql.com/downloads/file/?id=503091
+5.7.29 버전 설치
+
 
 ==============================================================================================
 ===========================java===============================================================
@@ -957,5 +989,7 @@ https://dev.mysql.com/downloads/file/?id=503091
 
 
 ////////
-학원 eclipse encoding  방식 확인하기
-vs code, eclipse - 둘다 utf8으로 만들기
+학원 cli windows oracle characterset - 둘다 AL32UTF8으로 만들기           
+
+월요일 시험 - html: chapter9 10문제, 70이상
+              oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
