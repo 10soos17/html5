@@ -1,6 +1,50 @@
+=======1=======
+@경로;
+
+commit;
+rollback;
+
+shutdown immediate;
+startup (restrict);
+
+create(alter) user soos identified by 1234;
+grant connect, resources to soos;
+
+alter user hr(개체) account unlock(권한 언락);
+alter user hr identified by 1234;
+
+conn hr/1234;
+
+select * from tab;
+set linesize 100(원하는크기);
+
+select * from hr(객체).departments(table이름);
+select department_name(필드명) from hr.departments;
+desc departments; - 테이블 구조 학인
+
+create table tbluser (bunho number(3), name varchar2(20) not null, password varchar2(20) not null);
+insert into tbluser values(1, 'hong gil dong', '1234');
+update tbluser set name='lee sun min' where bunho=1;
+delete from tbluser where bunho =1;
+
+select * from tbluser order by bunho (desc); -> ex. desc 옵션 - lifo 형식으로 게시판 만들어야할 때 사용
+select * from sungjuk where kor >= 100;
+
+select avg(kor) from sungjuk;
+
+select bunho, name, kor+eng+math from sungjuk;
+select bunho, name, kor+eng+math (as) sum, (kor+eng+math)/3 (as) avg from sungjuk
+
+select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
+select * from test where substr(ename, 2,1) = '길';
+
+column clusterid format a5;
+
+drop table CUSTOMER;
+
 =======0420=======
 (create, insert, update, drop, rename, alter, truncate)
-create table customer(id varchar(20) not null, pwe varchar(20) not null, name varchar(20) not null, phone varchar(30), address varchar(200));
+create table customer(id varchar(20) not null, pwd varchar(20) not null, name varchar(20) not null, phone varchar(30), address varchar(200));
 
 insert into customer values('id001', '1234', 'a', 2, '010-1111-2222', 'seoul');
 column id format a5;
@@ -12,20 +56,18 @@ SQL> colmn address format a10;
 create table customer(id varchar(10) unique, pwd varchar(10) not null);
 insert into customer values('111', '11111');
 insert into customer values('222', '11111');
+insert into gender(seq) values(1);
 alter table customer add name varchar2(20);
 alter table customer modify name varchar2(20);
 alter table customer drop column pwd;
-
-alter table gender add seq number(2);   
-insert into gender(seq) values(1);
-
+ 
 - source 파일 불러올때
 @절대경로;
 @C:\temp\emp_example.sql;
 
 select SALARY, SALARY+300 AS "bonus", SALARY * 1.2 FROM EMPLOYEE
 WHERE SALARy < 3000;
-SELECT SALARY, SALARY+NYL(COMMISSION,0) bonus, COMMISSION FROM EMPLOYEE;
+SELECT SALARY, SALARY+NVL(COMMISSION,0) bonus, COMMISSION FROM EMPLOYEE;
 SELECT * FROM EMPLOYEE WHERE COMMISSION IS NULL;
 
 =======0421=======
@@ -41,14 +83,13 @@ SELECT * FROM EMPLOYEE WHERE COMMISSION IS NULL;
 
 select ename, upper(ename), lower(ename), initcap(ename) from employee;
 select * from employee where lower(job)='clerk';  
-select * from employee where initcap(job) = 'CLErk' or upper(job) = 'CLERK';
-select concat(ename, job) from employee; -> error
+select * from employee where initcap(job) = 'Clerk' or upper(job) = 'CLERK';
+select concat(ename, job) from employee;
 select substr(job,2,3) from employee;
 alter table employee add idtest char(14);
 update employee set idtest='777777-1234567';
 
-select substr(idtest,8,1),substr(idtest,1,2)||'년'
-,substr(idtest,3,2)||'월',substr(idtest,5,2)||'일' from employee;
+select substr(idtest,8,1),substr(idtest,1,2)||'년',substr(idtest,3,2)||'월',substr(idtest,5,2)||'일' from employee;
 
 update employee set idtest='666666-2333333' where eno=7499;
 
@@ -105,16 +146,12 @@ SELECT * FROM v$sqltext
 *리눅스 sqlplus 언어 설정하는법
 
 =======0422=======
-select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
-select * from test where substr(ename, 2,1) = '길';
-
-
 - subquery
 (()안을 먼저실행))
 select ename, salary from employee where salary > (select salary from employee where ename='SCOTT');
 
-select rownum, employee.* from employee;
-select rownum, employee.* from employee where rownum between 1 and 3; -> error
+select rownum, employee.* from employee; - rowrnum(조회된 순서대로 순번을 매김)
+select rownum, employee.* from employee where rownum between 1 and 3;
 select * from (select rownum num, employee.* from employee) where num between 4 and 6; -> ()안을 먼저 실행
 
 - 다중행 서브쿼리(in/any,some/all/exist)
@@ -143,12 +180,13 @@ select sido, gugun, count(*) from zipcode group by sido, gugun order by sido;
 (USER DBA DATA 사전 유저가 오라클 디비에서 생성했던 것들을 확인하는 것(자동생성됨))
 (user_tables(테이블), user_constraints(제약조건) 확인)
 select * from user_tables;
-select * from user_tables where table_name in ('DEPARTMENT', 'EMPLOYEE', 'SALGRADE');
+
 select * from user_constraints;
 select * from user_constraints where constraint_name = 'PK_DEPT';
 
-select * from department;
-delete from department where dno=50;
+drop constraint
+disable constraint
+enable constraint
 
 -트랜잭션
 (commit)
@@ -159,10 +197,6 @@ unique(모든 로우에 대해서 유일한 값 갖도록(=새 데이터 추가�
 primary key(not null+unipue)
 foreign key(칼럼 값이 항상 존재해야 함)
 check(범위 조건 지정) 
-
-drop constraint
-disable constraint
-enable constraint
 
 ex. 
 (unique)
@@ -176,8 +210,6 @@ insert into gender values(null, 1); -> '남'생성
 -테이블 복사해서 생성
 create table emp as select * from employee where dno=10;
 select * from emp;
-create table emp1 as select * from employee where dno=20;
-select * from emp1;
 
 select * from emp union select * from emp1;(합집합)
 select * from employee union all select * from emp1;(?)
@@ -188,5 +220,3 @@ select * from employee intersect select * from emp1;(교집합)
 create view emp2 as select * from employee where dno=20;
 create view emp3 as select ename, loc from employee, department where department.dno=employee.dno;
 drop view emp3;
-
-

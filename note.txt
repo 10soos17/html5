@@ -536,9 +536,7 @@ ex3.
 
 -3중 for문
 (https://sungwooki.tistory.com/entry/4%EC%9D%BC-%EC%B0%A8-JAVA-for%EB%AC%B8%EC%9C%BC%EB%A1%9C-3%EB%8B%A83%EB%8B%A8-%EA%B5%AC%EA%B5%AC%EB%8B%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0-3%EC%A4%91-for%EB%AC%B8-%ED%95%98%EB%8B%A8%EC%9C%BC%EB%A1%9C-1%EC%94%A9-%EC%A6%9D%EA%B0%80%ED%95%98%EB%A9%B0-9%EB%8B%A8%EA%B9%8C%EC%A7%80-%EC%A6%9D%EA%B0%80)
-    가로 3중 범위
-    세로 2중 범위
-    전체 세로 1중 범위
+
 
 -eval()
     문자로 표현 된 JavaScript 코드를 실행하는 함수
@@ -591,20 +589,24 @@ ex3.
     docker pull 이미지이름(결과 중에 하나 pull)
     (docker pull oracle-xe-11g)
     docker images(잘 받아졌나 확인)
-    docker run —name 새이름 -d -p hostport:hostport -p oracleport:oracleport 이미지이름
+    docker run —name 새이름 -d -p 호스트포트:컨테이너포트 -p 호스트포트:컨테이너포트 이미지이름
     (docker run --name oracle11g -d -p 8080:8080 -p 1521:1521 jaspeen/oracle-xe-11g;)
 
     *** 디렉터리 복사할때
-    docker run —name 새이름 -d -p 내포트:내포트 -p 오라클포트:오라클포트 -v 복사할로컬디렉토리경로:옮길컨테이너디렉터리 이미지이름
+    1.실행할때 마운트
+    docker run —name 새이름 -d(detached mode) -p(포워딩) 호스트포트:컨테이너포트 -p 호스트포트:컨테이너포트 -v 복사할로컬디렉토리경로:옮길컨테이너디렉터리 이미지이름
     (docker run --name oracle -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/git/lecture/lecture_choongang/3_oracle/2_source:/tmp soo1017/oracle11g;)
     C:\Users\user\Desktop\choongang\3_oracle\2_source
     docker run --name oracle11 -d -p 9999:9999 -p 1521:1521 -v C:\Users\user\Desktop\choongang\3_oracle\2_source:\tmp soo1017/oracle11g;
 
     docker ps(컨테이너에 올라갔는지 확인)
-    docker exec -it 이름 sqlplus(sqlplus 실행)
+    docker exec -it(터미널입력위한옵션) 이름 sqlplus(sqlplus 실행)
     (docker exec -it oracle11g sqlplus)
     docker exec -it 이름 bin/bash(bash 실행)
     (docker exec -it oracle11g bin/bash)
+    2. 복사
+    docker cp [host 파일경로] [container name]:[container 내부 경로]
+    docker cp [container name]:[container 내부 경로] [host 파일경로]
 
     ***
     docker pull 내계정/원하는이름;
@@ -666,11 +668,14 @@ ex3.
     # . .bashrc
     )
 
-    if[ "$TERM" = "xterm-256color" ]; then
-    echo "      | \ _ / \      ________________"
-    echo "    /           \    | Hello~ 안녕~ |"
-    echo "   | * ^ ____ ^ *|   ----------------"
-    fi  
+if [ "$TERM"="xterm-256color" ]; then
+echo "+=======================================+"
+echo "|      | \ _ / \      +--------------+  |"
+echo "|    /           \    | Hello~ 안녕~ |  |"
+echo "|   | * ^ ____ ^ *|   | oracle11g    |  |"
+echo "|                     +--------------+  |"
+echo "+=======================================+"
+fi 
 
 3.sqlplus 환경 만들기
 
@@ -731,40 +736,10 @@ ex3.
     PRIMARY KEY(not null + unique + index) - table당 하나 설정, error(ORA-02449: unique/primary keys in table referenced by foreign keys)
     FK(foreign key) - 미리 설정되어있는 값만 넣어야 함, error(ORA-02291: integrity constraint (HR.FK_DNO) violated - parent key not found)
 
-
--명령어
-    select * from tab;
-    set linesize 100(원하는크기);
-
-    alter user hr(개체) account unlock(권한 언락);
-    alter user hr identified by 1234;
-    conn hr/1234;
-
-    select * from hr(객체).departments(table이름);
-    select department_name(필드명) from hr.departments;
-    desc departments; - 테이블 구조 학인
-
-    create table tbluser (bunho number(3), name varchar2(20) not null, password varchar2(20) not null);
-    insert into tbluser values(1, 'hong gil dong', '1234');
-    update tbluser set name='lee sun min' where bunho=1;
-    delete from tbluser where bunho =1;
-
-    select * from tbluser order by bunho (desc); -> ex. desc 옵션 - lifo 형식으로 게시판 만들어야할 때 사용
-    select * from sungjuk where kor >= 100;
-
-    select avg(kor) from sungjuk;
-
-    select bunho, name, kor+eng+math from sungjuk;
-    select bunho, name, kor+eng+math (as) sum, (kor+eng+math)/3 (as) avg from sungjuk
-
-    select * from sungjuk where name like '%k%'; - k자가 들어간 name 모두 선택
-
-    column clusterid format a5;
-
-    drop table CUSTOMER;
+-명령어(0420.txt)
 
 - 명령어 종류
-    dml(data manupulate language)-select insert update delete 
+    dml(data manipulate language)-select insert update delete 
     dcl(data control language)-r grant  
     ddl(data define language)-schema를  create alter drop
 
@@ -776,6 +751,63 @@ ex3.
 ===========================mysql==================================================================
 https://dev.mysql.com/downloads/file/?id=503091
 5.7.29 버전 설치
+
+1.도커 환경 만들기
+    docker search mysql
+    docker pull mysql
+    docker run --name 만들이름 -e(환경변수설정옵션) MYSQL_ROOT_PASSWORD=루트비밀번호 -d(백그라운드) -p 33066(호스트포트):3306(컨테이너포트) mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d -p 33066:3306 mysql
+    docker run --name mysql -d -p 33066:3306 mysql
+    exec -it mysql bash
+
+2. 리눅스 환경 만들기
+    위 동일
+3. mysql 환경 만들기
+    mysql -uroot -p 
+
+    -글자 세팅
+    status (상태체크)
+    bash에서
+    vim /etc/mysql/my.cnf ->  collation-server = utf8mb4_unicode_ci
+                        character-set-server = utf8mb4
+                        skip-character-set-client-handshake
+
+                        or
+    mysql에서
+    set character_set_client = utf8;
+    set character_set_result = utf8;
+    set character_set_connection = utf8;
+    set character_set_server = utf8;
+
+    <user 관련>
+    https://booolean.tistory.com/146
+    //비밀번호 변경
+    SET PASSWORD FOR 'root'@'localhost' = '11111’;
+    FLUSH PRIVILEGES
+    (or)
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ‘11111’
+    FLUSH PRIVILEGES
+
+    //user 보기
+    SELECT * FROM mysql.user;
+    SELECT Host,User FROM mysql.user;(host,user보기)
+
+    //user 1생성 ->2권한 ->3반영
+    1CREATE USER ‘nodejs’@‘%’ IDENTIFIED BY ‘11111’;
+    (or create user nodejs@localhost identified by '11111’)
+    (%를 쓰면 어디에서 접속하든 host가 nodejs이면 접속 가능함을 의미)
+    2GRANT ALL PRIVILEGES ON opentutotials.* TO ‘nodejs’@‘%’;
+    2GRANT ALL PRIVILEGES ON *.* TO ‘nodejs’@‘%’;
+    (opentutotials.* 는 해당 db의 모든 테이블에 접근 권한 줌을 의미)
+    3FLUSH PRIVILEGES
+
+    //사용할 때, user 변경하기
+    ALTER USER ‘nodejs@‘localhost' IDENTIFIED WITH mysql_native_password BY ’11111’
+    grant select, insert, update, delete, create, drop, alter on 지정DB이름.*to '아이디'@'localhost'; 
+
+    //삭제
+    delete from mysql.user where user='soos';
+
 
 
 ==============================================================================================
@@ -920,7 +952,7 @@ https://dev.mysql.com/downloads/file/?id=503091
 
 - 데이터 타입
     byte, short, long, int, float, double, char, boolean, void
-    
+
 -single, double quotation mark
 	char '', "" 가능
     String "" 만 가능
