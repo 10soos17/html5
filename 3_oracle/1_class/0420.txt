@@ -27,7 +27,7 @@ insert into tbluser values(1, 'hong gil dong', '1234');
 update tbluser set name='lee sun min' where bunho=1;
 delete from tbluser where bunho =1;
 
-select * from tbluser order by bunho (desc); -> ex. desc 옵션 - lifo 형식으로 게시판 만들어야할 때 사용
+select * from tbluser order by bunho (desc); -> ex. desc(내림), asc(오름)옵션 - lifo 형식으로 게시판 만들어야할 때 사용
 select * from sungjuk where kor >= 100;
 
 select avg(kor) from sungjuk;
@@ -220,3 +220,105 @@ select * from employee intersect select * from emp1;(교집합)
 create view emp2 as select * from employee where dno=20;
 create view emp3 as select ename, loc from employee, department where department.dno=employee.dno;
 drop view emp3;
+
+=======0426=======
+14장 PL/SQL
+declare(변수선언 및 할당), begin, exception , end
+--(한줄 주석), /**/(여러줄 주석)
+set serverout on; - default값은 off
+dbms_output.put_line(‘aa||   ||ad’);
+end;
+변수명 데이터타입;
+변수명 데이터타입 := ‘’;
+
+-데이터타입 
+	스칼라(숫자, 문자, 날짜, Boolean)
+	레퍼런스(기존 테이블 참조 - employee.ename%type; or employee.%rowtype;)
+
+select 문 차이점 -  into 를 써줘야 함
+select eno, ename into v_eno, v_ename from employee where ename=‘SCOTT’;
+ 
+-if
+if(…=…)then
+	…;
+elsif()then
+	…l
+else
+	…;
+end if;
+
+-loop(basic)
+loop
+	…
+	if()then;
+		exit;
+	end if;
+end loop;
+
+-loop(for)
+for i in 1..9 loop
+	…
+end loop;
+
+-loop(while)
+while … loop
+	…
+end loop;
+
+-cursor
+cursor, fetch, open, close
+%notfound, %found, %isopen, %rowcount
+
+	1cursor 커서변수명 is select문;
+	2open 커서변수명;
+	3fetch -> loop
+				fetch 커서변수명 into 저장할 변수들;
+				exit when 커서변수명%notfound;
+			end loop;
+				or
+			(for loop)
+			for 로우타입변수명 in 커서변수명 loop
+				exit when 커서변수명%notfound;(?)
+				dbms_output.put_line(로우타입변수명.컬럼명,…);
+
+			end loop;
+
+
+	
+	4close 커서변수명;
+
+select username, account_status, lock_date from dba_users;(현재 계정 확인)
+create user soos identified by '비번’;
+grant connect, resource to soos;
+grant create session, create table, create view to soos;
+select username, default_tablespace from dba_users where username in 'SOOS';
+alter user soos quota 2m on users;
+
+alter user 계정명 account unlock;(기존 계정에 권한)
+(alter user hr account unlock;)
+alter user 계정명 identified by 비번(기존 계정에 비번)
+(alter user hr identified by 1234;)
+
+revoke create session from soos; - 권한 뺏기
+
+grant select on hr.employee to soos with grant option; - 개체의 권한을 다른 개체에게 주기
+grant select on hr.employee to soos;
+grant select on hr.department to public; - public 은 모두에게 공개
+
+select * from session_privs; - 권한 테이블 보기
+show user;
+
+-sequence
+curval - 현재값, nextval - 다음값
+
+create sequence dno_seq 
+increment by 10 
+start with 10;
+insert into dept_second values(dno_seq.nexval, 'ACCOUNT', )
+
+create table dept as select * from department where 0=1;
+insert into dept values(DNO_SEQ.nextval, 'test', 'test');
+
+
+
+

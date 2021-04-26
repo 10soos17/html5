@@ -690,11 +690,23 @@ fi
     ( create user soos identified by '비번’;)
     grant connect, resource to 계정명;(계정에 권한)
     (grant connect, resource to soos;)
+    grant create session, create table, create view to soos;
+    select username, default_tablespace from dba_users where username in 'SOOS';
+    alter user soos quota 2m on users;
 
     alter user 계정명 account unlock;(기존 계정에 권한)
     (alter user hr account unlock;)
     alter user 계정명 identified by 비번(기존 계정에 비번)
     (alter user hr identified by 1234;)
+
+    revoke create session from soos; - 권한 뺏기
+
+    grant select on hr.employee to soos with grant option; - 개체의 권한을 다른 개체에게 주기
+    grant select on hr.employee to soos;
+
+    select * from session_privs;
+
+    show user;
 
     conn 계정/비번
 
@@ -740,7 +752,7 @@ fi
 
 - 명령어 종류
     dml(data manipulate language)-select insert update delete 
-    dcl(data control language)-r grant  
+    dcl(data control language)-revoke grant  
     ddl(data define language)-schema를  create alter drop
 
     taransaction - commit, rollback
