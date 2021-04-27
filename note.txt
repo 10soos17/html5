@@ -1034,7 +1034,6 @@ https://dev.mysql.com/downloads/file/?id=503091
         interface extends class (x)
     
 
-
 - extends(클래스를 상속), implements(인터페이스를 구현)
 
 - super(부모), this(자신)
