@@ -949,8 +949,16 @@ https://dev.mysql.com/downloads/file/?id=503091
         }
     }
 
-- 데이터 타입
-    byte, short, long, int, float = 1.2f, double, char, boolean, void
+- 예약어
+    -기본타입: boolean, char, int, float, double, short, long, byte
+    -접근지정자: public, protected, private
+    -클래스: class, abstract, interface, extends, implements, enum
+    -객체: new, instance of, this, super, null
+    -메소드: void, retuen
+    -제어문: if, else, switch, case, default, for, do, while, break, continue
+    -논리값: true, false
+    -예외처리: try, catch, finally, throw, throws
+    -기타: static, strictfp, final, native, import, package, assert, synchronized, transient, volatile
 
 -single, double quotation mark
 	char '', "" 가능
