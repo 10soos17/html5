@@ -8,6 +8,21 @@ ideakorea@naver.com
 0415 ~
 이경복
 https://blog.daum.net/celab
+
+0428 ~
+김병춘
+010-7445-7474
+serbible@nate.com
+
+WEB 표준: html, css, javascript, jquery, bootstrap, json
+DataBase: Oracle, Mysql, ...
+Java
+미니프로젝트
+Jsp
+미니프로젝트
+Spring framework
+실무프로젝트
+Python
 ===========================tip===========================================================
 -자격증
     sqld
@@ -717,6 +732,8 @@ fi
     http://dmbadi.blogspot.com/2017/07/change-database-character-set-in-oracle_28.html
     https://colt357.tistory.com/entry/oracle-sqlplus-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81
 
+    https://m.blog.naver.com/PostView.nhn?blogId=tyboss&logNo=70036575256&proxyReferer=https:%2F%2Fwww.google.com%2F
+
     select * from nls_database_parameters where parameter='NLS_CHARACTERSET'; (AL32UTF8인지 확인하기)
     conn sys /as sysdba
     shutdown immediate
@@ -1134,6 +1151,51 @@ https://dev.mysql.com/downloads/file/?id=503091
 - loop - for, while(while문을 더 많이 씀), for each(for(:))
 
 -if / switch() case: break; default: 
+
+=============================Java2
+설치파일
+https://www.eclipse.org/downloads/packages/
+https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-jee-2020-03-R-incubation-win32-x86_64.zip
+Eclipse IDE 2020-03 R Packages > Eclipse IDE for Enterprise Java and Web Developers
+경로 에러나면 경로 줄여서 설치하기
+C:\Users\eclipse
+
+https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+javase8 jdk - Java SE Development Kit 8u291
+C\Program Files\Java\jdk1.9.0_291\
+
+https://www.oracle.com/java/technologies/javase-jdk8-doc-downloads.html
+Java SE Development Kit 8u291 Documentation
+C:\Users
+
+전자정부프레임워크
+https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte3.10
+
+elclipse 환경변수설정옵션
+언어 utf-8로 바꾸기
+preference->general->workspace
+web->css,html,jsp
+
+static - RAM에 저장
+
+ctrl alt 화살표(줄복사)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ////////
 학원 cli windows oracle characterset - 둘다 AL32UTF8으로 만들기           
