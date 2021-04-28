@@ -1,7 +1,7 @@
 package p01.start;
 
 //CPU - (RAM+ROM) - SSD
-//6MB   16GB  1000GB
+//6MB   16GB        1000GB
 //Class: 자동차 공장의 설계도, 벽돌 공장의 벽돌을 만들기
 public class Start {
 	//메인메소드: 프로그램의 시작

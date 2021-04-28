@@ -1171,17 +1171,20 @@ C:\Users
 전자정부프레임워크
 https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte3.10
 
-elclipse 환경변수설정옵션
+eclipse 환경변수설정옵션
 언어 utf-8로 바꾸기
 preference->general->workspace
 web->css,html,jsp
 
 static - RAM에 저장
 
+-eclipse tip
 ctrl alt 화살표(줄복사)
+refactor -> rename
 
-
-
+windows 환경변수 설정
+시스템변수-> JAVA_HOME, C:\Program Files\Java\jdk1.8.0_291 등록
+user에 대한 변수 등록 -> %JAVA_HOME%bin;
 
 
 
