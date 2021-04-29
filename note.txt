@@ -1171,12 +1171,10 @@ C:\Users
 전자정부프레임워크
 https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte3.10
 
-eclipse 환경변수설정옵션
+-eclipse 환경변수설정옵션
 언어 utf-8로 바꾸기
 preference->general->workspace
 web->css,html,jsp
-
-static - RAM에 저장
 
 -eclipse tip
 ctrl alt 화살표(줄복사)
@@ -1186,6 +1184,13 @@ windows 환경변수 설정
 시스템변수-> JAVA_HOME, C:\Program Files\Java\jdk1.8.0_291 등록
 user에 대한 변수 등록 -> %JAVA_HOME%bin;
 
+-특정 파일 없다는 오류 발생 시, eclipse.ini 파일에 해당 파일의 경로 추가
+https://mainia.tistory.com/3798
+https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%AC-JRE%EC%99%80-JDK%EC%9D%98-%EB%B6%80%EC%9E%AC
+
+-static : RAM에 저장
+
+-메소드 안에 메소드 생성 불가, 호출 가능
 
 
 
@@ -1205,3 +1210,8 @@ user에 대한 변수 등록 -> %JAVA_HOME%bin;
 
 월요일 시험 - html: chapter9 10문제, 70이상
               oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
+
+////
+다음주 월요일
+
+하드 디스크를 cleanmgr을 와 SFC / scannow를더 이상 필요없는 프로그램 제거, 자동 시작 프로그램 모니터링 (msconfig 사용) 및 자동 Windows 업데이트 사용.

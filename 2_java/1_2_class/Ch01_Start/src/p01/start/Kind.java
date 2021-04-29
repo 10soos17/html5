@@ -9,7 +9,7 @@ public class Kind {
 		System.out.println(age);
 	}
 	
-	public static void abc2() {
+	static void abc2() {
 		Kind kk= new Kind();
 		System.out.println(kk.name);
 		System.out.println(age);

@@ -9,7 +9,7 @@ public class Start3 {
 		System.out.println(n);//출력
 		
 		k.abc();
-		k.abc2();
+		Kind.abc2();
 
 		
 	}
