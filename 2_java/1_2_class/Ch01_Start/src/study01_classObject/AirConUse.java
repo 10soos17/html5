@@ -2,6 +2,7 @@ package study01_classObject;
 
 public class AirConUse {
 
+	//AirCon airCon = new AirCon();
 	public static void main(String[] args) {
 		//Object
 		AirCon airCon = new AirCon();
@@ -20,4 +21,5 @@ public class AirConUse {
 
 	}
 
+	
 }
