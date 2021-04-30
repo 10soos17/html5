@@ -11,7 +11,7 @@ public class DataTypeEx5 {
 
 		byte b1 = 127;
 		byte b2 = 127;
-		byte b3 = (byte)(b1 + b2);//Casting
+		byte b3 = (byte)(b1 + b2);//Castingㄴ
 		System.out.println("컴파일 에러는 아니지만 원하는 값이 아님: " + b3);
 		int r1 = b1 + b2;
 		

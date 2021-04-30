@@ -14,7 +14,7 @@ public class DataTypeEx4 {
 		System.out.println(byteValue);
 		
 		//키보드 입력한 것 받는 Scanner Class
-		//System.in : 키보드 입력
+		//System.in : 키보드 입력ㅇ
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt(); //입력
 		System.out.println("문자열 저장하지 않고 곧바로 출력: " + sc.next());//입력
