@@ -1007,6 +1007,9 @@ https://dev.mysql.com/downloads/file/?id=503091
 - generics(<>안에는 클래스타입만 저장 가능)
     ex. ArrayList<String>, ArrayList<Integer>, <String>myMethod(), <Integer>myMethod()
 
+    ex.ArrayList<String> binArr = new ArrayList<String>();
+        String binArr[] = new binArr[26];
+        String[] binArr = {};
 - stream(writer class, reader class)
 
 - 접근 제어
@@ -1215,5 +1218,4 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
               oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
 
 ////
-과제 다음주 월요일
 하드 디스크를 cleanmgr을 와 SFC / scannow를더 이상 필요없는 프로그램 제거, 자동 시작 프로그램 모니터링 (msconfig 사용) 및 자동 Windows 업데이트 사용.
