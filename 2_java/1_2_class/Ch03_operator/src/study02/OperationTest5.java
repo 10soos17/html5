@@ -8,19 +8,20 @@ public class OperationTest5 {
 		int result = 0;
 		
 		result = var_inc++;
-		System.out.println("result = "+ result);
-		System.out.println("var_inc = "+ var_inc);
+		System.out.println("result = "+ result);//1
+		System.out.println("var_inc = "+ var_inc);//2
 		
 		result = ++var_inc;
-		System.out.println("result = "+ result);
-		System.out.println("var_inc = "+ var_inc);
+		System.out.println("result = "+ result);//3
+		System.out.println("var_inc = "+ var_inc);//3
 		//--
 		result = var_dec--;
-		System.out.println("result = "+ result);
-		System.out.println("var_inc = "+ var_dec);
+		System.out.println("result = "+ result);//1
+		System.out.println("var_inc = "+ var_dec);//0
 		result = --var_dec;
-		System.out.println("result = "+ result);
-		System.out.println("var_dec = "+ var_dec);
+		System.out.println("result = "+ result);//-1
+		System.out.println("var_dec = "+ var_dec);//-1
 	}
+
 
 }

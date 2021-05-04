@@ -895,11 +895,16 @@ https://dev.mysql.com/downloads/file/?id=503091
     반드시 main() 메서드가 존재하여야 하며 
     JVM이 실행하는 범위는 오직 main() 메서드만 가능
 
-    -terminal
+    -mac terminal
         파일명.java (생성)
         javac 파일명.java (컴파일)
         파일명.class (생성) - 바이너리코드(바이트코드)
         java 파일명(실행)
+    -windows prompt
+        path 설정 후(C:\Program Files\Java\jdk1.8.0_291\bin)
+        javac -encoding UTF-8 test.java
+        java test.java
+        (* 노트패드로 파일편집 : notepad.exe test.java)
 
 - Java platform(J2SE, J2EE, J2ME)
 
