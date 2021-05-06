@@ -4,7 +4,7 @@ public class CheckOverflowEx1 {
 
 	public static void main(String[] args) {
 		try {
-			int result = CheckOverflowEx1.safeAdd(2000, 20000);//2. 호출한 메소드에 가서 예외처리 å
+			int result = CheckOverflowEx1.safeAdd(2000, 20000);//2. 호출한 메소드에 가서 예외처리
 			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("3.Overflow가 발생하여  정확하게 계산할 수 없음");

@@ -6,6 +6,7 @@ public class OperationTest2 {
 	//총점, 평균 구하기 예제 
 	public static void main(String[] args) {
 		
+		
 		int total = 0;
 		int avg = 0;
 

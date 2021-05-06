@@ -6,7 +6,13 @@ public class Exercise7 {
 		double x = 5.0;
 		double y = 0.0;
 
-		double z = x % y;
+		double z = 0;
+		try {
+			double k = x / y;
+			z = x % y;
+		} catch (Exception e) {
+			System.out.println("0으로 나누면 안됨");
+		}
 
 		if (Double.isNaN(z)) {
 			System.out.println("0.0으로 나눌 수 없습니다.");
