@@ -1,8 +1,10 @@
 package study04_scores;
 
+import java.util.ArrayList;
+
 public class Teacher {
 	//클래스 변수
-	Student s;
+	ArrayList<Student> stds = new ArrayList<Student>();
 	int sum=0;
 	double avg=0;
 
@@ -13,29 +15,49 @@ public class Teacher {
 	}
 	
 	//학생 정보 입력
-	public void inPut(String n, int[] arr) {
-		s = new Student();
-		
-		s.name = n;
-		s.kor = arr[0];
-		s.eng = arr[1];
-		s.math = arr[2];
-
+	public void inPut(String name, int[] arr) {
+		stds.add(new Student(name, arr));
 			
 	}
 	
 	//합계(sum)
-	public int add() {
-		sum = s.kor + s.eng + s.math;
+	public int add(String name) {
 
+		for(Student s : stds) {
+			if(s.name.equals(name)) {
+				sum =s.getKor() + s.getEng() + s.getMath();
+				break;
+			}
+		}
 		return sum;
+
+		
 	}
 	
 	//평균(avr)
-	public double avg() {
-		avg = add()/3;
+	public double avg(String name) {
+		
+		avg = (double)(add(name)/3);
 		
 		return avg;
+	}
+	
+	public String infoCheck(String name) {
+		int count=0;
+		
+		for(Student s : stds) {
+			if(stds.size()-1 == count && !s.name.equals(name)) {
+				name = "학생 정보가 없습니다.";
+				break;
+			}
+			if(s.name.equals(name)) {
+				break;
+			}
+			count++;
+
+		}
+		
+		return name;
 	}
 	
 }
