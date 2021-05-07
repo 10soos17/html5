@@ -27,7 +27,7 @@ public class Point extends Object{ //모든 클래스는 extends Object가 생�
 	//재정의 
 	@Override
 	public String toString() {
-		return super.toString();
+		return x + " : "+ y;
 	}
 
 	//getter&setter 
@@ -43,4 +43,5 @@ public class Point extends Object{ //모든 클래스는 extends Object가 생�
 	public void setY(int y) {
 		this.y = y;
 	}
+	
 }

@@ -10,7 +10,7 @@ public class WhileKeyControlEx1 {
 		int speed = 0;
 
 		while (run) {
-			// 키보드 "Enter' 누르면: 코드값 10(Linex Feed) + 13(Carriage Return) 동작
+			// 키보드 "Enter' 누르면: 코드값 10(Line Feed) + 13(Carriage Return) 동작
 			if (keyCode != 13 && keyCode != 10) {
 				System.out.println("------------------");
 				System.out.println("1.종속 2.감속 3.중지 ");

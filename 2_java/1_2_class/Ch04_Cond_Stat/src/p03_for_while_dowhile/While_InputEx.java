@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class While_InputEx {
 
 	public static void main(String[] args) throws IOException {
-
+/*
 		System.out.println("만들어질 삼각형의 높이 입력하기");
 		
 		Scanner sc = new Scanner(System.in);
@@ -46,17 +46,18 @@ public class While_InputEx {
 			y=1;
 		}
 		
-		
+		*/
 		//
 		System.out.println("---------------------------------------");
 		try {
 			InputStreamReader is = new InputStreamReader(System.in);
+			System.out.println("is:"+is);
 			BufferedReader br = new BufferedReader(is);
 			
 			String str2 = br.readLine();
 			int number2 = Integer.parseInt(str2);
-			
-			
+
+			System.out.println("str2"+br);
 			int x2 = 1;
 			int y2 = 1;
 			while(x2 <= number2) {
