@@ -18,9 +18,9 @@ public class EnumMethod {
 		
 		if(args.length == 1) {
 			String strDay = args[0];
-			Week weekDay = Week.valueOf(strDay); //열거타입에 들어있는 모든 열거 객체를 배열로 출력 
-			
-			if(weekDay == Week.SATURDAY || weekDay == weekDay.SUNDAY) {
+			Week weekDay = Week.valueOf(strDay); //갹채 출력  
+			System.out.println(weekDay);
+			if(weekDay == Week.SATURDAY || weekDay == Week.SUNDAY) {
 				System.out.println("주말이군요");
 			}else {
 				System.out.println("평일이군요");

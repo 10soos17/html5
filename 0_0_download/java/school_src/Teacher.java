@@ -11,7 +11,6 @@ public class Teacher {
 
                 System.out.println(" < "+(num) + " > 번 학생");
                 St_IF_Show(St[num-1]);
-                Thread.sleep(2000);
                 check = 1;
 
 
