@@ -1,5 +1,6 @@
 package p07.enums;
-
+//열거 타입: Season
+//열거 상수(관례적 대문자): SPRING, SUMMER, FALL, WINTER
 public class NewEx {
 
 	public static void main(String[] args) {
