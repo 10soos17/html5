@@ -15,7 +15,7 @@ public class Teacher {
 	}
 	
 	//학생 정보 입력
-	public void inPut(String name, int[] arr) {
+	public void inPut(String name, int[] arr) {z
 		stds.add(new Student(name, arr));
 			
 	}
