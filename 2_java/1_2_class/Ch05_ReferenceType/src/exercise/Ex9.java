@@ -59,5 +59,6 @@ public class Ex9 {
 			
 		}
 		System.out.println("프로그램 종료");
+		sc.close();
 	}
 }

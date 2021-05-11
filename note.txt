@@ -1185,11 +1185,14 @@ preference->general->workspace
 web->css,html,jsp
 
 -eclipse tip
+https://goddaehee.tistory.com/134
 ctl f11 run
 ctrl alt 화살표(줄복사)
+alt 화살표(이동)
 refactor -> rename
-ctr shif f 줄맞춤
+ctr shif f(줄맞춤)
 syso를 타이핑후 컨트롤+ 스페이스
+ctrl + l(라인이동)
 
 windows 환경변수 설정
 시스템변수-> JAVA_HOME, C:\Program Files\Java\jdk1.8.0_291 등록
