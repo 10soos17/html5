@@ -6,6 +6,7 @@ public class BankApplication {
 	private static Account20 ac = new Account20("0","0",0);
 	private static Account20[] accountArray = new Account20[100];
 	private static Scanner sc = new Scanner(System.in);
+	
 	private static int count=0;
 	private static String ano;
 	private static String owner;
@@ -43,6 +44,7 @@ public class BankApplication {
 		System.out.println("---------");
 		System.out.println("계좌생성: ");
 		System.out.println("---------");
+		
 		System.out.println("계좌번호: ");
 		ano = sc.next();
 		System.out.println("계좌주: ");
@@ -50,9 +52,13 @@ public class BankApplication {
 		System.out.println("초기입금액: ");
 		balance = sc.nextInt();
 		
-		accountArray[count] = new Account20(ano, owner, balance);
-		count+=1;
-		System.out.println("계좌가 생성되었습니다.");
+		if(count < 100) {
+			accountArray[count] = new Account20(ano, owner, balance);
+			count+=1;
+			System.out.println("계좌가 생성되었습니다.");
+		}else {
+			System.out.println("계좌를 생성할 수 없습니다.");			
+		}
 	}
 	
 	//계좌 목록보기
