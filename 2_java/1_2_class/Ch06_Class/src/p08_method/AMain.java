@@ -7,8 +7,8 @@ public class AMain {
 		A a = new A();
 		A.stMethod();
 		
-		int r2 = a.stMethod(100,200);
-		System.out.println(r2);// or System.out.println(a.stMethod(100,200));
+		int r2 = A.stMethod(100,200);
+		System.out.println(r2);// or System.out.println(A.stMethod(100,200));
 		
 		a.itMethod();
 		a.itMethod("hong",6);

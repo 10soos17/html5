@@ -21,13 +21,14 @@ public class Motor {
 	public Motor(String color) {
 		this.color = color;
 	}
-	//위와 같은 타입(String)과 내용이므로 에러 발생
+	//위와 같은 타입(String)이므로 에러 발생
 	/*public Motor(String c) {
 		this.color = c;
 	}
 	*/
 	public Motor(int color) {
 		this.door = color;
+	
 	}
 
 	public Motor(String color, String gearType) {
