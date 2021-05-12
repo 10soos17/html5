@@ -1,5 +1,5 @@
 package p15_annotation;
 
-public class PrintAnnotation {
+public @interface PrintAnnotation {
 
 }
