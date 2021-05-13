@@ -2,16 +2,15 @@ package exercise;
 
 public class Account {
 	private int balance;
-	int MIN_BALANCE = 0;
-	int MAX_BALANCE = 1000000;
+	static final int MIN_BALANCE = 0;
+	static final int MAX_BALANCE = 1000000;
 	
+	//저장 
 	public void setBalance(int b){
-		this.balance +=b;
-		if (this.balance <MIN_BALANCE) {
-			this.balance = MIN_BALANCE;
-		}else if(this.balance > MAX_BALANCE) {
-			this.balance = MAX_BALANCE;
-		}
+		if(b < Account.MIN_BALANCE || b > Account.MAX_BALANCE)
+			return;
+		this.balance = b;
+	
 	}
 	
 	public int getBalance() {

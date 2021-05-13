@@ -3,7 +3,7 @@ package exercise;
 import java.util.Scanner;
 
 public class BankApplication {
-	private static Account20 ac = new Account20("0","0",0);
+	private static Account20 ac = null;
 	private static Account20[] accountArray = new Account20[100];
 	private static Scanner sc = new Scanner(System.in);
 	
@@ -15,9 +15,9 @@ public class BankApplication {
 	public static void main(String[] args) {
 		boolean run = true;
 		while (run) {
-			System.out.println("-------------------------------------------------");
-			System.out.println("1. 계좌생성 | 2. 계좌목록 | 3. 예금 | 4. 출금 | 5. 종료");
-			System.out.println("-------------------------------------------------");
+			System.out.println("+----------------------------------------------+");
+			System.out.println("|1. 계좌생성 | 2. 계좌목록 | 3. 예금 | 4. 출금 | 5. 종료 |");
+			System.out.println("+----------------------------------------------+");
 			System.out.println("선택> ");
 
 			int selectNo = sc.nextInt();
@@ -81,7 +81,7 @@ public class BankApplication {
 		ano = sc.next();
 		ac = findAccount(ano);
 
-		if(ac.getAno() !="0") {
+		if(ac !=null) {
 			System.out.println("계좌주: "+ac.getOwner());
 			System.out.print("예금액: ");
 			
@@ -108,7 +108,7 @@ public class BankApplication {
 		ano = sc.next();
 		ac = findAccount(ano);
 		
-		if(ac.getAno() !="0") {
+		if(ac !=null) {
 			System.out.println("계좌주: "+ac.getOwner());
 			System.out.print("출금액: ");
 			balance = sc.nextInt();

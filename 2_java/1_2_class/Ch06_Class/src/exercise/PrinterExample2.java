@@ -3,10 +3,10 @@ package exercise;
 public class PrinterExample2 {
 	public static void main(String[] args) {
 
-		Printer.println(10);
-		Printer.println(true);
-		Printer.println(5.7);
-		Printer.println("홍길동");
+		Printer.printlns(10);
+		Printer.printlns(true);
+		Printer.printlns(5.7);
+		Printer.printlns("홍길동");
 		
 	}
 }
