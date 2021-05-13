@@ -4,10 +4,18 @@ public class DmbCellPhone extends CellPhone{
 	//필드
 	int channel;
 	
+	public DmbCellPhone(int channel) {
+		this.channel = channel;
+	}
+
 	//생성자
 	DmbCellPhone(String model, String color, int channel){
-		this.model = model;
-		this.color = color;
+		//this.model = model;
+		//this.color = color;
+		
+		//생성자 호출은 반드시 생성자 안에서 첫번째 줄에 위치해야 된다.
+		super(model, color);//부모 생성자 호출 
+		//this(channel);
 		this.channel = channel;
 	}
 	
@@ -22,5 +30,11 @@ public class DmbCellPhone extends CellPhone{
 	
 	void turnOffDmb() {
 		System.out.println("DMB 방송 수신을 멈춥니다.");
+	}
+	
+	@Override
+	void hangUp() {
+		System.out.println("전화 끊기");
+		super.hangUp();
 	}
 }

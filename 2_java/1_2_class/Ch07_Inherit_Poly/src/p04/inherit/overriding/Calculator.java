@@ -2,8 +2,9 @@ package p04.inherit.overriding;
 
 public class Calculator {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	double areaCircle(double r) {
+			System.out.println("Calculator 객체의 areaCircle() 실행");
+			return 3.14159 * r * r;
 
 	}
 

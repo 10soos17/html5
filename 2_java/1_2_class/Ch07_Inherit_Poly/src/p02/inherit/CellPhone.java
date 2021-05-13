@@ -6,7 +6,13 @@ public class CellPhone {
 	String color;
 
 	// 생성자
-
+	public CellPhone(){
+		
+	}
+	public CellPhone(String model, String color) {
+		this.model =model;
+		this.color = color;
+	}
 	// 메소드
 	void powerOn() {
 		System.out.println("전원을 켭니다.");
