@@ -1,4 +1,4 @@
-package p07.polymorphisme;
+package p07.polymorphism;
 
 public class BaseBall extends Game {
 

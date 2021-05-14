@@ -19,13 +19,17 @@ class Sawon2{
 
 class Sales2 extends Sawon2{
 	int commition;
+
 	public Sales2() {
 		
 	}
+
+
 	public Sales2(String name, String dept, int salary, int commition) {
-		super.name = name;
-		super.dept = dept;
-		super.salary = salary;
+		//super.name = name;
+		//super.dept = dept;
+		//super.salary = salary;
+		super(name,dept,salary);
 		this.commition=commition;
 		
 	}

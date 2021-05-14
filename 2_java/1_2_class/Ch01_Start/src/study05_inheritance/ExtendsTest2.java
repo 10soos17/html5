@@ -28,6 +28,8 @@ class Sub extends Super{
 
 class Subsub extends Sub{
 	int z = 20;
+	
+	
 	void subSubMethod() {
 		System.out.println("subSub method");
 	}
