@@ -3,6 +3,13 @@ package p07.polymorphism;
 //PolyMorphism(다형성): 여러개의 개별적인 클래스를 하나의 부모 클래스 객체로 통합관리 효율성을 높인 것
 //부모(큰타입), 자식(작은타입)
 //형변환: 상속관계에서만 가능
+
+//Polymorphism 종류: (1)Class 변수의(Field)의 다형성
+//					(2)Method의 다형성
+//					(3)Parameter의 다형성
+//					(4)Array의 다형성 
+//					(5)Abstract Class의 다형성
+//					(6)Interface의 다형성 
 public class PolyEx1 {
 
 	public static void main(String[] args) {
