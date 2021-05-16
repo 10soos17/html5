@@ -39,8 +39,6 @@ public class PolyMain0 {
 	//다양한 타입의 객체를 한 타입(Account obj)의 파라메터 변수로 받는다.
 	static void printAccountInfo(Account0 obj1) {
 		System.out.println(obj1);
-
-		
 	}
 
 }

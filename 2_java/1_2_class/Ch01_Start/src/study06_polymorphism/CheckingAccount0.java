@@ -15,7 +15,7 @@ public class CheckingAccount0 extends Account0 {
 
 	public void inPut() {
 		// super.inPut();
-		Account0.ac.add(new CheckingAccount0(this.accountNo, this.ownerName, this.balance, this.cardNo));
+		Account0.ac.add(new CheckingAccount0(super.accountNo, super.ownerName, super.balance, this.cardNo));
 
 	}
 
@@ -23,12 +23,12 @@ public class CheckingAccount0 extends Account0 {
 
 		for (Account0 a : ac) {
 			if (a instanceof CheckingAccount0 && ((CheckingAccount0) a).cardNo.equals(cardNo)) {
-				//System.out.println(a + "CheckingAccount0");
-				if(a.balance >= amount) {
+				// System.out.println(a + "CheckingAccount0");
+				if (a.balance >= amount) {
 					a.balance -= amount;
-					System.out.println(a.ownerName+"님의 계좌애서 "+amount+" 지불되었습니다.\n잔액: "+a.balance);
+					System.out.println(a.ownerName + "님의 계좌애서 " + amount + " 지불되었습니다.\n잔액: " + a.balance);
 				}
-				
+
 				return a.balance;
 
 			}

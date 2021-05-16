@@ -45,7 +45,7 @@ public class PolyEx1 {
 		Game b3 = new BaseBall();//상속관계에서만 가능
 		BaseBall bb = (BaseBall)b3;
 		bb.type(); //Promotion(자동형변환)
-		((BaseBall)bb).write();//Casting(강제형변환)		
+		bb.write();		
 	}
 
 }
