@@ -37,8 +37,11 @@ public class PolyMain0 {
 		
 	}
 	//다양한 타입의 객체를 한 타입(Account obj)의 파라메터 변수로 받는다.
-	static void printAccountInfo(Account0 obj1) {
-		System.out.println(obj1);
+	static void printAccountInfo(Account0 obj) {
+		System.out.println("계좌번호: " + obj.accountNo);
+		System.out.println("예금주: " + obj.ownerName);
+		System.out.println("잔액: " + obj.balance);
+		System.out.println();
 	}
 
 }
