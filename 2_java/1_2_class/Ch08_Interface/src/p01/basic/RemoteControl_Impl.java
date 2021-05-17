@@ -12,4 +12,14 @@ public class RemoteControl_Impl implements RemoteControl {
 		System.out.println("Overriding turnOff()");
 	}
 	
+	void print() {
+		System.out.println("일반 메소드: Print()");
+	}
+	
+	//default method 재정의 
+	@Override
+	public void setMute(boolean mute) {
+		System.out.println("Overriding setMute()");
+	}
+	
 }

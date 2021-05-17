@@ -9,7 +9,7 @@ public class Abstract_Gon {
 		tet.area(10,5);
 		tri.area(10,5);	
 		
-		tet.test();
+		//tet.test();
 
 	}
 
