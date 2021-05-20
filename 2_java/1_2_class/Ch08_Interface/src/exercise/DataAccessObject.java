@@ -2,12 +2,12 @@ package exercise;
 
 public interface DataAccessObject {
 
-	void select();
+	public void select();
 
-	void insert();
+	public void insert();
 
-	void update();
+	public void update();
 
-	void delete();
+	public void delete();
 
 }

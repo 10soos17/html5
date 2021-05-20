@@ -4,17 +4,17 @@ import java.io.FileNotFoundException;
 //Checked Exception: 컴파일 에러발생, 반드시 예외처리 해야함.
 import java.io.FileReader;
 import java.io.IOException;
-
+//Checked Exception: 반드시 예외 처리 
 public class CheckedException {
 
 	public static void main(String[] args) {
 		
 		try {
-			FileReader fr = new FileReader("text.txt");
+			FileReader fr = new FileReader("text.txt");//컴파일 에러 발생 try~catch
 			BufferedReader br = new BufferedReader(fr);
 			String str = null;
 			do {
-				str = br.readLine();
+				str = br.readLine();//컴파일 에러 발생 try~catch
 				System.out.println(str);
 			
 			}while(!(str == null));

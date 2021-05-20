@@ -1,6 +1,11 @@
 package exercise;
 
 public class Car {
-	class Tire{}
-	static class Engine{}
+	// Instance Inner Class
+	class Tire {
+	}
+
+	// static Inner Class
+	static class Engine {
+	}
 }

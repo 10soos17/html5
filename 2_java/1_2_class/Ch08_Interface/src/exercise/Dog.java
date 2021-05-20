@@ -2,9 +2,11 @@ package exercise;
 
 public class Dog implements Soundable {
 
+	//강제성, 일관성 
 	@Override
 	public String sound() {
-		return "멍멍";
+		String str = "멍멍";
+		return str;
 	}
 
 }
