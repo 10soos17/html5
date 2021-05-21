@@ -1,6 +1,7 @@
 package study09_exception;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Mem {
 
@@ -12,11 +13,30 @@ public class Mem {
 	double c;
 	String msg;
 	ArrayList<Mem> member = new ArrayList<Mem>();
+	
+	HashMap<String, ArrayList<Mem>> memHash = new HashMap<String, ArrayList<Mem>>();
+	
+//	HashMap<String, ArrayList<String>> hashtable3 = new HashMap<String, ArrayList<String>>();
+//	hashtable3.put(new String("홍길동"), new ArrayList<String>());
+//	
+//	ArrayList<String> arr = hashtable3.get(new String("홍길동"));
+//	arr.add("test");
+//	arr.add("test2");
+//	arr.add("test3");
 
 	public Mem() {
 
 	}
 
+	public Mem(int ki, int we, int age, int tel, double c) {
+
+		this.ki = ki;
+		this.we = we;
+		this.age = age;
+		this.tel = tel;
+		this.c = c;
+
+	}
 	public Mem(String name, int ki, int we, int age, int tel, double c) {
 		this.name = name;
 		this.ki = ki;
@@ -30,6 +50,8 @@ public class Mem {
 	public void in(String name, int[] arr) {
 		member.add(new Mem(name, arr[0], arr[1], arr[2], arr[3],jung(arr[2],arr[1])));
 		System.out.println(member);
+		
+		//memHash.put(new String(name), new Mem(arr[0], arr[1], arr[2], arr[3],jung(arr[2],arr[1])));
 
 
 	}

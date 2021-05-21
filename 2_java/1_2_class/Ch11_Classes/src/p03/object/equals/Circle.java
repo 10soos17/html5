@@ -1,5 +1,6 @@
 package p03.object.equals;
 
+//c1
 public class Circle {
 	int radius;
 
@@ -8,7 +9,7 @@ public class Circle {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) {// c2
 		if (!(obj instanceof Circle)) {
 			return false;
 		}
