@@ -30,8 +30,14 @@ public class HashMapEx {
 		arr.add("test2");
 		arr.add("test3");
 
+		//get key, value
+		for(String a: hashtable3.keySet()) {
+			System.out.println(a);
+			System.out.println(hashtable3.get(a));
+		}
 		
-		System.out.println(arr);
+
+		//System.out.println(arr);
 	}
 
 }
