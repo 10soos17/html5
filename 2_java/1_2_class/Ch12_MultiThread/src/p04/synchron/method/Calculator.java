@@ -1,7 +1,7 @@
 package p04.synchron.method;
 
 //공유영역(Shared Area): 일반클래스 
-//동기화(synchronized) 메소드 å
+//동기화(synchronized) 메소드
 public class Calculator {
 	private int memory;// 100 50
 
