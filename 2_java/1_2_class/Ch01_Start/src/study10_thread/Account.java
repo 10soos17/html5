@@ -7,7 +7,6 @@ public class Account {
 	String ownerName;// 예금주
 	int balance;// 잔고
 
-	// SharedArea share = new SharedArea();
 	TransferThread tr;
 	PrintThread pr;
 
