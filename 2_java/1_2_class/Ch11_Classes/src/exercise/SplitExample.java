@@ -13,7 +13,8 @@ public class SplitExample {
 			System.out.println(s);
 		}
 		
-		StringTokenizer st = new StringTokenizer(str,",");
+		StringTokenizer st = new StringTokenizer(str,",",false);
+		//StringTokenizer st = new StringTokenizer(str,",",true);
 		while(st.hasMoreTokens()) {
 			System.out.println(st.nextToken());
 		}

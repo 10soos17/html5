@@ -13,7 +13,7 @@ public class Student {
 		return studentNum;
 	}
 	
-	
+	//재정의 
 	public int hashCode() {
 		return Objects.hash(studentNum);
 	}
@@ -21,7 +21,7 @@ public class Student {
 	public boolean equals(Object obj) {
 		if(obj instanceof Student) {
 			Student std = (Student)obj;
-			if(std.studentNum == this.studentNum) {
+			if(std.studentNum.equals(this.studentNum)) {
 				return true;
 			}
 		}

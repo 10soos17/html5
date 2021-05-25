@@ -1,7 +1,7 @@
 package p02.multi_extends_thread;
 
 import java.awt.Toolkit;
-
+//Thread를 만드는 방법1
 //작업쓰레드1: Thread를 상속 받음 - 메인 쓰레드와 다른 독자적인 실행흐름 
 public class BeepThread extends Thread {
 
