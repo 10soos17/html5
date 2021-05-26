@@ -1,13 +1,13 @@
-package p02.generic_type;
+package p04.generic_method;
 
 public class Box<T> {
 	private T t;
 
-	public T get() {
+	public T getT() {
 		return t;
 	}
 
-	public void set(T t) {
+	public void setT(T t) {
 		this.t = t;
 	}
 

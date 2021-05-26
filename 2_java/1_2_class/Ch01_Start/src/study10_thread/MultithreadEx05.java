@@ -9,7 +9,7 @@ public class MultithreadEx05 {
 		Account ac2 = new Account("2222", "심순애", 100000000);
 
 		ac1.transfer(share, ac2, 10000000);
-		//ac2.transfer(share, ac1, 10000000);
+		ac2.transfer(share, ac1, 10000000);
 
 	}
 }
