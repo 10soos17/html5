@@ -14,13 +14,11 @@ public class TransferThread extends Thread {
 	}
 	
 	
-
 	public void run() {
 		for (int i = 0; i < 12; i++) {
-			sharedArea.setBalance(this.amount);
+			sharedArea.setBalance(sender,receiver,this.amount);
 			System.out.println(sender.ownerName +" 계좌: "+this.amount+"원 인출, "+receiver.ownerName+"계좌: "+this.amount+"원 입금");
-			sender.balance = this.sender.getBalance() - sharedArea.getBalance();
-			receiver.balance = this.receiver.getBalance() + sharedArea.getBalance();
+
 		}
 		System.out.println("exit");
 		System.out.println(sender.balance);
