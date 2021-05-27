@@ -1,7 +1,10 @@
 package p03.multi_type_parameter;
 
-public class Product<T, M> {
+import java.util.HashMap;
 
+public class Product<T, M> {
+	// key, value
+	HashMap<T, M> hm = new HashMap<T, M>();
 	private T kind;
 	private M model;
 
