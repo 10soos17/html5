@@ -59,7 +59,7 @@ public class WildCardExample {
 		System.out.println(c.getName() + "수강생" + Arrays.toString(c.getStudents()));
 	}
 
-	// 직장인과정: Worker
+	// 직장인과정: Person, Worker
 	public static void registerCourseWorker(Course<? super Worker> c) {
 		System.out.println(c.getName() + "수강생" + Arrays.toString(c.getStudents()));
 	}
