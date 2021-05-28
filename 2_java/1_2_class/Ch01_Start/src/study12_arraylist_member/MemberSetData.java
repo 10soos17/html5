@@ -9,6 +9,7 @@ public class MemberSetData {
 
 	public MemberSetData() {
 	}
+
 	public MemberSetData(MemberBean data) {
 		this.mbean = data;
 	}
@@ -19,7 +20,6 @@ public class MemberSetData {
 		}
 	}
 
-	
 	public MemberBean setData(String id, Integer pw, String name) {
 
 		mbean = new MemberBean(id, pw, name);
