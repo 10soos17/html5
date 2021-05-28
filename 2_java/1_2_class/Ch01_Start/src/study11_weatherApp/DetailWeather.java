@@ -15,7 +15,7 @@ public class DetailWeather extends Weather {
 		this.direction = direction;
 	}
 
-	public void info() {
+	public void info(int num) {
 		super.info();
 		System.out.println(
 				"미세먼지: "+this.dust+"%\n"+

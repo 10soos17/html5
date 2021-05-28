@@ -35,9 +35,9 @@ public class WeaCon {
 
 			if (vals.city.equals(city)) {
 				if (number == 1) {
-					((Weather) vals).info();
-				} else if (number == 2) {
 					vals.info();
+				} else if (number == 2) {
+					vals.info(number);
 				}
 			}
 
