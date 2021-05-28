@@ -12,15 +12,11 @@ public class MemberMain {
 		MemberPrint mPrint = new MemberPrint();
 		
 		mbean = mSet.setData("hong", 1234, "홍길동");
-		
-		List data = Arrays.asList("test",new MemberBean("hong", 1234, "홍길동"), new MemberBean("abcd", 3333, "이순신"));
-	
-		List<MemberBean> data1 = Arrays.asList(new MemberBean("hong", 1234, "홍길동"), new MemberBean("abcd", 3333, "이순신"));
-		data = mSet.setDatas(data1);
+		List<MemberBean> data = Arrays.asList(new MemberBean("hong", 1234, "홍길동"), new MemberBean("abcd", 3333, "이순신"));
 		
 		mPrint.printData(mbean);
 		mPrint.printDatas(data);
-		mPrint.printDatasGeneric(data1);
+		mPrint.printDatasGeneric(data);
 		
 	}
 

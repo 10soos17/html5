@@ -10,18 +10,15 @@ public class MemberPrint {
 	}
 
 	public void printDatas(List<MemberBean> list) {
-
-		for (Object mbean : list) {
-			if (mbean instanceof MemberBean) {
-				System.out.println(mbean);
-
-			}
-			// System.out.println(mbean);
+		System.out.println("* printDatas *");
+		for (int i=0;i<list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 	}
 
 	public void printDatasGeneric(List<MemberBean> list) {
-		for (Object mbean : list) {
+		System.out.println("*** printDatasGeneric ***");
+		for (MemberBean mbean : list) {
 			System.out.println(mbean);
 
 		}

@@ -7,18 +7,18 @@ public class MemberSetData {
 	MemberBean mbean;
 	List<MemberBean> mbeanList = new ArrayList<MemberBean>();
 
-	public MemberSetData() {
-	}
-
-	public MemberSetData(MemberBean data) {
-		this.mbean = data;
-	}
-
-	public MemberSetData(List<MemberBean> data) {
-		for (MemberBean mbean : data) {
-			this.mbeanList.add(mbean);
-		}
-	}
+//	public MemberSetData() {
+//	}
+//
+//	public MemberSetData(MemberBean data) {
+//		this.mbean = data;
+//	}
+//
+//	public MemberSetData(List<MemberBean> data) {
+//		for (MemberBean mbean : data) {
+//			this.mbeanList.add(mbean);
+//		}
+//	}
 
 	public MemberBean setData(String id, Integer pw, String name) {
 
