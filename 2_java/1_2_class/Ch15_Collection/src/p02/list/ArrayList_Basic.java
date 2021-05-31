@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+
 //List계열: 자료가 순차적이고, 중복적인 자료가 있을 때 사용 
 //		   ArrayList, Vector, LinkedList,,,
 //		   Vector: Synchronized 메소드 적용, 속도가 늦음, 초기에 나옴
@@ -48,7 +49,7 @@ public class ArrayList_Basic {
 			System.out.println(i);
 		}
 		System.out.println("------------------------");
-		//ArrayList<Man> am = new ArrayList<Man>();
+		// ArrayList<Man> am = new ArrayList<Man>();
 		List<Man> am = new ArrayList<Man>();
 		am.add(new Man("홍길동", 20));
 		am.add(new Man("알파고", 30));
@@ -69,48 +70,15 @@ public class ArrayList_Basic {
 			Man m1 = it.next();
 			System.out.println(m1.name + "," + m1.age);
 		}
-		
-		Collections.sort(ar3);//재정의 불필요 
-		System.out.println("ar3 sort(): "+ ar3);
+
+		Collections.sort(ar3);// 재정의 불필요
+		System.out.println("ar3 sort(): " + ar3);
 		System.out.println("------------------------");
 		// 4. Iterator2
 		for (Iterator<Man> it2 = am.iterator(); it2.hasNext();) {
 			Man m2 = it2.next();
 			System.out.println(m2.name + "," + m2.age);
 		}
-		
-		
-		
-		
-		
-//		//////
-//
-//		Man2<String, Integer> am3 = new Man2<>("홍길동", 20);
-//		//am3.add("홍길동", 20);
-//		am.add(new Man("알파고", 30));
-//
-//		// 1. 일반 for
-//		for (int i = 0; i < am3.size(); i++) {
-//			System.out.println(am3.get(i).name + "," + am3.get(i).age);
-//		}
-//		System.out.println("------------------------");
-//		// 2. 향상된 for
-//		for (Man m : am3) {
-//			System.out.println(m.name + "," + m.age);
-//		}
-//		System.out.println("------------------------");
-//		// 3. Iterator1
-//		Iterator<Man> it = am3.iterator();
-//		while (it.hasNext()) {
-//			Man m1 = it.next();
-//			System.out.println(m1.name + "," + m1.age);
-//		}
-//		System.out.println("------------------------");
-//		// 4. Iterator2
-//		for (Iterator<Man> it2 = am3.iterator(); it2.hasNext();) {
-//			Man m2 = it2.next();
-//			System.out.println(m2.name + "," + m2.age);
-//		}
 
 
 	}
