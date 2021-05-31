@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //Queue: FIFO(First In First Out), LinkedList로 구성 가능 
-public class QueueWx1 {
+public class QueueEx1 {
 
 	public static void main(String[] args) {
 		LinkedList<String> queue = new LinkedList<String>();

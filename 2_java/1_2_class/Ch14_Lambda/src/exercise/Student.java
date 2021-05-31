@@ -6,7 +6,6 @@ public class Student {
 	private int mat;
 
 	public Student(String name, int eng, int mat) {
-		super();
 		this.name = name;
 		this.eng = eng;
 		this.mat = mat;
