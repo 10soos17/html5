@@ -1010,6 +1010,13 @@ https://dev.mysql.com/downloads/file/?id=503091
     Map - Hashtable, HashMap, SortedMap(TreeMap)
 
 - generics(<>안에는 클래스타입만 저장 가능)
+ Generic Type으로는 전역변수(Static)를 선언할수 없다.
+  Generic Type으로는 인스턴스를 생성할수 없다.
+    E - Element
+    K - Key
+    N - Number
+    T - Type
+    V - Value
     ex. ArrayList<String>, ArrayList<Integer>, <String>myMethod(), <Integer>myMethod()
 
     ex.ArrayList<String> binArr = new ArrayList<String>();
@@ -1193,8 +1200,7 @@ refactor -> rename
 ctr shif f(줄맞춤)
 syso를 타이핑후 컨트롤+ 스페이스
 ctrl + l(라인이동)
-
-windows 환경변수 설정
+win
 시스템변수-> JAVA_HOME, C:\Program Files\Java\jdk1.8.0_291 등록
 user에 대한 변수 등록 -> %JAVA_HOME%bin;
 
