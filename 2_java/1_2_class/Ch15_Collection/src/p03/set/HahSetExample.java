@@ -1,6 +1,6 @@
-package p02.list;
+package p03.set;
 
-public class ArrayListExample {
+public class HahSetExample {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
