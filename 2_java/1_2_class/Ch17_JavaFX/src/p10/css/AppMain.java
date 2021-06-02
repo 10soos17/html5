@@ -1,6 +1,6 @@
-package p04.map;
+package p10.css;
 
-public class HashMapExample {
+public class AppMain {
 
 	public static void main(String[] args) {
 		

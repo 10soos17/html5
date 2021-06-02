@@ -65,26 +65,27 @@ public class BoardSVC {
 	}
 
 	// 6. 글 삭제 동작(실행)
-//	private void removeArticle(String register, String passwd) {
-//		if (bHashList.size() > 0) {
-//			int index = -1;
-//			for (int i = 0; i < bHashList.size(); i++) {
-//				if (bHashList.get(i).equals(register)) {
-//					if (bHashList.get(i).equals(passwd)) {
-//						bHashList.remove(bHashList.get(i));
-//						index = i;
-//						;
-//					}
-//				}
-//			}
-//			if (index == -1) {
-//				System.out.println("해당 작성자가 없거나 비밀번호가 일치하지 않습니다.");
-//				return;
-//			}
-//
-//		} else {
-//			System.out.println("작성된 글이 존재하지 않습니다.");
-//		}
-//
-//	}
+	private void removeArticle(String register, String passwd) {
+		if (bHashList.size() > 0) {
+			int index = -1;
+			for (int i = 0; i < bHashList.size(); i++) {
+				if (bHashList.get(i).get("작성자").equals(register)) {
+					if (bHashList.get(i).get("비밀번호").equals(passwd)) {
+						bHashList.remove(bHashList.get(i));
+						index = i;
+						;
+					}
+				}
+			}
+			if (index == -1) {
+				System.out.println("해당 작성자가 없거나 비밀번호가 일치하지 않습니다.");
+				return;
+			}
+
+		} else {
+			System.out.println("작성된 글이 존재하지 않습니다.");
+		}
+
+	}
+	
 }

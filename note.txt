@@ -858,22 +858,28 @@ https://dev.mysql.com/downloads/file/?id=503091
                  https://www.oracle.com
     
     -JavaFX(java GUI)
-        편집기: Scene Builder
-        https://www.oracle.com/java/technologies/javafxscenebuilder-1x-archive-downloads.html (javafx)
-        https://www.oracle.com/java/technologies/javase-jdk8-doc-downloads.html (javafx api)
-        eclipse사용법
-        -new javaproject 생성 후 -> properties 클릭 -> java Build Path -> 
-                        
-                        Libraries 클릭 -> 
-                        Add External JARs ->컴퓨터 내 jfxrt.jar 찾아서 추가-> 
-                        JRE System Library [JavaSE-1.8]에서 Access rules 클릭-> Accessible 로 바꾸고 javafx/** 쓰기
-                        
-                        -> Order and Export 클릭 
-                        -> jfxrt.jar위치 top으로 이동 
+        -설치
+            편집기: Scene Builder
+            https://www.oracle.com/java/technologies/javafxscenebuilder-1x-archive-downloads.html (javafx)
+            https://www.oracle.com/java/technologies/javase-jdk8-doc-downloads.html (javafx api)
 
-        (맥 jfxrt.jar위치 -  /Library/JavaVirtualMachines/jdk1.8.0_241.jdk/Conents/Home/jre/lib/ext/jfxrt.jar
-        윈도우 jfxrt.jar위치 - C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext/jfxrt.jar)
+        - e(fx)clepse 3.7.0 install
+            help -> eclipse_help_marketplace->javaFx go->e(fx)clepse 3.7.0 install
 
+        
+        - eclipse사용법
+            -new javaproject 생성 후 -> properties 클릭 -> java Build Path -> 
+                                        Libraries 클릭 -> 
+                                        Add External JARs ->컴퓨터 내 jfxrt.jar 찾아서 추가-> 
+                                        JRE System Library [JavaSE-1.8]에서 Access rules 클릭-> Accessible 로 바꾸고 javafx/** 쓰기
+                                        
+                                        -> Order and Export 클릭 
+                                        -> jfxrt.jar위치 top으로 이동 
+
+            (맥 jfxrt.jar위치 -  /Library/JavaVirtualMachines/jdk1.8.0_241.jdk/Conents/Home/jre/lib/ext/jfxrt.jar
+            윈도우 jfxrt.jar위치 - C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext/jfxrt.jar)
+        
+ 
     - mac 설명 - https://s2junn.tistory.com/83
     - mac 설치, 삭제 - https://blog.naver.com/adonise007/221556545884
 
