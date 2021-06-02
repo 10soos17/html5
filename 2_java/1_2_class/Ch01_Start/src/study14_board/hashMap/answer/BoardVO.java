@@ -1,4 +1,4 @@
-package study14_board.arraylist;
+package study14_board.hashMap.answer;
 
 //VO=DTO=Bean=getter()/setter()
 public class BoardVO {
@@ -7,6 +7,14 @@ public class BoardVO {
 	private String email;
 	private String content;
 	private String passwd;
+
+	public BoardVO(String register, String subject, String email, String content, String passwd) {
+		this.register = register;
+		this.subject = subject;
+		this.email = email;
+		this.content = content;
+		this.passwd = passwd;
+	}
 
 	public String getRegister() {
 		return register;

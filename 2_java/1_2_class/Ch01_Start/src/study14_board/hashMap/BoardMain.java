@@ -6,14 +6,13 @@ public class BoardMain {
 
 	public static void main(String[] args) {
 		boolean isStop = false;
-		boolean isExit = false;
-		Scanner sc = new Scanner(System.in);
 		int select;
+		Scanner sc = new Scanner(System.in);
 		BoardSVC boardSVC = new BoardSVC();
 
 		do {
 
-			while(!isExit) {
+			for (int i = 0; i < 3; i++) {
 				try {
 					System.out.println("##메뉴를 입력하세요.##");
 					System.out.println("1.게시판 글쓰기 2.글 목록 보기 3. 글 삭제 4. 종료");
@@ -41,14 +40,14 @@ public class BoardMain {
 				} catch (Exception e) {
 					System.out.println("잘못입력");
 					sc.next();
-		
-					//break;
 				}
 
 			}
+			System.out.println("3회 입력 오류. 종료.");
+			isStop = !isStop;
 
 		} while (!isStop);
 
 	}
-	
+
 }
