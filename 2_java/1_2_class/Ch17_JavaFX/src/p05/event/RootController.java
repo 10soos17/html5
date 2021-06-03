@@ -16,18 +16,22 @@ public class RootController implements Initializable {
 	private Button btn1;
 	@FXML
 	private Button btn2;
+	@FXML
+	private Button btn3;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		// 익명구현객체
 		btn1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
 				handleButton1Action(e);
 			}
 		});
-
+		// Lambda Expression
 		btn2.setOnAction(e -> handleButton2Action(e));
-		// btn3.setOnAction(e->handleButton3Action(e));
+		btn3.setOnAction(e -> handleButton3Action(e));
 	}
 
 	public void handleButton1Action(ActionEvent e) {
