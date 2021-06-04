@@ -22,16 +22,13 @@ public class RootController_BorderPane implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		slider.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				
 				label.setFont(new Font(arg1.doubleValue()));
-				
-			
-		
-			
 				
 			}
 			

@@ -6,14 +6,18 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="200.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p05.event.RootController_BorderPane">
+<BorderPane prefHeight="200.0" prefWidth="222.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="p05.event.RootController_BorderPane">
 	<center>
-		<Label fx:id="label" text="javaFX" BorderPane.alignment="CENTER" />
+		<Label fx:id="label" text="javaFX"
+			BoårderPane.alignment="CENTER" />
 	</center>
 	<bottom>
 		<Slider fx:id="slider" BorderPane.alignment="CENTER" />
 	</bottom>
-   <top>
-		<Button fx:id="btn1" prefHeight="23.0" prefWidth="93.0" text="버튼" BorderPane.alignment="CENTER" />
-   </top>
+	<top>
+		<Button fx:id="btn1" prefHeight="23.0" prefWidth="93.0"
+			text="버튼" BorderPane.alignment="CENTER" />
+	</top>
 </BorderPane>

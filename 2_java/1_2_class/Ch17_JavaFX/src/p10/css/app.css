@@ -1,0 +1,14 @@
+Label {
+	-fx-padding: 5.0;
+}
+
+#lblId {
+	-fx-background-color: black;
+	-fx-text-fill: yellow;
+}
+
+.lblClass {
+	-fx-background-color: blue; 
+	-fx-text-fill:white;
+	
+}

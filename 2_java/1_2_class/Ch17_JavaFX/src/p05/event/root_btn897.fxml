@@ -7,55 +7,80 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p05.event.RootControllerButton">
-   <center>
-      <BorderPane prefHeight="150.0" prefWidth="420.0" BorderPane.alignment="CENTER">
-         <bottom>
-            <Button fx:id="btnExit" mnemonicParsing="false" onAction="#handleBtnExitAction" BorderPane.alignment="CENTER">
-                      <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@FX_images/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </bottom>
-         <center>
-            <HBox prefHeight="100.0" prefWidth="400.0" spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0" spacing="20.0">
-                     <children>
-                        <CheckBox fx:id="chk1" onAction="#handleChkAction" text="안경" />
-                        <CheckBox fx:id="chk2" onAction="#handleChkAction" text="모자" />
-                     </children>
-                  </VBox>
-                  <ImageView fx:id="checkImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@FX_images/geek.gif" />
-                     </image>
-                  </ImageView>
-                  <Separator orientation="VERTICAL" prefHeight="100.0" />
-               
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="150.0" spacing="20.0">
-                  <fx:define><ToggleGroup fx:id="group"/></fx:define>
-                     <children>
-                        <RadioButton fx:id="rad1" toggleGroup="$group" userData="BubbleChart" text="BubbleChart" />
-                        <RadioButton fx:id="rad2" toggleGroup="$group" userData="BarChart" text="BarChart" />
-                        <RadioButton fx:id="rad3" toggleGroup="$group" userData="AreaChart" text="AreaChart" />
-                     </children>
-                  </VBox>
-                  <ImageView fx:id="radioImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@FX_images/BarChart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </center>
-      </BorderPane>
-   </center>
+<!-- 버튼 컨트롤 배치와 이벤트 처리 -->
+<BorderPane fx:controller="p05.event.RootController897"
+	prefHeight="150.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml">
+	<padding>
+		<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+	</padding>
+	<!-- CheckBox, RadioButton,ToggleButton컨트롤은 선택과 미선택 2가지가 있다. -->
+	<center>
+		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0"
+			spacing="10">
+			<children>
+				<VBox alignment="CENTER_LEFT" prefHeight="100.0"
+					prefWidth="100.0" spacing="20.0">
+					<children>
+						<CheckBox fx:id="chk1" onAction="#handleChkAction"
+							text="안경" />
+						<CheckBox fx:id="chk2" onAction="#handleChkAction"
+							text="모자" />
+					</children>
+				</VBox>
+
+				<ImageView fx:id="checkImageView" fitWidth="100.0"
+					preserveRatio="true">
+					<image>
+						<Image url="@../../images/geek.gif" />
+					</image>
+				</ImageView>
+
+				<Separator orientation="VERTICAL" prefHeight="100.0" />
+
+				<VBox alignment="CENTER_LEFT" prefHeight="100" prefWidth="150"
+					spacing="20.0">
+					<!-- RadioButton, ToggleButton에는 toggleGroup 속성이 있는데, 하나의 그룹으로 묶으며,그룹 
+						내에서는 하나의 컨트롤만 선택되는 효과가 있다. -->
+					<!-- 참조할 ToggleGropup객체는 아래처럼 작성하고 참조할때는 &groupName으로 참조한다. -->
+					<!-- 아래는 2개의 RadioButton을 하나의 그룹으로 묶어서 선언한 것 -->
+					<!-- <fx:define> <ToggleGroup fx:id="group"/> </fx:define> -->
+					<children>
+						<RadioButton fx:id="rad1" text="BubbleChart"
+							userData="BubbleChart">
+							<toggleGroup>
+								<ToggleGroup fx:id="group" />
+							</toggleGroup>
+						</RadioButton>
+						<RadioButton fx:id="rad2" selected="true"
+							text="BarChart" toggleGroup="$group" userData="BarChart" />
+						<RadioButton fx:id="rad3" text="AreaChart"
+							toggleGroup="$group" userData="AreaChart" />
+					</children>
+				</VBox>
+
+				<ImageView fx:id="radioImageView" fitWidth="100.0"
+					preserveRatio="true">
+					<image>
+						<Image url="@../../images/BarChart.png" />
+					</image>
+				</ImageView>
+			</children>
+		</HBox>
+	</center>
+	<!-- 버튼에 이미지 넣기: ImageView를 매개값으로 해서 setGraphic()를 호출하면, 아이콘을 넣을수 있다. -->
+	<bottom>
+		<Button fx:id="btnExit" onAction="#handleBtnExitAction"
+			BorderPane.alignment="CENTER">
+			<graphic>
+				<ImageView>
+					<image>
+						<Image url="@../../images/exit.png" />
+					</image>
+				</ImageView>
+			</graphic>
+			<BorderPane.margin>
+				<Insets top="20.0" />
+			</BorderPane.margin>
+		</Button>
+	</bottom>
 </BorderPane>

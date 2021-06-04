@@ -1273,3 +1273,8 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 
 ////
 하드 디스크를 cleanmgr을 와 SFC / scannow를더 이상 필요없는 프로그램 제거, 자동 시작 프로그램 모니터링 (msconfig 사용) 및 자동 Windows 업데이트 사용.
+
+
+//
+DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
+https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
