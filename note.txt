@@ -1271,10 +1271,92 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 월요일 시험 - html: chapter9 10문제, 70이상
               oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
 
-////
-하드 디스크를 cleanmgr을 와 SFC / scannow를더 이상 필요없는 프로그램 제거, 자동 시작 프로그램 모니터링 (msconfig 사용) 및 자동 Windows 업데이트 사용.
 
+//////////////////////////oracle install 2//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//
-DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
-https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
+[oracle enterprise edition install]
+    DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
+    https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
+    [window 환경]
+
+    [mac 환경]
+    1. DOCKER setting 
+
+    docker11g ee  
+    docker pull loliconneko/oracle-ee-11g (https://hub.docker.com/r/loliconneko/oracle-ee-11g)
+    docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/docker_oracle:/tmp loliconneko/oracle-ee-11g
+    docker exec -it oracle11gee sqlplus
+    docker exec -it oracle11gee /bin/bash
+
+    -hub에 저장
+    docker commit oracle11gee soo1017/oracle11gee
+    docker push soo1017/oracle11gee
+
+    id:system
+    pw:oracle
+
+    soos 계정 추가, 권한 줌
+
+    2 linux 환경 만들기
+    (RHEL/CentOS -> 패키지 yum )
+    (exec -it 컨이너이름 /bin/bash)
+    (
+    루트계정 비번 설정->
+    yum으로 패키지받기(sudo, yum, locale ko)->
+    사용자 추가->
+    사용자한테 권한 주기(sudoers파일에 작성)->
+    한글설정
+    )
+
+    #표시: root 계정 / $표시: 타계정 / su 계정명(계정 바꾸기)
+
+    passwd(#상태에서 루트비번설정)
+
+    -sudo 설치 (계정 추가전)
+    yum install sudo -y
+
+    adduser 계정명
+    cd /etc (sudoers 위치로 이동)
+    chmod 777 sudoers(파일 수정 권한 주기)
+    vi sudoers -> 계정명 ALL=(ALL:ALL) ALL (추가한 계정에 대한 권한 주기)
+    chmod 444 sudoers(파일 읽기 권한만 주기)
+
+    -언어 한글 설치
+    yum search locale ko
+    yum install -y glibc-common glibc
+    yum search locale ko
+    locale
+    locale -a
+    localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
+
+        -alias custum(https://cafe.naver.com/linuxcare/72424)
+            vi ~/.bashrc
+
+            alias settingon='TERM=linux || TERM=ansi'(vi 키패드 오류때문에 바꿈export TERM=linux, export TERM=ansi)
+            alias korean='localedef -f UTF-8 -i ko_KR ko_KR.UTF-8'
+
+            source ~/.bashrc
+
+    //- client측 oracle characterset 설정
+     //   vi ~/.bashrc
+
+     //   export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+     //   source ~/.bashrc
+     //   (cf. 윈도우 : 시스템 등록정보 -> 고급 -> 환경변수(N)에 다음 추가 NLS_LANG AMERICAN_AMERICA.AL32UTF8)
+
+    //(화살표키설정하는법
+    //체크apt-get install yum
+    //yum install rlwrap
+    //.bashrc -> alias sqlplus ='rlwarp sqlplus'
+    //# . .bashrc
+   // )
+
+    if [ "$TERM"="xterm-256color" ]; then
+    echo "+=======================================+"
+    echo "|      | \ _ / \      +--------------+  |"
+    echo "|    /           \    | Hello~ 안녕~ |  |"
+    echo "|   | * ^ ____ ^ *|   | oracle11gee  |  |"
+    echo "|                     +--------------+  |"
+    echo "+=======================================+"
+    fi 
