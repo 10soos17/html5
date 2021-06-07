@@ -319,3 +319,17 @@ insert into dept_second values(dno_seq.nexval, 'ACCOUNT', )
 create table dept as select * from department where 0=1;
 insert into dept values(DNO_SEQ.nextval, 'test', 'test');
 
+//===============================================================
+ set linesize 100
+
+--Oracle: 사용자계정=Databasef
+
+--사용자 계정 상황 보기
+select * from dba_users;
+
+--계정 Lock 해제하고 사용하기
+alter user sh ACCOUNT UNLOCK;
+alter user sh IDENTIFIED BY sh;
+
+alter user PM ACCOUNT UNLOCK;
+alter user PM IDENTIFIED BY PM;

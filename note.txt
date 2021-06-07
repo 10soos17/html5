@@ -1273,19 +1273,26 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 
 
 //////////////////////////oracle install 2//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+[sqldeveloper]
+https://www.oracle.com/tools/downloads/sqldev-downloads.html
 
 [oracle enterprise edition install]
     DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
     https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
-    [window 환경]
 
+    [window 환경]
+    Enterprise Manager Database Control URL - (orcl) :
+    https://localhost:1158/em
+
+    데이터베이스 구성 파일은 C:\app\user에 설치되었으며 설치 시 선택한 다른 구성 요소는 C:\app\user\product\11.2.0\dbhome_1에 설치되었습니다. 실수로 이들 구성 파일을 삭제하지 않도록 주의하십시오.
+   
     [mac 환경]
     1. DOCKER setting 
 
     docker11g ee  
     docker pull loliconneko/oracle-ee-11g (https://hub.docker.com/r/loliconneko/oracle-ee-11g)
     docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/docker_oracle:/tmp soo1017/oracle11gee
-    (docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v  C:\Users\user\Desktop\docker_oracle:\tmp soo1017/oracle11gee)
+    (docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v  C:\Users\user\Desktop\choongang\3_oracle\DBSQL:\tmp soo1017/oracle11gee)
     
     docker exec -it oracle11gee sqlplus
     docker exec -it oracle11gee /bin/bash
@@ -1368,8 +1375,48 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
     echo "+=======================================+"
     fi 
 
-    
+
     //
     [windows port 번호 pid 찾기 & kill]
     netstat -ano | findstr :1521
     taskkill /pid 3464 /f
+
+    [windows oracle 삭제]
+    0. 제어판 ->관리도구->서비스->oracle...정지 그리고 사용중지 
+    1. cmd에서 삭제 (https://seokr.tistory.com/531)
+    시작 -> 실행 -> cmd 실행후 도스창에서 아래 명령어를 실행한다.
+
+    sc delete "OracleJobSchedulerXE"
+
+    sc delete "OracleMTSRecoveryService"
+
+    sc delete "Ora  cleServiceXE"
+
+    sc delete "OracleXEClrAgent"
+
+    sc delete "OracleXETNSListener"
+
+    2.  제어판 -> 시스템 을 열어 환경변수에 PATH 잡힌 부분을 삭제한다.
+        예) C:\oraclexe\app\....bin
+        (C:\oraclexe\app\oracle\product\11.2.0\server\bin)
+    3. 레지스트리 정보 삭제
+
+        시작 -> 실행 -> regedit
+
+        HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\ 
+
+        HKEY_LOCAL_MACHINE\SOFTWARE\odbc\
+
+        HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\
+
+        HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\
+
+        HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\
+
+        HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\
+
+        밑에 하위 폴더중에 Oracle XE 관련 폴더 삭제한다
+
+    4. 파일삭제
+
+    예) C:\oraclexe 폴더 삭제

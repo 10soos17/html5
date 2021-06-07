@@ -9,7 +9,7 @@ public class InetAddressEx1 {
 		String name = "www.google.com";
 		try {
 			InetAddress id = InetAddress.getByName(name);
-			//System.out.println(InetAddress.getLocalHost());
+			//System.out.println(InetAddress.getLocalHost().getByName(name));
 			String hostname = id.getHostName();
 			String hostAddress = id.getHostAddress();
 			System.out.println(id + ", " + hostname + " : " + hostAddress);

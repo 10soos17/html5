@@ -1,2 +1,0 @@
-DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
-https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
