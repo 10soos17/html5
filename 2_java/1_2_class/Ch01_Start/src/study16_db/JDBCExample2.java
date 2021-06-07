@@ -1,5 +1,8 @@
 package study16_db;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,13 +36,36 @@ public class JDBCExample2 {
 	}
 
 	public static void insert_db(Connection conn, PreparedStatement pst) {
+		
+//	      	BufferedReader reader = null;
+//	        Reader r = null;
+//	        List<String> list = null;
+//	        
+//	        Connection con = null;
+//	        PreparedStatement stmt =null;
+//	        int count =0;
+//	        try {
+//	            r = new FileReader("../../data.txt");
+//	            reader = new BufferedReader(r);
+//	            list = new ArrayList<String>(); // 자료 담을 자료구조 생성
+//	            while (true) {
+//	                String data = reader.readLine();
+//	                if (data == null) 
+//	                    break;
+//	                String[] arr = data.split(",");
+//	                count++;// 배열에서 값을 하나씩 꺼내어 insert하기 좋은 형태로 저장 // ex) map, list
+//	                // 여기까지 ,를 구분으로 배열이 만들어졌는데
+//	 
+//	                for (String string : arr) { // 하나씩 뽑아서 리스트에 add
+//	                    list.add(string);
+//	 
+//	                }
+//	                System.out.println(list);
+//	 
+//	            }
+
 		String sql = "INSERT INTO GOODSINFO VALUES(?,?,?,?)";
 		try {
-//			   10005 SmartPhone 	     8990000 GaLuxyNote
-//			   10001 디지털TV 	      350000 LG
-//			   10002 DVD 플레이어 	      250000 LG
-//			   10003 디지털 카메라 	      210000 삼성
-//			   10004 컬러 전자사전 	      300000 아이리버
 
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, "10005");
