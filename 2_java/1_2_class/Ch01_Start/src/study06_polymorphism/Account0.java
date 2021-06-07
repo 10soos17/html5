@@ -2,7 +2,6 @@ package study06_polymorphism;
 
 import java.util.ArrayList;
 
-import study04_scores.Student;
 
 public class Account0 {
 	String accountNo; // 계좌번호

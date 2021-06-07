@@ -1284,7 +1284,9 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 
     docker11g ee  
     docker pull loliconneko/oracle-ee-11g (https://hub.docker.com/r/loliconneko/oracle-ee-11g)
-    docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/docker_oracle:/tmp loliconneko/oracle-ee-11g
+    docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v /Users/soos/Desktop/docker_oracle:/tmp soo1017/oracle11gee
+    (docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v  C:\Users\user\Desktop\docker_oracle:\tmp soo1017/oracle11gee)
+    
     docker exec -it oracle11gee sqlplus
     docker exec -it oracle11gee /bin/bash
 
@@ -1292,10 +1294,15 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
     docker commit oracle11gee soo1017/oracle11gee
     docker push soo1017/oracle11gee
 
-    id:system
-    pw:oracle
+    id: sys as sysdba
+    pw: oracle
+    로그인 후, 비번 바꾸기(https://m.blog.naver.com/baekmg1988/221298569322s)
+    alter user sys identified by 1111;(sys, system)
+    conn sys/1111 as sysdba
+
 
     soos 계정 추가, 권한 줌
+
 
     2 linux 환경 만들기
     (RHEL/CentOS -> 패키지 yum )
@@ -1360,3 +1367,9 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
     echo "|                     +--------------+  |"
     echo "+=======================================+"
     fi 
+
+    
+    //
+    [windows port 번호 pid 찾기 & kill]
+    netstat -ano | findstr :1521
+    taskkill /pid 3464 /f
