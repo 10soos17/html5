@@ -32,6 +32,7 @@ public class AddAction implements Action {
 		System.out.println("전화 번호: ");
 		m.setTel(sc.next());
 
+		
 		addMember(m);
 
 	}

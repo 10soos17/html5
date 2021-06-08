@@ -1,20 +1,22 @@
---Oracle: »ç¿ëÀÚ°èÁ¤=Database
+--Oracle: ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½=Database
 
---»ç¿ëÀÚ °èÁ¤ »óÈ² º¸±â
+--ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È² ï¿½ï¿½ï¿½ï¿½
 select * from dba_users;
 
---°èÁ¤ Lock ÇØÁ¦ÇÏ°í »ç¿ëÇÏ±â
+--ï¿½ï¿½ï¿½ï¿½ Lock ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 alter user sh ACCOUNT UNLOCK;
 alter user sh IDENTIFIED BY sh;
 
 alter user PM ACCOUNT UNLOCK;
 alter user PM IDENTIFIED BY PM;
 
---°èÁ¤ ¸¸µé±â
---Create User java IDENTIFIED BY java;
---Grant CONNECT, Resource to java;
+--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+Create User java IDENTIFIED BY java;
+Grant CONNECT, Resource to java;
 
-create user madangDB identified by madangdb;
-Grant connect, resource to madangDB;
+--create user madangDB identified by madangdb;
+--Grant connect, resource to madangDB;
 
+--ê³„ì • ì‚­ì œ
+--Drop user java cascade;
 
