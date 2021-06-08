@@ -1199,6 +1199,7 @@ https://dev.mysql.com/downloads/file/?id=503091
 설치파일
 https://www.eclipse.org/downloads/packages/
 https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-jee-2020-03-R-incubation-win32-x86_64.zip
+(mac https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2021-03/R/eclipse-jee-2021-03-R-macosx-cocoa-x86_64.dmg)
 Eclipse IDE 2020-03 R Packages > Eclipse IDE for Enterprise Java and Web Developers
 경로 에러나면 경로 줄여서 설치하기
 C:\Users\eclipse
@@ -1360,6 +1361,7 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
             docker commit oracle11gee soo1017/oracle11gee
             docker push soo1017/oracle11gee
 
+        *oracle 경로 /u01/app/oracle/product/11.2.0/EE
 
     2 linux 환경 만들기
         (RHEL/CentOS -> 패키지 yum )
