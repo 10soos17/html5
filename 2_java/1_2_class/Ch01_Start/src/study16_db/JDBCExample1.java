@@ -8,25 +8,27 @@ public class JDBCExample1 {
 
 	public static void main(String args[]) {
 
-		//String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-		
-		String url = "jdbc:oracle:thin:@localhost:1521:ee";
-
 		Connection conn = null;
 
 		try {
-			//Class.forName("oracle.jdbc.driver.OracleDriver");
+			// String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			// Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:ee";
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, "madangDB", "madangdb");
+			System.out.println("success");
 
-		} catch (Exception e) {
+		} catch (ClassNotFoundException e) {
+			System.out.println("ojdbc.jar가 해당 위치에 없습니다.");
+		} catch (SQLException e) {
+			System.out.println("주소 및 id, pw가 다릅니다.");
 		}
+		System.out.println("정상적 종료");
 
 		try {
-			conn = DriverManager.getConnection(url, "madangDB", "madangdb");
-			System.out.println("sucess");
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("fail");
+
 		}
 
 	}

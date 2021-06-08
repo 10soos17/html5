@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.Reader;
 
 public class madangDB {
-	
+
 	public ArrayList<ArrayList<String>> read_file() {
 		BufferedReader reader = null;
 		Reader r = null;
@@ -35,16 +35,16 @@ public class madangDB {
 			System.out.println("error" + e);
 
 		}
-		//System.out.println(list);
 		return list;
 
 	}
 
-	public void insert_db(Connection conn, PreparedStatement pst, ArrayList<ArrayList<String>> fList) {
+	public void insert_db(Connection conn, ArrayList<ArrayList<String>> fList) {
 
+		PreparedStatement pst = null;
+		ResultSet res = null;
 		String sql = "INSERT INTO GOODSINFO VALUES(?,?,?,?)";
-		//System.out.println(fList);
-		
+
 		try {
 			for (ArrayList<String> value : fList) {
 				pst = conn.prepareStatement(sql);
@@ -56,23 +56,27 @@ public class madangDB {
 			}
 			System.out.println("insert success");
 		} catch (SQLException e) {
-			System.out.println(e+"insert fail");
+			System.out.println(e + "insert fail");
 		}
 
 	}
 
-	public void select_db(Connection conn, PreparedStatement pst, ResultSet res) {
-		
+	public void select_db(Connection conn) {
+		PreparedStatement pst = null;
+		ResultSet res = null;
 		String sql = "SELECT * FROM goodsinfo";
 
 		try {
 			pst = conn.prepareStatement(sql);
 			res = pst.executeQuery();
+			
 			while (res.next()) {
-				//System.out.println(res);
-				System.out.println("상품코드: " + res.getString(1) + "\n" + "상품명: " + res.getString(2) + "\n" + "가격: "
-						+ res.getInt(3) + "\n" + "제조사: " + res.getString(4) + "\n"
-
+				
+				System.out.println(
+						"상품코드: " + res.getString(1) + "\n" + 
+						"상품명: " + res.getString(2) + "\n" + 
+						"가격: " + res.getInt(3) + "\n" + 
+						"제조사: " + res.getString(4) + "\n"
 				);
 			}
 			System.out.println("select success");

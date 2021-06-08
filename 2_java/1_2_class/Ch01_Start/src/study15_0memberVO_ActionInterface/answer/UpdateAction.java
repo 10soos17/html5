@@ -39,7 +39,7 @@ public class UpdateAction implements Action {
 		MemberVO member = null;
 
 		for (int i = 0; i < MemberMain.members.length; i++) {
-			if (members[i].getName().contentEquals(name)) {
+			if (members[i].getName().equals(name)) {
 				member = members[i];
 			}
 		}

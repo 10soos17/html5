@@ -4,9 +4,11 @@ package study15_0memberVO_ActionInterface.answer;
 import java.util.Scanner;
 
 public class MemberMain {
+	
 	static MemberVO[] members;// temp배열 변수
 
 	public static void main(String[] args) {
+		
 		MemberService ms = new MemberService();
 		Scanner sc = new Scanner(System.in);
 		members = new MemberVO[0];//
