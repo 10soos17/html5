@@ -709,6 +709,7 @@ fi
     select username, default_tablespace from dba_users where username in 'SOOS';
     alter user soos quota 2m on users;
 
+    alter user sh ACCOUNT UNLOCK;
     alter user 계정명 account unlock;(기존 계정에 권한)
     (alter user hr account unlock;)
     alter user 계정명 identified by 비번(기존 계정에 비번)
@@ -1464,3 +1465,11 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
         password: ....
 
 
+///
+SET DOCKER_CERT_PATH=%UserProfile%\.docker\machine\machines\HypervDefault
+SET DOCKER_MACHINE_NAME=HypervDefault
+
+cd "C:\Program Files\Docker\Docker"
+./DockerCli.exe -SwitchDaemon
+
+https://github.com/docker/for-win/issues/1825

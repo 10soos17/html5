@@ -333,3 +333,7 @@ alter user sh IDENTIFIED BY sh;
 
 alter user PM ACCOUNT UNLOCK;
 alter user PM IDENTIFIED BY PM;
+
+
+alter table dept_exam modify loc varchar2(15);
+alter table dept_exam modify dname varchar2(16);

@@ -11,8 +11,6 @@ public class JDBCExample1 {
 		Connection conn = null;
 
 		try {
-			// String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:ee";
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, "madangDB", "madangdb");
