@@ -82,13 +82,13 @@ select index_name, table_name, column_name from USER_IND_COLUMNS
 where table_name IN ('EMP', 'DEPT');
 
 commit;
-
+drop table members;
 create table members(
     id varchar2(20) primary key,
     password varchar2(20),
     name varchar2(16),
     age number(10),
-    gender char(2) check(gender in('남', '여')),
+    addr varchar2(20),
     email varchar2(16)
 );
 commit;

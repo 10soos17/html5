@@ -15,7 +15,7 @@ public class ReceiverThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			InputStreamReader ir = new InputStreamReader(System.in); // 주스트림
+			InputStreamReader ir = new InputStreamReader(sk.getInputStream()); // 주스트림
 			BufferedReader br = new BufferedReader(ir); // 보조스트림
 
 			while (true) {

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 //Create/Read/Update/Delete
 public class CRUDTest {
@@ -22,34 +23,29 @@ public class CRUDTest {
 
 	public void connect() {
 		try {
-			String url = "jdbc:oracle:thin:@localhost:1521:ee";// orcl
-			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-			} catch (ClassNotFoundException e) {
-			}
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";// orcl
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(url, "java", "java");
 			System.out.println("success");
-		} catch (SQLException e) {
+
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("connecet error");
 		}
 
 	}
 
 	public void insert() {
-		// "'aaa', '111', '홍길동', '22', '남', 'a@a.com'"
-		PreparedStatement pst = null;
-		ResultSet res = null;
-		String sql = "INSERT INTO members VALUES(?,?,?,?,?)";
+		// "'aaa', '111', '홍길동', '22', '서울시', 'a@a.com'"
 
 		try {
 
-			pst = con.prepareStatement(sql);
-			pst.setString(1, "aaa");
-			pst.setString(2, "111");
-			pst.setString(3, "홍길동");
-			pst.setInt(4, 22);
-			pst.setString(5, "남");
-			pst.setString(6, "@a.com");
+			Statement pst = con.createStatement();
+			String sql = "INSERT INTO members(id,password, name,age,addr,email)"
+					+ "VALUES('aaa','111','홍길동',22,'서울시','@a.com')";
+
+			int r = pst.executeUpdate(sql);
+			con.commit();
+			System.out.println("변경된 row : " + r);
 
 			System.out.println("insert success");
 		} catch (SQLException e) {
@@ -71,8 +67,8 @@ public class CRUDTest {
 			while (res.next()) {
 
 				System.out.println("id: " + res.getString(1) + "\n" + "passwd: " + res.getString(2) + "\n" + "name: "
-						+ res.getString(3) + "\n" + "age: " + res.getInt(4) + "\n" + "gender: " + res.getString(4)
-						+ "\n" + "email: " + res.getString(4) + "\n");
+						+ res.getString(3) + "\n" + "age: " + res.getInt(4) + "\n" + "addr: " + res.getString(5) + "\n"
+						+ "email: " + res.getString(6) + "\n");
 			}
 			System.out.println("select success");
 		} catch (SQLException e) {
@@ -81,34 +77,37 @@ public class CRUDTest {
 	}
 
 	public void update() {
-		// id=aaa를 찾아서 gender=여
-		PreparedStatement pst = null;
-		String sql = "Update set gender=? members where id=?";
+
+		String addr = "부산시";
+		String id = "aaa";
+		String sql = "update members set addr='" + addr + "' where id='"+id+"'";
+		System.out.println(sql);
 
 		try {
-			pst = con.prepareStatement(sql);
-			pst.setString(1, "여");
-			pst.setString(2, "aaa");
-			pst.executeUpdate(sql);
+			Statement pst = con.createStatement();
+			int r = pst.executeUpdate(sql);
+			con.commit();
+			System.out.println("변경된 row : " + r);
 			System.out.println("update success");
-
 		} catch (SQLException e) {
-			System.out.println("select fail");
+			System.out.println("update fail");
 		}
+
 	}
 
 	public void delete() {
 		// id=aaa 삭제
-		PreparedStatement pst = null;
-		String sql = "delete members where id=?";
+		String id = "aaa";
+		String sql = "delete members where id='"+id+"'";
 
 		try {
-			pst = con.prepareStatement(sql);
-			pst.setString(1, "aaa");
-			pst.executeUpdate(sql);
+			Statement pst = con.createStatement();
+			int r = pst.executeUpdate(sql);
+			con.commit();
+			System.out.println("변경된 row : " + r);
 			System.out.println("delete success");
 		} catch (SQLException e) {
-			System.out.println("select fail");
+			System.out.println("delete fail");
 		}
 
 	}
@@ -120,15 +119,14 @@ public class CRUDTest {
 		st.insert();
 		System.out.println("insert 수행 후");
 
-		//st.select();
-
-//		//st.connect();
-//		st.update();
-//		System.out.println("update 수행 후");
-//		st.select();
-//		st.delete();
-//		System.out.println("delete 수행 후");
-//		st.select();
-//		//st.connect();
+		st.select();
+		//st.connect();
+		st.update();
+		System.out.println("update 수행 후");
+		st.select();
+		st.delete();
+		System.out.println("delete 수행 후");
+		st.select();
+		// st.connect();
 	}
 }
