@@ -333,3 +333,13 @@ alter user sh IDENTIFIED BY sh;
 
 alter user PM ACCOUNT UNLOCK;
 alter user PM IDENTIFIED BY PM;
+
+//
+	create table memebers(
+	id varchar2(20) primary key,
+	pw varchar2(20),
+	name varchar2(20),
+	age number(10),
+	addr varchar2(20),
+	email varchar2(20)
+)
