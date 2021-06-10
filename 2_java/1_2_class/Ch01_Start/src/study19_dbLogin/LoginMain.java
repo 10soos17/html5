@@ -1,5 +1,6 @@
 package study19_dbLogin;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LoginMain {
@@ -28,9 +29,14 @@ public class LoginMain {
 				
 				System.out.println("로그인한 사용자 정보");
 				user.toString();
+				try {
+					mc.conn.close();
+					isStop = !isStop;
+				} catch (SQLException e) {
+				}
 				
 			}
-		}while(isStop);
+		}while(!isStop);
 		
 
 	}

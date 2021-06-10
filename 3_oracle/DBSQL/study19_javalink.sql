@@ -14,6 +14,6 @@ primary key(id)
 )
 
 --insert
-insert into member values('aaa','aaa','홍길동', 22,'서울시','a@a.com');
+insert into member values('aaa','aaa','홍길동', 22,'남','a@a.com남');
 commit;
 

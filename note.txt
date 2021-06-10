@@ -1463,4 +1463,5 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
         username: system
         password: ....
 
+    ++sys as sysdba /1111
 

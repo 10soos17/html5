@@ -18,8 +18,8 @@ public class LoginSVC {
 	public void connect() {
 		try {
 
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			Connection conn = DriverManager.getConnection(url, "javalink", "javalink");
+			String url = "jdbc:oracle:thin:@localhost:1521:ee";
+			conn = DriverManager.getConnection(url, "javalink", "javalink");
 			System.out.println("Connection Success!");
 		} catch (SQLException e) {
 			System.out.println("주소및 id,pw가 다릅니다.");
@@ -30,14 +30,17 @@ public class LoginSVC {
 		User user=null;
 		Statement stmt=null;
 		ResultSet rs=null;
+		
 		try {
-			String sql="SELECT * FORM member WHERE id='"+id+"' AND" + 
-						"passwd = '" + passwd + "'";
+			String sql="SELECT * FROM member WHERE id='"+id+"' AND " + 
+						"password = '" + passwd + "'";
+			System.out.println(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			System.out.println(rs);
-			
-			if(rs != null) {
+//			System.out.println(rs);
+//			System.out.println(rs.getString("name"));
+			while(rs.next()) {
+				System.out.println(rs.getString(1));
 				user = new User(rs.getString(1),rs.getString(2),rs.getString("name"),
 						rs.getInt("age"),rs.getString(5),rs.getString(6));
 				
@@ -48,18 +51,12 @@ public class LoginSVC {
 						           ",주소: "+rs.getString(5)+
 						           ",이메일: "+rs.getString(6)
 						);
+				return user;
 				
 			}
 			
 		}catch(SQLException se) {
 
-		}
-		finally {
-			try {
-				
-			}catch(Exception e) {
-				
-			}
 		}
 		return user;
 	}
