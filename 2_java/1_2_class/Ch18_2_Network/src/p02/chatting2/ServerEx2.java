@@ -5,25 +5,29 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerEx2 {
-//1:1 Chatting
+
+	// 1:1 Chatting
 	public static void main(String[] args) {
-		ServerSocket ss =null;
+		ServerSocket ss = null;
 		Socket sk = null;
+
 		try {
+
 			ss = new ServerSocket(5004);
 			sk = ss.accept();
-			
-			Thread t1 = new SenderThread(sk);//송신
-			Thread t2 = new ReceiverThread(sk);//수신
-			t1.start();			
-			t2.start();		
+
+			Thread t1 = new SenderThread(sk,"server");// 송신
+			Thread t2 = new ReceiverThread(sk,"server");// 수신
+			t1.start();
+			t2.start();
+
 		} catch (IOException e) {
-			
-		}finally {
+
+		} finally {
 			try {
 				ss.close();
 			} catch (IOException e) {
-				
+
 			}
 		}
 

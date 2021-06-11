@@ -1326,6 +1326,8 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
     4. ojdbc build path 잡기(eclipse에서)
         패키지 안에 library에 ojdbc 경로 추가해줘야함
         (학원컴 ojdbc6_g 경로: /c:/app/user/product/11.2.0/dbhome_1/jdbc/lib)
+
+    5. exrd 설치 (https://en.exerd.com/)
    
     ***cf**************************************
     windows에서 도커 돌릴 때, pid 확인하는 법
@@ -1464,4 +1466,10 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
         password: ....
 
     ++sys as sysdba /1111
+
+    7. exrd 설치 (https://en.exerd.com/)
+        맥은 eclipse plug-in 버전만 가능
+        eclipse help -> install new software -> 
+        work with: https://exerd.com/update/3.x/ 주소붙여넣기 
+        -> add -> next -> restart
 
