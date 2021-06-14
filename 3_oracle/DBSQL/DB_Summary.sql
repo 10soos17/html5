@@ -230,7 +230,7 @@ rollback; --commit 전에 가능
 
 select * from dept01;
 select * from deptsub;
-
+e
 --Disable: 비활성화 
 alter table deptsub
 Disable constraint deptsub_deptno_fk;

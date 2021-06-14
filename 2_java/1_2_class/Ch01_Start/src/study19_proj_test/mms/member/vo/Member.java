@@ -1,8 +1,12 @@
 package study19_proj_test.mms.member.vo;
 
+import java.util.Hashtable;
+
 //2.회원 한 명의 정보를 저장하는 클래스 
 public class Member {
 
+	//public static ArrayList<Member> mList = new ArrayList<>(); 
+	public static Hashtable<Integer,Member> mHash = new Hashtable<>();
 	private int id;
 	private String name;// 식별값
 	private String addr;
@@ -14,13 +18,22 @@ public class Member {
 
 	}
 
-	public Member(int id, String name, String addr, String nation, String email, int age) {
-		this.id = id;
+	public Member(String name, String addr, String nation, String email, int age) {
+
 		this.name = name;
 		this.addr = addr;
 		this.nation = nation;
 		this.email = email;
 		this.age = age;
+	}
+	
+	public Member(int id, String name, String addr, String nation, String email, int age) {
+		this(name, addr, nation, email, age);
+		this.id = id;
+		
+		//mList.add(this);
+		mHash.put(id, this);
+		System.out.println(this+"member");
 	}
 
 	@Override
@@ -33,7 +46,10 @@ public class Member {
 		}
 		return false;
 	}
-	
+	@Override
+	public int hashCode() {
+		return (this.id+this.name).hashCode();
+	}
 	@Override
 	public String toString() {
 		return "id: "+this.id+
