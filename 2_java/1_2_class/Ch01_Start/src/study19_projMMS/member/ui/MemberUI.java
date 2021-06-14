@@ -69,14 +69,14 @@ public class MemberUI extends Application {
 		btnSend.setText(sendText);
 		btnConn.setText(connText);
 	}
-	
+
 	public static void init_QList() {
 		MemberUI.qList = new ArrayList<>(Arrays.asList("이름: ", "주소: ", "국가: ", "이메일: ", "나이: "));
 		MemberUI.qNum = 0;
 		m=null;
 		startProgram();
 	}
-	
+
 	public void inputProcess() {
 
 		String text = txtInput.getText();
@@ -86,10 +86,10 @@ public class MemberUI extends Application {
 
 		case "select":
 			if (text.equals("1")) {
-				
+
 				displayText("[메뉴번호: 1]");
 				txtInput.setText("");
-				
+
 				displayText("등록할 회원정보를 입력하세요.");
 				displayText(qList.get(qNum));
 
@@ -97,7 +97,7 @@ public class MemberUI extends Application {
 				break;
 
 			} else if (text.equals("2")) {
-				
+
 				displayText("[메뉴번호: 2]");
 				txtInput.setText("");
 
@@ -106,7 +106,7 @@ public class MemberUI extends Application {
 				break;
 
 			} else if (text.equals("3")) {
-				
+
 				displayText("[메뉴번호: 3]");
 				txtInput.setText("");
 
@@ -117,7 +117,7 @@ public class MemberUI extends Application {
 				break;
 
 			} else if (text.equals("4")) {
-				
+
 				displayText("[메뉴번호: 4]");
 				txtInput.setText("");
 
@@ -126,44 +126,44 @@ public class MemberUI extends Application {
 
 				init_btnText("send","메뉴4");
 				break;
-				
+
 			} else if (text.equals("5")) {
-				
+
 				displayText("[프로그램 종료.]");
 				txtInput.setText("");
-				
+
 				stopProgram();
 				break;
 			}
-			
+
 		case "send":
-			
+
 			displayText(txtInput.getText());
 			label.setText(txtInput.getText());
-			
+
 		}
 	}
 
 	public void inputQAProcess(String inputText) {
 		//System.out.println("Label Text Changed");
 		String menu = btnConn.getText();
-		
+
 		qList.set(qNum, inputText);
 		qNum += 1;
-		
+
 		txtInput.setText("");
-		
+
 		if (menu.equals("메뉴1")) {
-			
+
 			if(qNum == 5) {
-				
+
 				init_btnText("select","exit");
 				memberController.processRequest(new MemberAddAction());
-				
+
 			} else {
 				displayText(qList.get(qNum));
 			}
-			
+
 		} else if (menu.equals("메뉴3")) {
 
 			if (qNum == 1) {
@@ -172,7 +172,7 @@ public class MemberUI extends Application {
 				while (e.hasMoreElements()) {
 					Integer key = e.nextElement();
 					Member value = Member.mHash.get(key);
-					
+
 					if (value.getName().equals(qList.get(qNum - 1))) {
 						m = value;
 						qList = new ArrayList<>(Arrays.asList(m.getName(), "이전 주소: " + m.getAddr() + ", 수정할 주소: ",
@@ -199,14 +199,14 @@ public class MemberUI extends Application {
 		} else if (menu.equals("메뉴4") && qNum == 1) {
 			Integer key = null;
 			Member value = null;
-			
+
 			Enumeration<Integer> e = ((Hashtable<Integer, Member>) Member.mHash).keys();
-			
+
 			while (e.hasMoreElements()) {
-				
+
 				key = e.nextElement();
 				value = Member.mHash.get(key);
-			
+
 				if (value.getName().equals(qList.get(qNum - 1))) {
 					m = value;
 					break;
@@ -301,9 +301,9 @@ public class MemberUI extends Application {
 		});
 		// ======stage action
 		primaryStage.setOnCloseRequest(event -> stopProgram());
-		
+
 	}
-	
+
 	// =================================================
 	// main
 	public static void main(String[] args) {

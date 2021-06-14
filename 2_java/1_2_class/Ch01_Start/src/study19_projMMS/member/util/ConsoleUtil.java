@@ -12,7 +12,7 @@ import study19_projMMS.member.ui.MemberUI;
 //5. 사용자로부터의 입력을 콘솔에서 읽어 들이거나 콘솔로 메시지를 출력하는 역할을 하는 클래스 구현
 public class ConsoleUtil {
 	Member m;
-	
+
 //	public Member getNewMember(Scanner sc) {
 //		//
 //

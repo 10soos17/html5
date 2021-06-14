@@ -119,7 +119,7 @@ public class MemberDAO {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = "updata mms_member set addr=?, nation=?, email=?, age=? where name=?";
+		String sql = "update mms_member set addr=?, nation=?, email=?, age=? where name=?";
 
 		try {
 
