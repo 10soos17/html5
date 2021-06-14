@@ -18,6 +18,8 @@ Grant CONNECT,Resource to java;
 --계정삭제
 Drop user java cascade;
 
+Grant CONNECT,Resource to madangDB;
+grant create session to madangDB;
+grant create view, create procedure, create sequence to madangDB;
 
-
-
+commit;
