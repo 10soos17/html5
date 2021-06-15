@@ -1,1 +1,23 @@
+<<<<<<< HEAD
 @charset "UTF-8";
+=======
+/*text-area */
+.text-area {
+	-fx-background-color: gold;
+}
+
+/*scroll-pane */
+.text-area .scroll-pane {
+	-fx-background-color: transparent;
+}
+
+/*viewport*/
+.text-area .scroll-pane .viewport{
+	-fx-background-color: transparent;
+}
+
+/*content */
+.text-area .scroll-pane .content{
+	-fx-background-color: transparent;
+}
+>>>>>>> 49c01621b1576670982d3c8009de3b5ecc7fe7ff

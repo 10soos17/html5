@@ -778,6 +778,214 @@ fi
 - 무결성, database 정규화(normalization)
 
 - cursor, trigger
+
+==============================================================================================
+===========================oracle2(java2배울때)=============================================================
+==============================================================================================
+
+    [oracle enterprise edition install]
+        DLP:Oracle Database 11g 11.2.0.1.0 ( Oracle Database Enterprise Edition, Oracle Database Standard Edition )
+        https://edelivery.oracle.com/osdc/faces/SoftwareDelivery#!
+
+    [sqldeveloper]
+    https://www.oracle.com/tools/downloads/sqldev-downloads.html
+
+    ========================[window 환경]====================================================================
+
+    0. 이전 버전 삭제(https://seokr.tistory.com/531)
+        a. 제어판 ->관리도구->서비스->oracle...(5,6개 정도)->정지 or(and) 사용중지 
+
+        b. cmd -> 아래 명령어를 실행해서 삭제 
+            sc delete "OracleJobSchedulerXE"
+            sc delete "OracleMTSRecoveryService"
+            sc delete "OracleServiceXE"
+            sc delete "OracleXEClrAgent"
+            sc delete "OracleXETNSListener"
+
+        c.  제어판 -> 시스템 -> 환경변수에 PATH 잡힌 부분을 삭제
+            예) C:\oraclexe\app\....bin
+            (학원컴 경우, C:\oraclexe\app\oracle\product\11.2.0\server\bin)
+
+        d. 레지스트리 정보 삭제(시작 -> 실행 -> regedit)
+            HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\ 
+            HKEY_LOCAL_MACHINE\SOFTWARE\odbc\
+            HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\
+            HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\
+            HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\
+            HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\
+            밑에 하위 폴더중에 Oracle XE 관련 폴더 삭제!
+
+        e. 파일삭제
+            예) C:\oraclexe 폴더 삭제
+
+    1. oracel 설치(총 3개 파일)(다운로드 자료실에 문서 볼 것)
+        zip파일 2개를 압축풀고 database 폴더 안에 하나로 합칠 것!
+        설치 후, 계정 비번까지 설정하고 확인 종료
+
+    3. sqldeveloper설치(https://www.oracle.com/tools/downloads/sqldev-downloads.html)
+        접속 정보, 
+        Hostname: localhost
+        Port: 1521
+        SID: orcl (일반적으로 기본이 orcl이다)
+
+        데이터베이스 구성 파일은 C:\app\user에 설치되었으며 
+        설치 시 선택한 다른 구성 요소는 C:\app\user\product\11.2.0\dbhome_1에 설치되었습니다. 
+        실수로 이들 구성 파일을 삭제하지 않도록 주의하십시오.
+
+    4. ojdbc build path 잡기(eclipse에서)
+        패키지 안에 library에 ojdbc 경로 추가해줘야함
+        (학원컴 ojdbc6_g 경로: /c:/app/user/product/11.2.0/dbhome_1/jdbc/lib)
+
+    5. exerd 설치 (https://en.exerd.com/)
+
+    ***cf**************************************
+    windows에서 도커 돌릴 때, pid 확인하는 법
+    [windows port 번호 pid 찾기 & kill]
+    netstat -ano | findstr :1521
+    taskkill /pid 3464 /f
+    *******************************************
+
+    ****최초 비번 설정 등**************************************
+    id: sys as sysdba
+    pw: oracle
+    로그인 후, 비번 바꾸기(https://m.blog.naver.com/baekmg1988/221298569322s)
+    alter user sys identified by 1111;(sys, system)
+    conn sys/1111 as sysdba
+    soos 계정 추가, 권한 줌
+    실습용으로 생성한 계정은 아이디, 비번 같도록 했음 
+    ***********************************************************
+
+    ========================[mac 환경]====================================================================
+    1. DOCKER setting (https://hub.docker.com/r/loliconneko/oracle-ee-11g 설치)
+        -pull
+            docker search docker11g-ee  
+            docker pull loliconneko/oracle-ee-11g 
+        
+        -run & exec
+            docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v/Users/soos/Desktop/git/lecture/lecture_choongang/3_oracle/DBSQL:/tmp soo1017/oracle11gee
+            (docker run --name oracle11gee -d -p 9999:9999 -p 1521:1521 -v  C:\Users\user\Desktop\choongang\3_oracle\DBSQL:\tmp soo1017/oracle11gee)
+          
+            docker exec -it oracle11gee sqlplus
+            docker exec -it oracle11gee /bin/bash
+
+        -hub에 pull
+            docker commit oracle11gee soo1017/oracle11gee
+            docker push soo1017/oracle11gee
+
+        *oracle 경로 /u01/app/oracle/product/11.2.0/EE
+
+    2 linux 환경 만들기
+        (RHEL/CentOS -> 패키지 yum )
+        (exec -it 컨이너이름 /bin/bash)
+
+        (
+        루트계정 비번 설정->
+        yum으로 패키지받기(sudo, yum, locale ko)->
+        사용자 추가->
+        사용자한테 권한 주기(sudoers파일에 작성)->
+        한글설정
+        )
+
+        a. 루트계정 비번 설정
+            #표시: root 계정 / $표시: 타계정 / su 계정명(계정 바꾸기)
+
+            passwd(#상태에서 루트비번설정)
+        b. yum으로 패키지받기(sudo, yum, locale ko)
+
+        c. sudo 설치 (계정 추가전)
+            yum install sudo -y
+
+        d. 사용자 추가
+            adduser 계정명
+            cd /etc (sudoers 위치로 이동)
+            chmod 777 sudoers(파일 수정 권한 주기)
+            vi sudoers -> 계정명 ALL=(ALL:ALL) ALL (추가한 계정에 대한 권한 주기)
+            chmod 444 sudoers(파일 읽기 권한만 주기)
+
+        e. 한글 설정
+            yum search locale ko
+            yum install -y glibc-common glibc
+            yum search locale ko
+            locale
+            locale -a
+            localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
+
+            -alias custum(https://cafe.naver.com/linuxcare/72424)
+                vi ~/.bashrc
+
+                alias settingon='TERM=linux || TERM=ansi'(vi 키패드 오류때문에 바꿈export TERM=linux, export TERM=ansi)
+                alias korean='localedef -f UTF-8 -i ko_KR ko_KR.UTF-8'
+
+                source ~/.bashrc
+
+                * option 
+                if [ "$TERM"="xterm-256color" ]; then
+                echo "+=======================================+"
+                echo "|      | \ _ / \      +--------------+  |"
+                echo "|    /           \    | Hello~ 안녕~ |  |"
+                echo "|   | * ^ ____ ^ *|   | oracle11gee  |  |"
+                echo "|                     +--------------+  |"
+                echo "+=======================================+"
+                fi            
+
+        //(화살표키설정하는법
+        //체크apt-get install yum
+        //yum install rlwrap
+        //.bashrc -> alias sqlplus ='rlwarp sqlplus'
+        //# . .bashrc
+        // )
+
+
+    3. sqldeveloper 설치, 실행(https://www.oracle.com/tools/downloads/sqldev-downloads.html)
+        ~/.sqldeveloper/버전/product.conf 파일에 자바 jdk 경로 입력해줄 것
+        (/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home)
+    
+        접속 정보, 
+        Hostname: localhost
+        Port: 1521
+        SID: ee (일반적으로 기본이 orcl이다)
+        (확인하려면, docker bin/bash로 실행 후 -> echo $ORACLE_SID)
+        (바꾸려면,  export ORACLE_SID=orcl())
+
+    4. ojdbc설치(직접 설치 or sqldeveloper contents안에 있음)
+        https://blog.acronym.co.kr/281
+        https://blog.naver.com/youseok0/221926424638
+
+        ojdbc6 받으면 무난
+        다운로드 받고 자바 jdk 경로 안에 복사해서 넣어주기
+        (내 경우, /Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ojdbc6-11.2.0.4.jar)
+
+        sqldeveloper 설치한 경우에 ojdbc 경로 (/Users/soos/Desktop/SQLDeveloper.app/Contents/Resources/sqldeveloper/jdbc/lib/ojdbc8)
+
+    5. eclipse에서 build path
+        jre se 16버전 + ojdbc 추가
+
+
+    6. eclipse에서 db connection할 경우
+        windows -> show view -> data source explorer -> new connection
+        or
+        prefernces -> data management -> connectivity 에서 add
+        ex.
+        name: 임의대로
+        sid: ee (orcl)
+        connection URL: jdbc:oracle:thin:@localhost:1521:ee
+        host:localhost
+        port number: 1521
+        username: system
+        password: ....
+
+    ++sys as sysdba /1111
+
+    7. exrd 설치 (https://en.exerd.com/)
+        맥은 eclipse plug-in 버전만 가능
+        eclipse help -> install new software -> 
+        work with: https://exerd.com/update/3.x/ 주소붙여넣기 
+        -> add -> next -> restart
+
+        -eclipse에서 실행
+            작성 후,
+            db connect
+
 ===========================mysql==================================================================
 https://dev.mysql.com/downloads/file/?id=503091
 5.7.29 버전 설치
@@ -1195,8 +1403,9 @@ https://dev.mysql.com/downloads/file/?id=503091
 - loop - for, while(while문을 더 많이 씀), for each(for(:))
 
 -if / switch() case: break; default: 
-
-=============================Java2
+==============================================================================================
+===========================java2(+web)========================================================
+==============================================================================================
 설치파일
 https://www.eclipse.org/downloads/packages/
 https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-jee-2020-03-R-incubation-win32-x86_64.zip
@@ -1242,10 +1451,12 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 
 -메소드 안에 메소드 생성 불가, 호출 가능
 
+-소켓 ex. https://victorydntmd.tistory.com/135
 
+==============================================================================================
+===========================jsp===============================================================
+==============================================================================================
 
-
-------------------------------jsp
 출처: https://javacpro.tistory.com/43
 1. 클라이언트가 어떤 동작을 함으로써 hello.jsp 를 요청하였다.
 
@@ -1260,11 +1471,92 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 6. JSP 는 HTTP 프로토콜을 통해 HTML 페이지를 클라이언트 에게 전달한다.
 
 
+[tomcat 설치(version 9.0.46)]
+https://tomcat.apache.org/download-90.cgi
+    -다운로드
+        맥: tar.gz (pgp, sha512) 
 
+        윈도우 : 64-bit Windows zip (pgp, sha512)
+        압축풀고 c에 두기
 
+    -eclipse setting
+        eclipse->switch workspace(ex./jsp/1_1_class) -> 
+        new->other->server->tomcat9.0 선택, 로컬컴에 압축푼 파일폴더(tomcat) 추가, jre선택 ->끝
 
+[eclipse - tomcat 웹 프로젝트 생성]
+    맥: https://igeniusdo.tistory.com/14
 
+    1. eclipse web pjt 구조
+        - Servers 생성
+            file > new >Server > Apache - Tomcat v9.0 Server 선택
+        - 작업package 생성
+            ex.Ch01_Servelt
+            File > new > Synamic Web Project 클릭
+            1.library들 - jre1.8 + tomcat9
 
+            2.src>main>java>(이클립스생성).java파일 작성 
+            3.build>(이클립스생성)src안 .java파일 컴파일 하면 .class 파일 생성되는 곳
+            4.WebContext(셀프생성)>META-INF> MANIFEST.MF파일(이클립스생성)
+                                >WEB-IN>ib(이클립스생성)l>web.xml 파일 
+                                >.jsp or .html 파일 작성 
+
+    2. .xml파일 작성 ex.web.xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="">
+            <display-name>Ch01_Servlet</display-name>
+            <welcome-file-list>
+                <welcome-file>index.jsp</welcome-file>//주소명만 적으면, 처음 위치한 파일로 감
+                <welcome-file>index.html</welcome-file>
+            </welcome-file-list>
+        </web-app>
+
+    3. jsp 작성
+        ex. CurrentTime.jsp
+        <%@page import="java.util.Calendar"%>
+        <%@ page language="java" contentType="text/html; charset=UTF-8"
+            pageEncoding="UTF-8"%>
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+        </head>
+            <body>
+                <%Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);%>
+
+                현재 시간은 <%=hour %>시 입니다.
+            </body>
+        </html>
+
+    4.test 방벙
+        본인 ip 번호 확인
+        Win - ipconfig / Mac - ifconfig
+        http://확인한ip:8080/Ch01_Servlet/index.html
+        http://확인한ip:8080/Ch01_Servlet/index.jsp
+        http://확인한ip:8080/Ch01_Servlet -> .xml 파일에 먼저 쓴 파일 첫화면으로 나옴  
+    5. export/import
+        export-> .war파일로 내보내기
+        
+
+[jsp문법]
+    <%@태그%@>
+    <%변수%>
+    ex.
+    <%@page import="java.util.Calendar"%>
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+                pageEncoding="UTF-8"%>
+
+    <%Calendar c = Calendar.getInstance();
+    int hour = c.get(Calendar.HOUR_OF_DAY);%>
+    현재 시간은 <%=hour %>시 입니다.
+
+    - jsp(http://tomcat.apache.org/tomcat-9.0-doc/jspapi/index.html) 
+                vs 
+    servlet(http://tomcat.apache.org/tomcat-9.0-doc/servletapi/index.html)
+        jsp - web contents 
+        servlet -java src 
 
 
 ////////     
@@ -1272,6 +1564,7 @@ https://chrismare.tistory.com/entry/Eclipse-%EC%8B%A4%ED%96%89-%EC%97%90%EB%9F%A
 월요일 시험 - html: chapter9 10문제, 70이상
               oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
 
+<<<<<<< HEAD
 
 //////////////////////////oracle install 2//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1473,3 +1766,20 @@ cd "C:\Program Files\Docker\Docker"
 ./DockerCli.exe -SwitchDaemon
 
 https://github.com/docker/for-win/issues/1825
+=======
+화요일 할것
+0docker pull soo1017/oracle11gee
+1exrd 설치 (https://en.exerd.com/)
+        맥은 eclipse plug-in 버전만 가능
+        eclipse help -> install new software -> 
+        work with: https://exerd.com/update/3.x/ 주소붙여넣기 
+        -> add -> next -> restart
+
+        -eclipse에서 실행
+            작성 후,
+            db connect
+2tomcat설치
+3eclipse설정
+
++접수
+>>>>>>> 49c01621b1576670982d3c8009de3b5ecc7fe7ff

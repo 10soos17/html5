@@ -1,0 +1,109 @@
+
+CREATE TABLE NewBook (
+	bookid NUMBER NOT NULL,
+	bookname VARCHAR(50), 
+	price NUMBER,
+	pubname VARCHAR(50) 
+);
+
+CREATE UNIQUE INDEX PK_NewBook
+	ON NewBook (
+		bookid ASC
+	);
+
+ALTER TABLE NewBook
+	ADD
+		CONSTRAINT PK_NewBook
+		PRIMARY KEY (
+			bookid
+		);
+
+
+CREATE TABLE NewPublisher (
+	pubname VARCHAR(50) NOT NULL, 
+	stname VARCHAR(50), 
+	officephone VARCHAR(30)
+);
+
+CREATE UNIQUE INDEX PK_NewPublisher
+	ON NewPublisher (
+		pubname ASC
+	);
+
+ALTER TABLE NewPublisher
+	ADD
+		CONSTRAINT PK_NewPublisher
+		PRIMARY KEY (
+			pubname
+		);
+
+
+CREATE TABLE NewCustomer (
+	custid NUMBER NOT NULL, 
+	name VARCHAR(50), 
+	address VARCHAR(255),
+	phone VARCHAR(30) 
+);
+
+CREATE UNIQUE INDEX PK_NewCustomer
+	ON NewCustomer (
+		custid ASC
+	);
+
+ALTER TABLE NewCustomer
+	ADD
+		CONSTRAINT PK_NewCustomer
+		PRIMARY KEY (
+			custid
+		);
+
+
+CREATE TABLE NewOrder (
+	orderid NUMBER NOT NULL, 
+	orderdate DATE, 
+	saleprice NUMBER, 
+	bookid NUMBER, 
+	custid NUMBER 
+);
+
+CREATE UNIQUE INDEX PK_NewOrder
+	ON NewOrder (
+		orderid ASC
+	);
+
+ALTER TABLE NewOrder
+	ADD
+		CONSTRAINT PK_NewOrder
+		PRIMARY KEY (
+			orderid
+		);
+
+ALTER TABLE NewBook
+	ADD
+		CONSTRAINT FK_NewPublisher_TO_NewBook
+		FOREIGN KEY (
+			pubname
+		)
+		REFERENCES NewPublisher (
+			pubname
+		);
+
+ALTER TABLE NewOrder
+	ADD
+		CONSTRAINT FK_NewBook_TO_NewOrder
+		FOREIGN KEY (
+			bookid
+		)
+		REFERENCES NewBook (
+			bookid
+		);
+
+ALTER TABLE NewOrder
+	ADD
+		CONSTRAINT FK_NewCustomer_TO_NewOrder
+		FOREIGN KEY (
+			custid
+		)
+		REFERENCES NewCustomer (
+			custid
+		);
