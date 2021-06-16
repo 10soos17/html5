@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login2")
+@WebServlet("/login/login2")
 public class Login2_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		//request.setCharacterEncoding("utf-8");//post¹æ½Ä¿¡¼­ Ãß°¡
-		response.setContentType("text/html; charset=utf-8");//get¹æ½Ä¿¡¼­ Ãß°¡
+		//request.setCharacterEncoding("utf-8");//postï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+		response.setContentType("text/html; charset=utf-8");//getï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 		//id:java, pass: java
 		
 		String id = request.getParameter("id");
@@ -30,20 +30,20 @@ public class Login2_Servlet extends HttpServlet {
 				session.setAttribute("id", id);
 				session.setAttribute("passwd", pass);
 				
-				RequestDispatcher d = request.getRequestDispatcher("loginSuccess.jsp");
+				RequestDispatcher d = request.getRequestDispatcher("/logout/loginSuccess.jsp"); //or ../ or ~/
 				d.forward(request, response);
 				
 		}else {
 			
-			System.out.println("¾ÆÀÌµð³ª ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 			
-			//È­¸éÃâ·Â1
+			//È­ï¿½ï¿½ï¿½ï¿½ï¿½1
 			PrintWriter out = response.getWriter();
-			out.write("<h3>¾ÆÀÌµð³ª ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.</h3><br>");
+			out.write("<h3>ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.</h3><br>");
 			
-			//ÀÚ¹Ù½ºÆ®¸³Æ®
+			//ï¿½Ú¹Ù½ï¿½Æ®ï¿½ï¿½Æ®
 			out.println("<script>");
-			out.println("alert('¾ÆÀÌµð³ª ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.')");
+			out.println("alert('ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.')");
 			out.println("history.back()");
 			out.println("</script>");
 			

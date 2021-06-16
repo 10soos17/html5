@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/logininSession")
+@WebServlet("/login/logininSession")
 public class LoginSession_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,8 +24,8 @@ public class LoginSession_Servlet extends HttpServlet {
 	
 		HttpSession session = request.getSession();
 		session.setAttribute("id", id);
-	
-		RequestDispatcher d = request.getRequestDispatcher("menu.jsp");
+		//http://localhost:8080/Ch01.Servlet/login/logininSession
+		RequestDispatcher d = request.getRequestDispatcher("../menu.jsp");// /manu.jsp
 		d.forward(request, response);
 	}
 

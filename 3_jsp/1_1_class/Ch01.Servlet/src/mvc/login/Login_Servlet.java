@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login")
+@WebServlet("/login/login")
 public class Login_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -17,20 +17,20 @@ public class Login_Servlet extends HttpServlet {
 	
 		//response.setContentType("text/html);
 		//response.setCharacterEncoding("utf-8");
-		//ÇÑÁÙÇ¥Çö
+		//ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½
 		response.setContentType("text/html; charset=utf-8");
 		
 		String id = request.getParameter("id");
 		String pass = request.getParameter("passwd");
 		
-		//java Ãâ·Â
+		//java ï¿½ï¿½ï¿½
 		System.out.println("id: "+id+"\npasswd: "+pass);
 		
 		//out.println("id: "+id+"\npasswd: "+pass);
 		
-		//È­¸éÃâ·Â(web)
+		//È­ï¿½ï¿½ï¿½ï¿½ï¿½(web)
 		PrintWriter out = response.getWriter();
-		out.write("<h3>¾ÆÀÌµð: "+id+"<br>");
+		out.write("<h3>ï¿½ï¿½ï¿½Ìµï¿½: "+id+"<br>");
 		out.write("passwd: "+pass+"<br>");
 		out.write("</h3>");
 	}
