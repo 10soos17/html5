@@ -1564,7 +1564,14 @@ https://tomcat.apache.org/download-90.cgi
 월요일 시험 - html: chapter9 10문제, 70이상
               oracle: 테이블만들기 create, insert, update, 찾기(%), join, chapter + 14장 2문제, 구구단
 6/16 시험 - https://docs.google.com/forms/d/e/1FAIpQLSdGvknb4k1VOG_G-7dN5mmI6OEDOXW_SVstrN_xMrggDr3EhA/viewform
-
+//
+		//int[] arr[];
+		int[] arr2 = { 1, 2, 3 };
+		int[] arr3 = new int[5];
+		// int[ ] arr4 = new int[5]{1,2,3,4,5};
+		// int arr5[5];
+		int[] arr6[] = new int[3][];
+		arr6.clone();
 ///
 SET DOCKER_CERT_PATH=%UserProfile%\.docker\machine\machines\HypervDefault
 SET DOCKER_MACHINE_NAME=HypervDefault

@@ -36,7 +36,7 @@ public class  EmpInsertServlet extends HttpServlet {
 		
 	
 		processDB.getConnection();
-		result = db.insertEmp(id,name,dept,salary);
+		result = db.insertEmp(id,name,salary,dept);
 		
 		PrintWriter out = response.getWriter();
 		
