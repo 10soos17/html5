@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,18 +55,37 @@ public class EmpInsertServlet2 extends HttpServlet {
 			out.println("저장성공");
 
 			ArrayList<Object> res = pdb.selectEmp();
-			String s ="";
+			// String s ="";
 			for (int i = 0; res.size() > i; i++) {
-				
-				
-				s+=res.get(i);
-				
-				String []tokens=s.split(",");
-				
+
+				res.get(i).toString();
+
+				String []tokens=res.get(i).toString().split(",");
 				for(int j=0;j<tokens.length;j++){
 					System.out.println(tokens[j]);
+					out.println(tokens[j]);
 				}
 				
+//				String str = res.get(i).toString();
+//				StringTokenizer stk = new StringTokenizer(str, "[", true);
+//				String s="";
+//				while(stk.hasMoreTokens()){
+//					System.out.println(stk.nextToken());
+//					s += stk.nextToken();
+//				}
+//				StringTokenizer stk1 =new StringTokenizer(s, "]", true);
+//				String s1="";
+//				while(stk1.hasMoreTokens()){
+//					System.out.println(stk1.nextToken());
+//					s1 += stk1.nextToken();
+//				}
+//				StringTokenizer stk2 =new StringTokenizer(s, ",", true);
+//				while(stk2.hasMoreTokens()){
+//					System.out.println(stk2.nextToken());
+//					//stk2.nextToken();
+//				}
+//				
+
 			}
 			out.println("</body></html>");
 
