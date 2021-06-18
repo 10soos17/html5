@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Std</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  	<servlet>
+		<servlet-name>Sport</servlet-name>
+		<servlet-class>std3_xml.SportServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Sport</servlet-name>
+		<url-pattern>/std3/sport1</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>Member</servlet-name>
+		<servlet-class>std3_xml.MemberServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Member</servlet-name>
+		<url-pattern>/std3/member1</url-pattern>
+	</servlet-mapping>
+  
+  
+  
+</web-app>

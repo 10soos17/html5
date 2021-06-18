@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>getParameterValues 실습</h3>
+
+	<form action="sportServlet" method="post">
+		<fieldset>
+			<legend>좋아하는 운동 및 성별</legend>
+			<ul>
+			<li>
+			야구<input type="checkbox" name="sport" value="baseball" checked>&nbsp;&nbsp;
+			축구<input type="checkbox" name="sport" value="football">&nbsp;&nbsp;
+			농구<input type="checkbox" name="sport" value="basketball">&nbsp;&nbsp;</li>
+			<li>	
+			남<input type="radio" name="sex" value="남" checked>&nbsp;
+			여<input type="radio" name="sex" value="여">&nbsp;</li>
+
+			<li><input type="submit" name="sendBtn" id="sendBtn" value="전송" /></li>
+			</ul>
+		</fieldset>
+</body>
+</html>
