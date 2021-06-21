@@ -1,0 +1,23 @@
+package com.dto;
+
+import java.util.ArrayList;
+import com.dto.EmpDTO;
+
+public class EmpDAO {
+	//DB접속
+	public EmpDAO() {
+		
+	}
+	
+	//select
+	public ArrayList<EmpDTO> select(){
+		
+		ArrayList<EmpDTO> list = new ArrayList<EmpDTO>();
+		
+		
+		String sql = "select empno, ename, sal, deptno from emp";
+		
+		return list;
+	}
+ 
+}

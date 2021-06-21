@@ -1,0 +1,13 @@
+package mvc1.op;
+
+public class test {
+
+	public static void main(String[] args) {
+		int[] arr6[] = new int[3][];
+		arr6.clone();
+		arr6[0][0]=1;
+		System.out.println(arr6[0][0]);
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package mvc1.op;
+
+import java.lang.*; 
+public class test {
+
+	public static void main(String[] args) {
+		int[] arr6[] = new int[3][];
+		//arr6.clone();
+		arr6[0][0]=1;
+		System.out.println(arr6[0][0]);
+
+		
+		Map(<Integer><String>) map = new HashMap<>();
+		map.put("1", "아파고");
+		Iterator<String> key = map.KeySet().iterator();
+		Iterator<?> entry = map.entrySet().iterator();
+		while(key.hasNext()) {
+			System.out.println(key.next());
+		}
+		while(entry.hasNext()) {
+			System.out.println(entry.next());
+		}
+	}
+
+}

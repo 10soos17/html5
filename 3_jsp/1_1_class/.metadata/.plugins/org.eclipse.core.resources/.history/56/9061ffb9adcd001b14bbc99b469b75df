@@ -1,0 +1,64 @@
+package study1_calc;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+@WebServlet("/Calc")
+public class CalcServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		equest.setCharacterEncoding("utf-8");//post諛⑹떇�뿉�꽌 異붽� 
+		response.setContentType("text/html; charset=utf-8");//get諛⑹떇�뿉�꽌 異붽� 
+		
+		String id = request.getParameter("id");
+		String pass = request.getParameter("passwd");
+	
+		HttpSession session = request.getSession();
+		session.setAttribute("id", id);
+	
+		RequestDispatcher d = request.getRequestDispatcher("menu.jsp");
+		d.forward(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int num1, num2;
+		int result;
+		String op;
+		
+		result = calc(num1, num2, op);
+		
+		
+		
+	}
+	
+	public int calc(int num1, int num2, String op) {
+		int result = 0;
+		switch(op) {
+		case "+":
+			result = num1 + num2;
+			break;
+		case "-":
+			result = num1 - num2;
+			break;
+		case "*":
+			result = num1 * num2;
+			break;
+		case "/":
+			result = (int)(num1 /num2);
+			break;
+		}
+		
+		return result;
+	}
+
+}

@@ -1,0 +1,188 @@
+package study02_emp;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletResponse;
+
+public class processDB1 {
+
+	static Connection conn;
+
+	static {
+		// �겢�옒�뒪媛� 濡쒕뵫�맆 �븣 �떒 �븳踰� �샇異쒕릺�뒗 �쁺�뿭
+		// Class.forName : �듅�젙 �겢�옒�뒪瑜� 硫붾え由щ줈 濡쒕뵫�븯�뒗 硫붿냼�뱶
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			try {
+				conn = DriverManager.getConnection(url, "scott", "scott");
+
+		} catch (ClassNotFoundException e) {
+		} catch (SQLException e) {
+
+
+	}
+
+//	public static Connection getConnection() {
+//		// �뵒鍮� �옉�뾽�뿉 �븘�슂�븳 Connection 媛앹껜瑜� �깮�꽦�빐 二쇰뒗 硫붿냼�뱶
+//		try {
+//
+//			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			conn = DriverManager.getConnection(url, "scott", "scott");
+//			System.out.println("Connection Success!");
+//
+//			return conn;
+//
+//		} catch (SQLException e) {
+//			System.out.println("二쇱냼諛� id,pw媛� �떎由낅땲�떎.");
+//		}
+//		return conn;
+//	}
+
+	public static void close(Connection conn) {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void close(Statement stmt) {
+		try {
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void close(PreparedStatement pstmt) {
+		try {
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void close(ResultSet rs) {
+		try {
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// transaction 泥섎━ 硫붿냼�뱶
+	public static void commit(Connection conn) {
+		try {
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void rollback(Connection conn) {
+
+		try {
+			conn.rollback();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int insertEmp(int id, String name, int salary, int dept) {
+		LocalDate dt = LocalDate.now();
+		int year = dt.getYear();
+		int month = dt.getMonthValue();// .getMonth();
+		int day = dt.getDayOfMonth();
+
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+//		String strDate = dateFormat.format(date);  
+		System.out.println(day);
+		int count = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into EMP values(?,?, ?, ?, ?, ?,?,?)";
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.setString(2, name);
+			pstmt.setNull(3, Types.NULL);
+			pstmt.setNull(4, Types.NULL);
+			pstmt.setDate(5, new java.sql.Date(year, month, day));
+			pstmt.setInt(6, salary);
+			pstmt.setNull(7, Types.NULL);
+			pstmt.setInt(8, dept);
+
+			count = pstmt.executeUpdate();
+
+			if (count > 0) {
+
+				System.out.println("insert success!");
+			} else {
+				System.out.println("insert fail!");
+			}
+		} catch (SQLException e1) {
+			System.out.println("0insert fail!");
+			System.out.println(e1.getMessage());
+		} finally {
+
+			close(pstmt);
+		}
+		return count;
+
+	}
+
+	public ArrayList<Object> selectEmp() {
+
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<Object> empList = null;
+
+
+		try {
+			System.out.println("select");
+			//PrintWriter out = response.getWriter();
+			//out.println("<html><body>");
+			System.out.println("select");
+			String sql = "select empno, ename, sal, deptno from emp";
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				String empno = rs.getString("empno");
+				String ename = rs.getString(2);
+				String sal = rs.getString("sal");
+				String deptno = rs.getString("deptno");
+				empList.add(Arrays.asList(empno,ename,sal,deptno));
+				//out.println(empno + "\t" + ename + "\t" + sal + "\t" + deptno + "<br>");
+
+			}
+			//out.println("</body></html>");
+		}catch (SQLException e) {
+			System.out.println("select fail!");
+		} finally {
+
+			close(stmt);
+			close(rs);
+			close(this.conn);
+		}
+		
+		return empList;
+		
+	}
+}

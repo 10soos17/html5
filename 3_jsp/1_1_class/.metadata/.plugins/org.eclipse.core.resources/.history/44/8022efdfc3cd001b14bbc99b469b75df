@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+	<h3>계산기</h3>
+	<hr>
+
+	<div class="calculator">
+
+		<form name="forams" action="Calc" method="post">
+
+			<input type="number" name="num1" id="num1" value=""> </input>
+			<input type="number" name="num2" id="num2" value=""></input> 
+			<select id="op" name="op">
+				<option>+</option>
+				<option>-</option>
+				<option>*</option>
+				<option>/</option>
+			</select> <input type="submit" name="operate" id="operate" value="계산"><input/>
+
+
+		</form>
+
+		<input type="button" id="resetBtn" value="다시입력" />
+	</div>
+	<script>
+		document.getElementById("resetBtn")
+				.addEventListener(
+						"click",
+						function() {
+							console.log(document.getElementById('num1').value
+									+ "num1");
+							document.getElementById('num1').value = "";
+							console.log(document.getElementById('num2').value
+									+ "num2");
+							document.getElementById('num2').vaule = "";
+							console.log("num");
+						});
+	</script>
+
+
+
+
+
+</body>
+</html>

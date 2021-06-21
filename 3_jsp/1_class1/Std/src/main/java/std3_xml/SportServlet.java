@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SportServlet
- */
+
 //@WebServlet("/std3/sport1")
 public class SportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,12 +29,16 @@ public class SportServlet extends HttpServlet {
 		String sex = request.getParameter("sex");
 
 		PrintWriter out = response.getWriter();
+		
+		out.println("<html><body>");
 		out.println("좋아하는 운동은: <br>");
+		
 		for (String str : sport) {
 			out.println(str+"<br>");
 		}
+		
 		out.println("성별은: " + sex);
-
+		out.println("</body></html>");
 //		RequestDispatcher d = request.getRequestDispatcher("../sportRes.jsp");// /manu.jsp
 //		d.forward(request, response);
 

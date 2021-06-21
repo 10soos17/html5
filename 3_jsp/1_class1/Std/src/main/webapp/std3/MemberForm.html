@@ -5,22 +5,18 @@
 <title>MemberForm</title>
 </head>
 <body>
-	<h3>getParameterValues 실습</h3>
+	<h3>getParameterNames 실습</h3>
 	<form action="member1" method="post">
-		<fieldset>
-	
-			<ul>
-			제목 <input type="text" name="title"><br>
-			작성자 <input type="text" name="writer"><br>
-			내용 <textarea name="content" id="content" rows="10" cols="30"></textarea><br>
+	<input type="hidden" name="action" value="write">
+
+			제목 <input type="text" name="title"><br/>
+			작성자 <input type="text" name="writer"><br/>
+			내용 <textarea name="content" id="content" rows="10" cols="30"></textarea><br/>
 		
-			<input type="submit" name="saveBtn" id="saveBtn" value="저장" /><br>
+			<input type="submit" id="saveBtn" value="저장" /><br/>
 			
-			<a href="">목록</a>
-			
-		
-			</ul>
-		</fieldset>
+
 		</form>
+	<a href="member1?title="+document.querySelector('title')>목록(get방식)</a>
 </body>
 </html>
