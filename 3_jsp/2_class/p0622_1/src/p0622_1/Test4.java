@@ -3,24 +3,20 @@ package p0622_1;
 public class Test4 {
 
 	public static void main(String[] args) {
-		//배열 생성할 때
-		//변수 - stack 주소값 
-		//객체 - heap 
-		//[] - 배열에서 메모리 접근 연산자 ex) .
-		int [] arr = new int[3];
-		arr[0] = 10;
-		arr[1] = 20;
+		//2차원 배열 
+		//9개의 메모리 공간 생성
+		//변수 arr - stack 
+		//배열 객체 - heap
+		//2개 배열 생성 (각각 1중배열의 주소값 가리킴)
+		//1중 배열로 3개 배열 메모리가 2개 생성 
+		int [][] arr = new int [2][3];
 		
-		//arr 변수에 새로운 주소값 들어감 & heap에 새로운 주소값에 4개 배열 생성
-		//그 전에 생성했던 heap영역의 주소값 공간은 소멸 
-		arr = new int[4]; 
+		arr[0][0] = 20;
+		arr[1][2] = 50;
 		
-		System.out.println(arr[0]);
-		
-		arr = null;
-		
-		System.out.println(arr[0]); //nullPointerException - []때문에 오류가 발생함 
-
+		//arr[0] = 11;
+		arr[0] = null;//첫번째 1중배열 소멸(gc가 소멸)
+		arr[0] = new int[5];//첫번째 1중배열 가리키는 주소값 변경 && 5개짜리 배열 메모리 공간 생성 
 	}
 
 }

@@ -12,16 +12,16 @@ public class Test5 {
 		System.out.println(aa.a1);
 		System.out.println(aa.a2);
 
-		// System.out.println(aa.a2.b1); //nullPointerException
-
-		aa.a2 = new BB();
+		System.out.println(aa.a2.b1); 
+	
+		aa.a2 = new BB();//그 전 BB 객체 소멸, 새로운 BB 객체의 메모리 공간 부여 
 		System.out.println(aa.a2.b1);
 
 		//ex2.
 		AA [] arr = null;
 		AA [] arr2 = new AA[3];
 		
-		//arr[0].a1 = 10; //NullPointerException
+		//arr2[0].a1 = 10; //NullPointerException
 		
 		arr2[0] = new AA();
 		arr2[1] = new AA();
