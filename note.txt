@@ -1405,6 +1405,8 @@ https://dev.mysql.com/downloads/file/?id=503091
     - 다른 패키지
         - 패키지 경로 확인 후, 
             import 경로.*(모든파일), import 경로.클래스명(특정클래스만)
+    
+    ex. import static study19_projMMS.member_answer.db.jdbcUtil.*;
 
     -이클립스 실습 
         - location : /Users/soos/Desktop/git/lecture/lecture_choongang/eclipse/two/src/two/B.java

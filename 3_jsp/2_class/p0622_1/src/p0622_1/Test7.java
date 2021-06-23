@@ -169,35 +169,71 @@ public class Test7 {
 		System.out.println(arr);
 
 		// ex11.
-		System.out.println("========ex11=======");
-		int a11 = 0;
-		int b11 = 1;
-		int c11 = 1;
-		for (int i = 1; i < 11; i++) {
-			a11 = b11;
-			b11 = c11;
-			c11 = a11 + b11;
-			// System.out.println("c11:"+c11);
+//		System.out.println("========ex11=======");
+//		int a11 = 0;
+//		int b11 = 1;
+//		int c11 = 1;
+//		for (int i = 1; i < 9; i++) {
+//			a11 = b11;
+//			b11 = c11;
+//			c11 = a11 + b11;
+//			System.out.println("c11:"+c11);
+//
+//		}
+//		System.out.println("10th:" + c11);
 
-		}
-		System.out.println("10th:" + c11);
-
+//		int sum11 = 0;
+//		int sum111 =1;
+//		for (int i = 1; i < 11; i++) {
+//			sum11+=
+//			for() {
+//				sum111+=sum11;
+//			}
+//			
+//
+//		}
 		// ex12.
+		// ex12_1.valueOf() -> charAt()
 		System.out.println("========ex12=======");
 		int count12 = 0;
 		for (int i = 1; i < 10000; i++) {
 			String str12 = String.valueOf(i);
-			String[] arr12 = str12.split("");
-			//System.out.println(arr12.length+":"+arr12[arr12.length-1]);
-			for (int j = 0; j < arr12.length; j++) {
-				if (arr12[j].equals("8")) {
-					System.out.println(i);
-					count12 += 1;
-					// System.out.println(arr12[j]);
+			for(int j = 0; j < str12.length(); j++) {
+				//System.out.println(str12);
+				//System.out.println(str12.charAt(j));
+				if(str12.charAt(j) == '8') {
+					count12++;
 				}
+				
 			}
 		}
-		System.out.println(count);
+		System.out.println(count12);
+		
+//		ex12_2. valueOf() -> split
+//		System.out.println("========ex12=======");
+//		int count12 = 0;
+//		for (int i = 1; i < 10000; i++) {
+//			String str12 = String.valueOf(i);
+//			System.out.println(arr12.length+":"+arr12[arr12.length-1]);
+//			for (int j = 0; j < arr12.length; j++) {
+//				if (arr12[j].equals("8")) {
+//					//System.out.println(i);
+//					count12 += 1;
+//					// System.out.println(arr12[j]);
+//				}
+//			}
+//		}
+//		System.out.println(count12);
+		
+//		int ccount =0;
+//		for(int i=1; i < 10000; i++) {
+//			String s = String.valueOf(i);
+//			if(s.contains("8")) {
+//				//System.out.println(s);
+//				ccount++;
+//			}		
+//		}
+		//System.out.println(ccount);
 		
 	}
 }
