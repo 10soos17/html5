@@ -1,4 +1,4 @@
-package p0622_1;
+package p1;
 
 public class Test5 {
 
