@@ -46,6 +46,8 @@ public class Main {
 		students.add(st3);
 
 		for (HashMap<String, Object> st : students) {
+			System.out.println(st);
+
 			System.out.println("이름: " + st.get("name"));
 			System.out.println("영어: " + st.get("eng"));
 			System.out.println("수학: " + st.get("math"));
