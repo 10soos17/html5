@@ -339,32 +339,3 @@ alter user PM IDENTIFIED BY PM;
 alter table dept_exam modify loc varchar2(15);
 alter table dept_exam modify dname varchar2(16);
 =======
-//
-	create table memebers(
-	id varchar2(20) primary key,
-	pw varchar2(20),
-	name varchar2(20),
-	age number(10),
-	addr varchar2(20),
-	email varchar2(20)
-)
->>>>>>> 49c01621b1576670982d3c8009de3b5ecc7fe7ff:4_oracle/1_class/0420.txt
-CREATE TABLE Book (
-  bookid      NUMBER(2) PRIMARY KEY,
-  bookname    VARCHAR2(40),
-  publisher   VARCHAR2(40),
-  price       NUMBER(8) 
-);
-CREATE TABLE  Customer (
-  custid      NUMBER(2) PRIMARY KEY,  
-  name        VARCHAR2(40),
-  address     VARCHAR2(50),
-  phone       VARCHAR2(20)
-);
-CREATE TABLE Orders (
-  orderid NUMBER(2) PRIMARY KEY,
-  custid  NUMBER(2) REFERENCES Customer(custid),
-  bookid  NUMBER(2) REFERENCES Book(bookid),
-  saleprice NUMBER(8) ,
-  orderdate DATE
-);

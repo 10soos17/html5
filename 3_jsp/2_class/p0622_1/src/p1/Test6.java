@@ -43,10 +43,11 @@ public class Test6 {
 			System.out.println( "두 개의 문자는 같지 않다");
 		}
 		
+		int d = 9;
 		int c = 10;
 		
-		if(c < 10 && c > 10) {
-			
+		if(c < d || c > d) {
+			System.out.println('?');
 		}
 	}
 }

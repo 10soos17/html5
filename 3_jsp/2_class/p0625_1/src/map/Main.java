@@ -24,7 +24,7 @@ public class Main {
 		int value = map.get("한조");
 		System.out.println(value);
 
-		//////////////// 일반적 사용법//////////////////////
+		////////////////일반적 사용법//////////////////////
 		HashMap<String, Object> st1 = new HashMap<String, Object>();
 		st1.put("name", "한조");
 		st1.put("math", 10);

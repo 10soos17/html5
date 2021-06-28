@@ -27,7 +27,7 @@ public class Main3 {
 		String value = list.poll();
 
 		// stack 배열로 만들어서 쓰는 게 유용하다
-		// push, pop 메소드만 사용하는 것이 queue 구조에 맞는 사용법
+		// push, pop 메소드만 사용하는 것이 stack 구조에 맞는 사용법
 		Stack<String> st = new Stack<String>();
 
 		st.push("1111");
@@ -56,7 +56,7 @@ public class Main3 {
 		//////////////////////////////
 		a();
 		c();
-		// life cycle ->main호출-a생성-b생성-b종료-a종료-c호출-c종료-main종료
+		// life cycle ->main호출-a호출-b호출-b종료-a종료-c호출-c종료-main종료
 		// stack 공간 - main공간 a공간 b공간 c공간별로 생김
 	}
 

@@ -30,7 +30,7 @@ public class Main {
 
 			// 날짜를 숫자로
 			long b = d.getTime();
-			System.out.println(d);
+			System.out.println(b);
 		}
 		{
 			// 숫자를 날짜로
@@ -58,21 +58,25 @@ public class Main {
 		////////////////////////////////////
 		// String ... 클래스API
 		String str1 = "안녕하세요.반갑습니다.잘부탁드립니다.";
+		
 		// 글자 존재 유무
 		if (str1.contains("안녕")) {
+			System.out.println("ok");
 
 		}
 		int i1 = str1.indexOf(".");
 		int i2 = str1.lastIndexOf(".");
 
 		System.out.println(i1 + "," + i2);
+		
 		// 시작이 "안녕"으로 시작하냐?
 		if (str1.startsWith("안녕")) {
-			System.out.println("-");
+			System.out.println("ok");
 		}
 
-		String str2 = str1.replaceAll(".", "/");
+		String str2 = str1.replaceAll("\\.", "/");
 		String[] arr = str1.split(".");
+		System.out.println(str2);
 
 	}
 

@@ -4,7 +4,7 @@ import java.util.*;
 //자료구조 : 배열의 단점을 극복하고자 만든 알고리즘 ex.Java에서는 Collection에 만들어져있다 
 //List 계열 : 순서o 
 //	-배열 - ArrayList : 장 - 접근속도, 중간삽입, 중간삭제 / 단 - 탐색(존재여부)
-//		-LinkedList : 장 - / 단-접근속도(중간삽입,중간삭제), 탐색(존재여부)
+//		-LinkedList : 장 - / 단 - 접근속도(중간삽입,중간삭제), 탐색(존재여부)
 //		-Queue : FIFO, linkedlist로 만들어서 쓰는 게 유용,offer와 poll 메소드만 사용하는 것이 queue 구조에 맞는 사용 장 - / 단 - 
 //		-Stack : FILO, 
 //Set 계열 : 순서x,값의 중복을 허용하지 않음 / 장 -탐색(존재 여부),정렬,if (set.contains(3)) {...}에 효율 / 단 -용도가 많이 한정적
