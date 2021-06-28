@@ -26,20 +26,39 @@ CREATE TABLE Matchresult(
 
 select count(*) from  Matchresult;
 
+select * from  Matchresult where race_number between 0 and 10;
+
 --생산지 종류 확인 
 select distinct horse_origin from Matchresult;
 
 select horse_origin, count(*) from Matchresult
 group by horse_origin;
 
+--출생지별 1위 카운트
+select horse_origin from Matchresult
+where ranking = 1
+group by horse_origin
+order by count(*) desc;
 --출생지별 승률
+select 
+round((win.cnt/total.cnt)*100) as percentage, total.horse_origin 
+from (
+select count(*) cnt, horse_origin from Matchresult
+group by horse_origin) total
+,
+(select count(*) cnt, horse_origin from Matchresult
+where ranking in (1)
+group by horse_origin) win 
+
+where total.horse_origin = win.horse_origin
+order by percentage desc;
 
 
 --가장 많이 우승한 말 (1,2등)
 select horse_name, count(*) from Matchresult 
 where ranking in (1,2)
 group by horse_name
-order by count(*) desc;
+order by count(*) asc;
 
 --가장 많이 출전할 말
 select horse_name, count(*) from Matchresult
@@ -65,14 +84,30 @@ select t1.cnt, (
 )/t1.cnt * 100 from(
     select count(*) as cnt from matchresult
     where jockey_name like '박태종'
-)t1
+)t1;
 
 
 --출전 순서는 경기 결과에 영향을 주는가?
 
 --박태종 선수의 년도별 체중 변화
+select jockey_weight, TO_CHAR(running_date, 'YYYY') from Matchresult
+where jockey_name = '박태종'
+order by TO_CHAR(running_date, 'YYYY') asc;
     
 --박태종 선수의 년도별 승률(계속 유지되고 있나??)
+
+select round(win.cnt/total.cnt * 100) percentage, win.dt from
+(select count(*) cnt, TO_CHAR(running_date, 'YYYY') dt from Matchresult
+where jockey_name like '박태종'
+and ranking in (1) 
+group by TO_CHAR(running_date, 'YYYY')) win
+,
+(select count(*) cnt, TO_CHAR(running_date, 'YYYY') dt from Matchresult
+where jockey_name like '박태종'
+group by TO_CHAR(running_date, 'YYYY'))total
+
+where win.dt = total.dt
+order by win.dt asc;
 
 --가장 승률이 좋은 말의 나이는?
 

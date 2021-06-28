@@ -101,10 +101,10 @@ select name from Customer where name like '김%아';
 --1
 --박지성이 구매한 도서의 출판사 수
 select count(DISTINCT publisher) from Book 
-where bookid = any (select bookid from Orders 
-where custid = (select custid from Customer where name = '박지성'));
-/*
-select count(DISTINCT b.publisher) from Orders o, Customer c, Book b
+where bookid in(select bookid from Orders 
+where custid = (select custid from Customer where name = '박지성')); --in 대신 =any 가능 
+
+/*select count(DISTINCT b.publisher) from Orders o, Customer c, Book b
 where o.custid = c.custid
 AND o.bookid = b.bookid
 AND c.name LIKE '박지성';
@@ -121,7 +121,9 @@ and Orders.bookid = Book.bookid
 and Customer.name like '박지성';
 */
 
---박지성이 구매하지 않은 도서의 이름
+--박지성이 구매하지 않은 도서의 이름 
+---> !=사용하면 안됨 
+---> 박지성이 구매한 도서를 먼저 구한 후 전체 도서에서 제외시키는 방법으로 할 것 : not in / minus
 select bookname from Book
 where bookname NOT IN(
     select b.bookname from Orders o, Book b, Customer c 
@@ -156,12 +158,12 @@ where t1.c = 1000
 
 --상관 부속질의의 이해(다중 for문) 
 select (
-    select cs.name from customer cs where cs.
-    custid = od.custid --내부 for문 
+    select cs.name from customer cs 
+    where cs.custid = od.custid --내부 for문 
 ) from orders od; --바깥 for문 
 
 
--- 주문하지 않은 고객의 이름
+-- 주문하지 않은 고객의 이름 : not in
 select name from Customer
 where custid not in (select custid from Orders);
 /*select name from Customer
@@ -175,26 +177,16 @@ select sum(saleprice), avg(saleprice) from Orders;
 select Customer.name, sum(saleprice) from Orders
 inner join Customer on Customer.custid = Orders.custid
 group by Customer.name;
-
 /*
 select custid, sum(saleprice), count(*), avg(saleprice) from Orders
 group by custid
-having custid <=2--group by 후에 having
+having custid >=1--group by 후에 having
 ;
 
 select custid, sum(saleprice), count(*), avg(saleprice) from Orders--group by 전에 where
-where custid<=2
+where custid >=1
 group by custid
 ;
-*/
-
---고객의 이름과 고객이 구매한 도서 목록
-select Customer.name, Book.bookname from Orders
-inner join Customer on Customer.custid = Orders.custid
-inner join Book on Book.bookid = Orders.bookid;
-/*
-select c.name, b.bookname from customer c, book b, orders o
-where o.custid = c.custid and o.bookid = b.bookid;
 
 select cs.name, t1.sss from(
     select custid , sum(saleprice) as sss from orders
@@ -209,11 +201,27 @@ select (
 group by custid;
 */
 
---도서의 가격(Book 테이블)과 판매가격(Orders 테이블)의 차이가 가장 많은 주문
-select max(book.price - orders.saleprice) from Book
-inner join Orders on Book.bookid = Orders.bookid;
+
+
+--고객의 이름과 고객이 구매한 도서 목록
+select Customer.name, Book.bookname from Orders
+inner join Customer on Customer.custid = Orders.custid
+inner join Book on Book.bookid = Orders.bookid;
 /*
-select o1.* from orders o1, book b1
+select c.name, b.bookname from customer c, book b, orders o
+where o.custid = c.custid and o.bookid = b.bookid;
+*/
+
+
+--도서의 가격(Book 테이블)과 판매가격(Orders 테이블)의 차이가 가장 많은 주문
+select b.* from book b, orders o
+where b.bookid = o.bookid
+and b.price - o.saleprice = (
+    select max(book.price - orders.saleprice) from Book
+    inner join Orders on Book.bookid = Orders.bookid);
+
+/*
+select b1.* from orders o1, book b1
 where o1.bookid = b1.bookid
 and b1.price - o1.saleprice = (
     select max(bb.price - oo.saleprice) from orders oo, book bb
@@ -262,6 +270,16 @@ inner join Customer on Customer.custid = Orders.custid
 group by Customer.name
 having count(DISTINCT Book.publisher) > 1;
 
+/*
+select * from(
+    select o.custid from orders o, book b
+    where o.bookid = b.bookid
+    group by o.custid
+    having count(distinct b.publisher) >= 2
+)t1, customer cs
+where t1.custid = cs.custid;
+*/
+
 -- 전체 고객의 30% 이상이 구매한 도서
 select b1.bookname from(
     select o1.bookid, count(*) as cnt from orders o1
@@ -273,15 +291,6 @@ and t1.cnt > (
 );
 
 
-/*
-select * from(
-    select o.custid from orders o, book b
-    where o.bookid = b.bookid
-    group by o.custid
-    having count(distinct b.publisher) >= 2
-)t1, customer cs
-where t1.custid = cs.custid;
-*/
 
 --기본문제
 select bookname, price from Book;
@@ -323,32 +332,3 @@ inner join Customer on Orders.custid = Customer.custid
 where Orders.saleprice > 8000
 group by name
 having count(Orders.saleprice) > 1;
-
---================0628
-drop table Matchresult;
-
-CREATE TABLE Matchresult(
-    ranking NUMBER(4),
-    horse_number NUMBER(4),
-    horse_name VARCHAR2(40),
-    horse_origin VARCHAR2(10),
-    horse_sex VARCHAR2(10),
-    horse_age NUMBER(4),
-    jockey_weight NUMBER(8),
-    rating VARCHAR2(10), --??
-    jockey_name VARCHAR2(20),
-    assistant_name VARCHAR2(20),
-    owner_name VARCHAR2(20),
-    arrival_difference VARCHAR2(20),
-    horse_weight NUMBER(8),
-    dan_win NUMBER(20),
-    yun_win NUMBER(20),
-    equipment VARCHAR2(200),
-    running_date DATE,
-    race_number NUMBER(4)
-);
-
-select count(*) from  Matchresult;
-
---생산지 종류 확인 
-select distinct horse_origin from Matchresult;
