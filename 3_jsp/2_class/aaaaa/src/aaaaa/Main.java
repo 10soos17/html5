@@ -15,13 +15,13 @@ public class Main {
 		//마체중 - 정제...
 		//장비... 정제... 합치기...
 		System.out.println("진행중...");
-		BufferedReader br = Files.newBufferedReader(Paths.get("/Users/soos/Desktop/git/lecture/lecture_choongang/3_jsp/2_class/temp/test.csv"));
+		BufferedReader br = Files.newBufferedReader(Paths.get("C:\\Users\\user\\Desktop\\choongang\\3_jsp\\2_class\\temp\\test.csv"));
 		
 		String line = "";
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
-		String url = "jdbc:oracle:thin:@localhost:1521:ee"; 
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 		Connection conn = DriverManager.getConnection(url,"scott","scott");
 		Statement stm = conn.createStatement();
 		

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        /*css 주석입니다.*/
+        li {
+            color: blue;
+        }
+
+        /*id 선택자 #*/
+        #x1 {
+            color: red;
+        }
+
+        #x2 {
+            color: aqua;
+            background-color: rebeccapurple;
+        }
+
+        /*class 선택자 .*/
+        .c1 {
+            color: green;
+        }
+
+        .c2 {
+            background-color: red;
+        }
+
+        /*심화 선택자 ... 신경 안써도 됨*/
+        ul .li1 div .c1 {
+            background-color: aquamarine;
+        }
+
+        #ul li:nth-child(2n-1) {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li id="x1">안녕하세요</li>
+        <li>안녕하세요</li>
+        <li id="x2">안녕하세요</li>
+        <li class="c2">안녕하세요</li>
+        <li class="c1">안녕하세요</li>
+        <li class="c1 c2">안녕하세요</li>
+    </ul>
+
+    <ul id="ul">
+        <li>안녕하세요</li>
+        <li>안녕하세요</li>
+        <li>안녕하세요</li>
+        <li>안녕하세요</li>
+        <li>안녕하세요</li>
+        <li>안녕하세요</li>
+    </ul>
+</body>
+
+</html>
