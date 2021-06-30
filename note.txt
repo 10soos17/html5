@@ -1,5 +1,5 @@
 ======================================HTML5===================================================
-0406 ~
+0406 
 최주정
 https://cafe.naver.com/ceois?iframe_url=/MyCafeIntro.nhn%3Fclubid=29556559
 ideakorea@naver.com
@@ -1556,6 +1556,8 @@ https://tomcat.apache.org/download-90.cgi
         
 
 [jsp문법]
+    html 코드를 동적으로 만들어줌(동적리소스) / html은 정적리소스 
+    servlet: 특정 명령(request)에 대응하는 객체 
     <%@태그%@>
     <%변수%>
     ex.
