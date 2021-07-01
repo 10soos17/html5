@@ -6,14 +6,14 @@ import com.ja.vo.BookVO;
 import java.sql.*;
 
 public class BookService {
-	// 책 생성 .. Insert
+	// 梨� �깮�꽦 .. Insert
 	public void createBook(String bookname, String publisher, int price) {
 		// ... DB ... INSERT
 		String sql = "insert into Book values(Book_seq.nextval, '"+bookname+"', '"+publisher+"', "+price+")";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:ee";
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 
 			Connection conn = DriverManager.getConnection(url, "scott", "scott");
 			Statement stm = conn.createStatement();
@@ -27,7 +27,7 @@ public class BookService {
 		}
 	}
 
-	// 책 출력 내용(리스트) 가져오기 ..SELECT
+	// 梨� 異쒕젰 �궡�슜(由ъ뒪�듃) 媛��졇�삤湲� ..SELECT
 	public ArrayList<BookVO> getBooks() {
 		ArrayList<BookVO> list = new ArrayList<BookVO>();
 
@@ -35,7 +35,7 @@ public class BookService {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:ee";
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 
 			Connection conn = DriverManager.getConnection(url, "scott", "scott");
 			Statement stm = conn.createStatement();
@@ -62,5 +62,5 @@ public class BookService {
 
 	}
 
-	// 책 이름 수정 .. UPDATE
+	// 梨� �씠由� �닔�젙 .. UPDATE
 }

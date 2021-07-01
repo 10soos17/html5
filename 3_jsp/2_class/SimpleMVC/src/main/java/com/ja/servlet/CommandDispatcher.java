@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.ja.service.BookService;
 import com.ja.vo.BookVO;
 
+//http://localhost:8080/SimpleMVC/getBooks.do
+//http://localhost:8080/SimpleMVC/createBook.do?bookname=qwer&publisher=qqqq&price=7000 
 @WebServlet("*.do")
 public class CommandDispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,14 +21,16 @@ public class CommandDispatcher extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String command = request.getRequestURI();
-
+		//"/SimpleMVC/getBooks.do"
 		if (command.equals("/SimpleMVC/getBooks.do")) {
 			BookService bookService = new BookService();
 			ArrayList<BookVO> list = bookService.getBooks();
 
 			request.setAttribute("abcd", list);
 
-			// 포워딩 ... forwarding
+			// 포워딩 ... forwarding 
+			//만일 forward대신 redirect하면 request 속성 저장공간이 소멸됨
+			//만일 session 속성으로 저장하면 값이 남기는 하지만, 쓸데없이 저장공간을 사용하게 됨 
 			request.getRequestDispatcher("/WEB-INF/views/getBooks.jsp").forward(request, response);
 
 		} else if (command.equals("/SimpleMVC/createBook.do")) {

@@ -11,6 +11,7 @@
 	책 제목 리스트: <br>
 	
 	<c:forEach items="${abcd}" var="ddd">
+		<!--var="ddd"는 pageContext 속성에 저장한 것을 의미--> 
 		책이름 : ${ddd.bookname}, 출판사 : ${ddd.publisher}<br>
 	</c:forEach>
 	

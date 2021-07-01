@@ -1660,12 +1660,22 @@ https://tomcat.apache.org/download-90.cgi
         https://m.blog.naver.com/PostView.nhn?blogId=milkoon1&logNo=220860106284&proxyReferer=https:%2F%2Fwww.google.co.kr%2F
         https://codevang.tistory.com/201
         pageContext - request - session - application 
+    
+    ***
+    lifecycle
+    4가지 동일한 형태의 저장 공간을 제공
 
+    pageContext
+    ***request: mvc 
+    ***session
+    application
 
-
-
- 
-
+    ex.
+    //값 세팅
+	pageContext.setAttribute("k1", "한조1");//쓸일이 많지 않음
+	request.setAttribute("k2", "한조2");//페이지요청시 set, 페이지 종료 전까지 남아있음 +forward페이지
+	session.setAttribute("k3", "한조3");//접속시 set, 해지(웹브라우저종료) 전까지 남아있음 / 인증,(일시적)장바구니
+	application.setAttribute("k4", "한조4");//서버시작될때 set, 서버종료까지 남아있음
  
 
 <활용>
