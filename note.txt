@@ -1665,10 +1665,15 @@ https://tomcat.apache.org/download-90.cgi
     lifecycle
     4가지 동일한 형태의 저장 공간을 제공
 
+    // server 컴퓨터에 저장
     pageContext
     ***request: mvc 
     ***session
     application
+
+    &
+    // client 컴퓨터에 저장
+    cookie: lifecycle은 session가 거의 동일 / 단점 - 보안에 취약
 
     ex.
     //값 세팅
@@ -1691,8 +1696,6 @@ https://tomcat.apache.org/download-90.cgi
 - 사용자 요청을 다른 페이지로 전달
 
 - 현재 JSP에 대한 각종 정보를 알기 위해
-[출처] [JSP] 내장 객체 개념|작성자 개구리
-
        
 
 ////////     
