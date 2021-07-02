@@ -15,5 +15,8 @@
 		책이름 : ${ddd.bookname}, 출판사 : ${ddd.publisher}<br>
 	</c:forEach>
 	
+	<br><br>
+	<a href="./createBookForm.do">책등록하기</a>
+	
 </body>
 </html>

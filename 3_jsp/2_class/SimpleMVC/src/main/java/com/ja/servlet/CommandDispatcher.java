@@ -14,12 +14,15 @@ import com.ja.vo.BookVO;
 
 //http://localhost:8080/SimpleMVC/getBooks.do
 //http://localhost:8080/SimpleMVC/createBook.do?bookname=qwer&publisher=qqqq&price=7000 
+//한글 안 깨지게 하려면 post 방식이 안전 or 글자 엔코딩 방식 바꿔주기 
 @WebServlet("*.do")
 public class CommandDispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String command = request.getRequestURI();
 		//"/SimpleMVC/getBooks.do"
 		if (command.equals("/SimpleMVC/getBooks.do")) {
@@ -44,9 +47,15 @@ public class CommandDispatcher extends HttpServlet {
 
 			// 리다이렉트 ...
 			response.sendRedirect("./getBooks.do");
+			
+			//포워딩하면 값 안나옴()
+			//request.getRequestDispatcher("/WEB-INF/views/getBooks.jsp").forward(request, response);
+
 
 		} else if (command.equals("/SimpleMVC/login.do")) {
 			// ...
+		}else if(command.equals("/SimpleMVC/createBookForm.do")){
+			request.getRequestDispatcher("/WEB-INF/views/createBookForm.jsp").forward(request,response);
 		}
 	}
 

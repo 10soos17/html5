@@ -16,6 +16,7 @@ serbible@nate.com
 
 0622 ~
 이민규
+010-4761-2103
 https://blog.naver.com/s001lec
 
 
@@ -1524,6 +1525,39 @@ https://tomcat.apache.org/download-90.cgi
                 <welcome-file>index.jsp</welcome-file>//주소명만 적으면, 처음 위치한 파일로 감
                 <welcome-file>index.html</welcome-file>
             </welcome-file-list>
+        </web-app>
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        
+        ex.
+        <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+        <display-name>Test0702_3</display-name>
+        
+        <servlet>
+        <servlet-name>abcd</servlet-name>
+        <servlet-class>com.ja.test.Test</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        </servlet>
+        
+        <servlet-mapping>
+        <servlet-name>abcd</servlet-name>
+        <url-pattern>/Test.do</url-pattern>
+        </servlet-mapping>
+        
+        <listener>
+        <listener-class>com.ja.test.TestListener</listener-class>
+        </listener>
+        
+        <filter>
+        <filter-name>xxxx</filter-name>
+        <filter-class>com.ja.test.TestFilter</filter-class>
+        </filter>
+        
+        <filter-mapping>
+        <filter-name>xxxx</filter-name>
+        <url-pattern>/</url-pattern>
+        </filter-mapping>
+        
         </web-app>
 
     3. jsp 작성

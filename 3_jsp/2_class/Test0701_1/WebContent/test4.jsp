@@ -25,7 +25,7 @@ str = (String)pageContext.getAttribute("케이1");
 str2 = (String)session.getAttribute("케이2");
 %>
 	page:<%=str2 %><br>
-
+	page :${케이1}<br>
 	req  : ${k2 }<br>
 	sess : ${k3 }<br>
 	app  : ${k4 }<br>
