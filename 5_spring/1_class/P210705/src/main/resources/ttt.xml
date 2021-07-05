@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--컨테이너(instance를 관리하는 객체) 설정 파일 -->
+	<bean id="tv" class="polymorphism.SamsungTV"></bean>
+	<bean id="tvxxx" class="polymorphism.LgTV"></bean>
+	<bean id="tv123" class="polymorphism.SamsungTV"></bean>
+</beans>
