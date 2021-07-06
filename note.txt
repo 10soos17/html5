@@ -1754,7 +1754,6 @@ https://tomcat.apache.org/download-90.cgi
 
 <활용>
 
- 
 
 - HTML 폼에서 입력한 값을 가져올 때
 
@@ -1816,34 +1815,11 @@ Spring framework
     e. server tomcat9 추가
         port 변경(선택) : tomcat admin port - 8015 / http/1.1 - 8181
         server locations : use tomcat installation 선택
-        server options : publish module contexts to separate XML files, Moduels auto reload by default 설정 2개 체크 
+        server options : publish module contexts to separate XML files, Modules auto reload by default 설정 2개 체크 
     f. new > spring legacy project(spting 4버전은 이게 없음) > spring MVC project 선택> next> 
 2. mac
     a. sts -> spring tools 3 설치 
         https://download.springsource.com/release/STS/3.9.15.RELEASE/dist/e4.16/spring-tool-suite-3.9.15.RELEASE-e4.16.0-macosx-cocoa-x86_64.dmg    
-
-
-ex. new legacy progect P210705
-    com.ja.test;
-
-        HomeController.java
-        HomeController
-
-
-        TestController.java
-        @Controller
-        TestController{
-            @RequestMapping("/test1.do")
-            public void test1(){
-                System.out.println("하하1");
-
-            }
-            @RequestMapping("/test2.do")
-            public void test2(){
-                System.out.println("하하2");
-                
-            }
-        }
 
     * 컨테이너(instance를 관리하는 객체) 설정 파일 만들기 : 컨테이너가 가동될때 인스턴스 생성되는 것 
         src>main>resources 안에 new Spring Bean Configuration File 생성 
@@ -1853,3 +1829,26 @@ ex. new legacy progect P210705
             java 파일에서 인스턴스 생성 시, 
             GenericXmlApplicationContext container = new GenericXmlApplicationContext("ttt.xml");
 		    TV tv = (TV)container.getBean("tv");
+        +++
+            <?xml version="1.0" encoding="UTF-8"?>
+            <beans xmlns="http://www.springframework.org/schema/beans"
+	        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	        <!--컨테이너(instance를 관리하는 객체) 설정 파일, 인스턴스의 생성, 의존관리(의존주입: DI) -->
+	        <bean id="tv" class="polymorphism.SamsungTV">
+		        <property name="speaker" ref="speaker2"></property><!--setter 주입: name은 속성명 ,ref는 아래 설정한 참조할 클래스의id -->
+	        	<!-- constructor-arg name="speaker" ref="speaker1"></constructor-arg --><!-- 생성자 주입: 에 아규먼트(speaker1으로 참조하는 Applespeaker를 줌 -->
+	        </bean>
+
+	        <bean id="speaker1" class="polymorphism.AppleSpeaker"></bean>
+	        <bean id="speaker2" class="polymorphism.SonySpeaker"></bean>
+        </beans>
+
+        -폴더 구조 
+            src/main/webapp/WEB-INF/views/ 안에 jsp 파일 넣기 
+
+        -xml 파일들
+            servlet-context.xml(패키지명/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml) : spring container(present layer)
+            root-context.xml(패키지명/src/main/webapp/WEB-INF/spring/root-context.xml) : spring container(business layer)
+            web.xml(패키지명/src/main/webapp/WEB-INF/web.xml)
+            pom.xml(패키지명/pom.xml) : 버전 or maven 설정 파일 (외부 라이브러리 dependency 관리 체계), 빌드 설정 ->변경 후, maven -> update 해주기

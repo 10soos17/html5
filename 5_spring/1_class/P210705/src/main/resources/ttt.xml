@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!--컨테이너(instance를 관리하는 객체) 설정 파일 -->
-	<bean id="tv" class="polymorphism.SamsungTV"></bean>
-	<bean id="tvxxx" class="polymorphism.LgTV"></bean>
-	<bean id="tv123" class="polymorphism.SamsungTV"></bean>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<!--컨테이너(instance를 관리하는 객체) 설정 파일, 인스턴스의 생성, 의존관리(의존주입: DI) -->
+	
+	<!-- 설정방법 2가지 -->
+	<!--  1.xml을 이용한 설정 방법 -->
+
+
+	<!-- bean id="tv" class="polymorphism.SamsungTV"-->
+		<!--property name="speaker" ref="speaker2"></property><setter 주입: name은 속성명 ,ref는 아래 설정한 참조할 클래스의id -->
+		<!-- constructor-arg name="speaker" ref="speaker1"></constructor-arg >< 생성자 주입: 에 아규먼트(speaker1으로 참조하는 Applespeaker를 줌 -->
+	<!--/bean>
+
+	<bean id="speaker1" class="polymorphism.AppleSpeaker"></bean>
+	<bean id="speaker2" class="polymorphism.SonySpeaker"></bean-->
+	
+	<!--  2.Annotation을 이용한 설정 방법 -->
+	<context:component-scan base-package="polymorphism"></context:component-scan>
+	
 </beans>

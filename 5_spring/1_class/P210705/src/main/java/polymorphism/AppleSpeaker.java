@@ -1,5 +1,8 @@
 package polymorphism;
 
+import org.springframework.stereotype.Component;
+
+@Component //어노테이션 - 아이디 지정하지 않으면 자동 소문자클래스명으로 
 public class AppleSpeaker implements Speaker{
 
 	public AppleSpeaker() {
