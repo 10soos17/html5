@@ -1,11 +1,18 @@
 package com.ja.finalproject2.member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ja.finalproject2.member.mapper.MemberSQLMapper;
+import com.ja.finalproject2.vo.MemberVo;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+	
+	@Autowired
+	private MemberSQLMapper memberSQLMapper;
 
 	@RequestMapping("loginPage.do")
 	public String loginPage() {
@@ -20,10 +27,14 @@ public class MemberController {
 	}
 
 	@RequestMapping("joinMemberProcess.do")
-	public String joinMemberProcess(String id, String nick) {
-		System.out.println("[test]" + id);
-		System.out.println("[test]" + nick);
-		return "";
+	public String joinMemberProcess(MemberVo param) {
+		
+		memberSQLMapper.joinMember(param);
+		
+//		System.out.println("[test]" + param.getMember_id());
+//		System.out.println("[test]" + param.getMember_nick());
+//		System.out.println("[test]" + param.getMember_gender());
+		return "member/joinMemberComplete";
 	}
 
 }
