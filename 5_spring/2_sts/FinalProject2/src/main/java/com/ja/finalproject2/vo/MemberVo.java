@@ -20,6 +20,7 @@ public class MemberVo {
 	
 	public MemberVo() {
 	}
+	
 
 	public MemberVo(int member_no, String member_id, String member_pw, String member_nick, String member_gender,
 			Date member_birth, String member_phone, String member_email, Date member_joindate) {

@@ -1856,3 +1856,15 @@ Spring framework
 
 ===
 https://www.erdcloud.com/
+
+-변수명 관례
+    service객체 만들때 클래스명 뒤에 주로 Impl 불여줌 but 생성된 객체 변수명에서는 impl 빼기
+
+-bean등록 방법 
+어노테이션 사용 경우 
+xml로 등록하는 경우 : 외부 라이브러리 클래스를 컨테이너에 등록할 때  
+
+component(controller, service, mapper)
+
+-흐름
+request -> controller(데이터 선처리, 가공, 정제) -> service(비지니스로직처리(핵심조직), 데이터 처리, 알고리즘 처리)-> 영속계층(DB연동, Mybatis)

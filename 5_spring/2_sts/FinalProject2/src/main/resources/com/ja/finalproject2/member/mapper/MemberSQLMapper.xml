@@ -3,18 +3,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ja.finalproject2.member.mapper.MemberSQLMapper">
-	<insert id="joinMember"><!--  id는 메소드명 -->
+<mapper
+	namespace="com.ja.finalproject2.member.mapper.MemberSQLMapper"><!--class경로 -->
+	<insert id="joinMember"><!-- id는 메소드명 -->
 		insert into FP_Member values(
-		    FP_MEMBER_SEQ.nextval,
-		    #{member_id},
-		    #{member_pw}, 
-		    #{member_nick}, 
-		    #{member_gender}, 
-		    #{member_birth}, 
-		    #{member_phone}, 
-		    #{member_email}, 
-		    SYSDATE)
+		FP_MEMBER_SEQ.nextval,
+		#{member_id},
+		#{member_pw},
+		#{member_nick},
+		#{member_gender},
+		#{member_birth},
+		#{member_phone},
+		#{member_email},
+		SYSDATE)
 	</insert>
+
+<!-- resultType에 data 저장할 vo경로 기입해주면 자동으로 return 값을 맞게 생성해줌 -->
+	<select id="getMemberByIdAndPw" resultType="com.ja.finalproject2.vo.MemberVo">
+		select * from FP_Member
+		where member_id = #{member_id}
+		and 
+		member_pw = #{member_pw}
+	</select>
 
 </mapper>

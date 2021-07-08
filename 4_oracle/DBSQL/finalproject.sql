@@ -32,5 +32,9 @@ insert into FP_Member values(
     'ssss@sss.ss', 
     SYSDATE);
     
-    
+--로그인 쿼리
+select * from FP_Member
+where member_id = 's001'
+and member_pw = '1111'
+;
     
