@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ja.finalproject.board.mapper.BoardSQLMapper"><!--class경로 -->
+	<insert id="writeContent"><!-- id는 메소드명 -->
+		insert into FP_Board values(
+		FP_BOARD_SEQ.nextval,
+		#{member_no},
+		#{board_title},
+		#{board_content},
+		0,
+		SYSDATE)
+	</insert>
+
+	<select id="getContents"
+		resultType="com.ja.finalproject.vo.BoardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
+		select * from FP_Board order by board_no DESC
+	</select>
+
+	<select id="getContentByNo"
+		resultType="com.ja.finalproject.vo.BoardVo">
+		select * from FP_Board where board_no = #{board_no}
+	</select>
+
+</mapper>
