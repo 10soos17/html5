@@ -73,6 +73,18 @@ public class BoardServiceImpl {
 		
 		return map;
 	}
+	
+	public void increaseReadCount(int board_no) {
+		boardSQLMapper.increaseReadCount(board_no);
+	}
+	
+	public void deleteContent(int board_no) {
+		boardSQLMapper.deleteContent(board_no);
+	}
+	
+	public void updateContent(BoardVo vo) {
+		boardSQLMapper.updateContent(vo);
+	}
 }
 
 
