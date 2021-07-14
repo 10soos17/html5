@@ -15,4 +15,12 @@ public interface BoardSQLMapper {
 	//select
 	public BoardVo getContentByNo(int board_no);
 	
+	//delete
+	public void deleteContent(int board_no);
+	
+	//update
+	public void updateContent(BoardVo vo);
+	
+	//조회수 증가
+	public void increaseReadCount(int board_no);
 }

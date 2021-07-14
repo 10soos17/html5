@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,13 @@
 		생년월일 : <input type="date" name="member_birth"><br>
 		전화번호 : <input type="text" name="member_phone"><br>
 		E-Mail : <input type="text" name="member_email"><br>
+		취미 :
+		<!-- joinMemberPage.do 요청시, FP_hobby_category_table db 읽어와서 Model설정, 화면에 뿌려주기 -->
+		<c:forEach items="${hobbyCategoryList}" var="xxxx">
+			<input name="hobby_category_no" value="${xxxx.hobby_category_no}" type="checkbox">${xxxx.hobby_category_name}
+		</c:forEach>
+		<br>
+		
 		<input type="submit" value="회원 가입">
 		
 	</form>

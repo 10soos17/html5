@@ -1894,3 +1894,18 @@ https://www.erdcloud.com/
     ex.
         java쪽에서 ...(,Model model) 인자로 값 받고 model.addAttribute("content",map);
         jsp쪽에서 ${content.boardVo.board_title} 로 값 읽을 수 있음 
+
+[2차] - 응용 및 API 활용 
+취미
+html 이스케이프 
+
+검색
+페이징
+비밀번호 암호화
+파일 업로드
+회원 가입 이메일(thread)
+접근 제어 - 에러페이지 처리
+Javascript 유효성 검사
+
+좋아요(추천) 
+리플(코멘트)

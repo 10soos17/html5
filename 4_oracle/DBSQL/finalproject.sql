@@ -88,7 +88,7 @@ commit;
 --삭제 쿼리
 delete from fp_board where board_no = 9;
 --내용 수정 쿼리
-update fp_board set board_title = '바꿘 내용~', board_conten = '바뀐 내용~'
+update fp_board set board_title = '바꿘 내용~', board_content = '바뀐 내용~'
 where board_no = 9;
 --조회수 증가
 update fp_board set board_readcount = board_readcount + 1
@@ -96,6 +96,10 @@ where board_no = 9;
 
 --트랜잭션
 select * from fp_board;
+
+delete from FP_Board where board_no = 4;
+
+commit;
 
 
 
