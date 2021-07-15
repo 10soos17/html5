@@ -61,7 +61,7 @@ public class BoardServiceImpl {
 	public int getContentCount(String search_type, String search_word, int page_num) {
 		
 		int count = boardSQLMapper.getContentCount(search_type, search_word, page_num);
-		System.out.println("count: "+count);
+		//System.out.println("count: "+count);
 		return count;
 	}
 	
