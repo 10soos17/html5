@@ -38,6 +38,7 @@ public class BoardController {
 		ArrayList<HashMap<String, Object>> contentList = 
 				boardService.getContents(search_type, search_word, page_num);
 		
+	
 		//전체 글 수 
 		int count = boardService.getContentCount(search_type, search_word, page_num);
 		//전체 페이지 수(각 페이지 10개 글)
@@ -56,8 +57,8 @@ public class BoardController {
 		String addParam = "";
 		
 		if(search_type != null && search_word != null) {
-			addParam += "&search_type" + search_type;
-			addParam += "&search_word" + search_word;
+			addParam += "&search_type=" + search_type;
+			addParam += "&search_word=" + search_word;
 		}
 		model.addAttribute("addParam", addParam);
 		
