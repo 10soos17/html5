@@ -23,7 +23,7 @@
 	
 	select * from (
 		select t1.*, ROWNUM as rnum from (
-			select * from FP_Board, FP_Member
+			select FP_Board.* from FP_Board, FP_Member
 			where FP_Board.member_no = FP_Member.member_no
 			<if test="search_type != null and search_word != null">
 				<choose>
@@ -38,7 +38,7 @@
 					</when>
 				</choose>
 			</if>
-			order by FP_Board.board_no DESC
+			order by board_no DESC
 		) t1
 	) t2
 	<![CDATA[
@@ -46,7 +46,24 @@
 	and t2.rnum <= #{page_num} * 10
 	]]>
 
-		
+	</select>
+	
+	<select id="getContentCount" resultType="int">
+		select count(*) from FP_Board, FP_Member
+		where FP_Board.member_no = FP_Member.member_no
+		<if test="search_type != null and search_word != null">
+			<choose>
+				<when test="search_type == 'title'">
+					and FP_Board.board_title like '%' || #{search_word} || '%'	
+				</when>
+				<when test="search_type == 'content'">
+					and FP_Board.board_content like '%' || #{search_word} || '%'
+				</when>
+				<when test="search_type == 'nick'">
+					and FP_Member.member_nick like '%' || #{search_word} || '%'
+				</when>
+			</choose>
+		</if>
 	</select>
 
 	<select id="getContentByNo"

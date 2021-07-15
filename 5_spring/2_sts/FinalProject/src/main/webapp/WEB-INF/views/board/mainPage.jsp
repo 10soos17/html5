@@ -71,17 +71,42 @@
 				<div class="row mt-2"> <!-- 페이징 및 글 쓰기 버튼 -->
 					<div class="col-2"></div>
 					<div class="col">
+					
 						<nav>
 						  <ul class="pagination mb-0">
-						    <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=1">1</a></li>
-						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=2">2</a></li>
-						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=3">3</a></li>
-						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=4">4</a></li>
-						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=5">5</a></li>
-						    <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+						  
+						  	<c:choose>
+						  		<c:when test="${beginPage <= 1}">
+						  			<li class="page-item disabled"><a class="page-link" href="./mainPage.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+						  		</c:when>
+						  		<c:otherwise>
+						  			<li class="page-item"><a class="page-link" href="./mainPage.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+						  		</c:otherwise>
+						  	</c:choose>
+						  	
+						  	<c:forEach begin="${beginPage}" end="${endPage}" var="i">
+						  		<c:choose>
+						  			<c:when test="${currentPage == i}">
+						    			 <li class="page-item active"><a class="page-link" href="./mainPage.do?page_num=${i}${addParam}">${i}</a></li>
+						  			</c:when>
+						  			<c:otherwise>
+						    	 		<li class="page-item"><a class="page-link" href="./mainPage.do?page_num=${i}${addParam}">${i}</a></li>
+						  			</c:otherwise>
+						  		</c:choose>
+						    </c:forEach>
+						    
+						   <c:choose>
+						  		<c:when test="${endPage >= totalPageCount}">
+						   			 <li class="page-item disabled"><a class="page-link" href="./mainPage.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+						  		</c:when>
+						  		<c:otherwise>
+						   		 	<li class="page-item"><a class="page-link" href="./mainPage.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+						  		</c:otherwise>
+						  	</c:choose>
+						  	
 						  </ul>
-						</nav>		
+						</nav>	
+							
 					</div>
 					<div class="col-2 d-grid">
 						<c:if test="${!empty sessionUser}">
@@ -92,7 +117,6 @@
 
 			</div>
 			<div class="col"></div>
-
 
 		</div>
 	</div>

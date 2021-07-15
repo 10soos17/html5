@@ -37,6 +37,35 @@ public class BoardController {
 		
 		ArrayList<HashMap<String, Object>> contentList = 
 				boardService.getContents(search_type, search_word, page_num);
+		
+		//전체 글 수 
+		int count = boardService.getContentCount(search_type, search_word, page_num);
+		//전체 페이지 수(각 페이지 10개 글)
+		int totalPageCount = (int)Math.ceil(count/10.0);
+		//현재 페이지 번호
+		int currentPage = page_num;
+		//보여줄 시작 페이지번호
+		int beginPage = ((currentPage-1)/5)*5+1;
+		//보여줄 끝 페이지번호 
+		int endPage = ((currentPage-1)/5 + 1)*(5);
+		
+		if(endPage > totalPageCount){
+			endPage = totalPageCount;
+		}
+
+		String addParam = "";
+		
+		if(search_type != null && search_word != null) {
+			addParam += "&search_type" + search_type;
+			addParam += "&search_word" + search_word;
+		}
+		model.addAttribute("addParam", addParam);
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPageCount", totalPageCount);
+		
 		model.addAttribute("contentList", contentList); //Q. request, session대신 model쓰는 이유??
 		
 		return "board/mainPage";

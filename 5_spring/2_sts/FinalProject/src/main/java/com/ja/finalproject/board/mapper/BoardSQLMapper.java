@@ -19,6 +19,11 @@ public interface BoardSQLMapper {
 			@Param("search_word") String search_word,
 			@Param("page_num") int page_num
 			);
+	public int getContentCount(
+			@Param("search_type") String search_type,
+			@Param("search_word") String search_word,
+			@Param("page_num") int page_num	
+			);
 	
 	//select
 	public BoardVo getContentByNo(int board_no);

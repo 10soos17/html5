@@ -58,6 +58,13 @@ public class BoardServiceImpl {
 		return list;
 	}
 	
+	public int getContentCount(String search_type, String search_word, int page_num) {
+		
+		int count = boardSQLMapper.getContentCount(search_type, search_word, page_num);
+		
+		return count;
+	}
+	
 	//게시판 글 클릭시, board_no로 board db정보 받아오고 board_no = member_no로 Member db정보 받기
 	//-> HashMap<String, Object>에 두 db정보 합치기 
 	public HashMap<String, Object> getContent(int board_no) {
