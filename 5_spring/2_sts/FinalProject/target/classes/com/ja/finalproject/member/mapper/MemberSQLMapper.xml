@@ -44,6 +44,7 @@
 		)
 	</insert>
 	
+	
 	<!--  ==================================== -->
 	<!-- resultType에 data 저장할 클래스(vo)경로 기입해주면 자동으로 return 값을 맞게 생성해줌 -->
 	<!--Member table -->
@@ -59,7 +60,31 @@
 		resultType="com.ja.finalproject.vo.MemberVo">
 		select * from FP_Member where member_no = #{no}
 	</select>
+	
+	<!--  ========================================================================================== -->
+	<!-- ===============self try -->
+	<update id="updateMyInfo">
+		update FP_Member 
+		set member_nick = #{member_nick}, 
+			member_gender = #{member_gender}, 
+			member_birth = #{member_birth}, 
+			member_phone = #{member_phone},
+			member_email = #{member_email}
+		where member_no = #{member_no}
+	</update>
 
-
+	<delete id="deleteHobby">
+		delete from FP_Hobby 
+		where member_no = #{member_no} and hobby_category_no = #{hobby_category_no}
+	</delete>
+	
+	
+	<select id="getHobby" resultType="int">
+		select hobby_category_no from FP_Hobby where member_no = #{member_no}
+	</select>
+	
+	<select id="getMyHobbyCategory" resultType="com.ja.finalproject.vo.HobbyCategoryVo">
+		select * from fp_hobby_category where hobby_category_no = #{hc_no}
+	</select>
 
 </mapper>

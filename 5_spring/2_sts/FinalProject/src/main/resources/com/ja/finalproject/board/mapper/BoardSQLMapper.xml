@@ -15,9 +15,38 @@
 		SYSDATE)
 	</insert>
 
+	<!-- 동적 쿼리(java에서 처리 대신 myBatis에서 처리하도록 만들기) -->
+	<!-- $:  ,#:pre comfiling해서 자동으로 ''(문자열연산) 넣어줌
+	 	-> #을 쓰는 것을 권장(injection방지) -->
 	<select id="getContents"
 		resultType="com.ja.finalproject.vo.BoardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
-		select * from FP_Board order by board_no DESC
+	
+	select * from (
+		select t1.*, ROWNUM as rnum from (
+			select * from FP_Board, FP_Member
+			where FP_Board.member_no = FP_Member.member_no
+			<if test="search_type != null and search_word != null">
+				<choose>
+					<when test="search_type == 'title'">
+						and FP_Board.board_title like '%' || #{search_word} || '%'	
+					</when>
+					<when test="search_type == 'content'">
+						and FP_Board.board_content like '%' || #{search_word} || '%'
+					</when>
+					<when test="search_type == 'nick'">
+						and FP_Member.member_nick like '%' || #{search_word} || '%'
+					</when>
+				</choose>
+			</if>
+			order by FP_Board.board_no DESC
+		) t1
+	) t2
+	<![CDATA[
+	where t2.rnum >= (#{page_num}-1)*10+1 
+	and t2.rnum <= #{page_num} * 10
+	]]>
+
+		
 	</select>
 
 	<select id="getContentByNo"

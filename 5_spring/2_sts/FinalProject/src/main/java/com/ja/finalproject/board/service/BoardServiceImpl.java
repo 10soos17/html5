@@ -25,7 +25,7 @@ public class BoardServiceImpl {
 		boardSQLMapper.writeContent(vo);
 	}
 
-	public ArrayList<HashMap<String, Object>> getContents() {
+	public ArrayList<HashMap<String, Object>> getContents(String search_type, String search_word, int page_num) {
 
 		// 자료 구조의 활용 ... 메모리 관리의 중요한 내용 ... 체크해 둘 것 ...
 
@@ -38,7 +38,7 @@ public class BoardServiceImpl {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 
 		// FP_Board table로부터 값 빼기
-		ArrayList<BoardVo> boardList = boardSQLMapper.getContents();
+		ArrayList<BoardVo> boardList = boardSQLMapper.getContents(search_type, search_word, page_num);
 
 		for (BoardVo boardVo : boardList) {
 			int memberNo = boardVo.getMember_no();

@@ -23,23 +23,29 @@
 			<div class="col"></div>
 			<div class="col-8">
 				<div class="row mt-5"><!-- 배너 -->
-					<div class="col">배너 공간</div>
+					<div class="col">
+						<img src="../resources/img/img03.jpeg" height="150px" align="middle">
+					</div>
 				</div>
+				
+				<form action="./mainPage.do" method="get">
 				<div class="row mt-2"><!-- 검색 -->
 					<div class="col">
-						<select class="form-select">
-							<option>제목</option>
-							<option>내용</option>
-							<option>닉네임</option>
+						<select name="search_type" class="form-select">
+							<option value ="title">제목</option>
+							<option value ="content">내용</option>
+							<option value ="nick">닉네임</option>
 						</select>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control">
+						<input name="search_word" type="text" class="form-control">
 					</div>
 					<div class="col d-grid">
-						<input type="button" value="검색" class="btn btn-primary">
+						<input type="submit" value="검색" class="btn btn-primary">
 					</div>
 				</div>
+				</form>
+				
 				<div class="row mt-3"><!-- 데이터 로우 -->
 					<div class="col">
 						<table class="table">
@@ -68,11 +74,11 @@
 						<nav>
 						  <ul class="pagination mb-0">
 						    <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-						    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						    <li class="page-item"><a class="page-link" href="#">4</a></li>
-						    <li class="page-item"><a class="page-link" href="#">5</a></li>
+						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=1">1</a></li>
+						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=2">2</a></li>
+						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=3">3</a></li>
+						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=4">4</a></li>
+						    <li class="page-item"><a class="page-link" href="./mainPage.do?page_num=5">5</a></li>
 						    <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
 						  </ul>
 						</nav>		

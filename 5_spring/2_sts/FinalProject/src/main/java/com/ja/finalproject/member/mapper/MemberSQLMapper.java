@@ -30,4 +30,14 @@ public interface MemberSQLMapper {
 	public ArrayList<HobbyCategoryVo> getCategoryList();
 	
 	public void registerHobby(HobbyVo vo);
+	
+	// ==========================================================================================
+	// ===============self try
+	public void deleteHobby(HobbyVo vo);
+	
+	public ArrayList<Integer> getHobby(int m_no);
+	
+	public HobbyCategoryVo getMyHobbyCategory(int hc_no);
+	
+	public void updateMyInfo(MemberVo thisVo);
 }

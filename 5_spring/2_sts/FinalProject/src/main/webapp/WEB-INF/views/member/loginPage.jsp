@@ -25,7 +25,7 @@
 				<div class="col-4">
 					<div class="row mt-3"><!-- 배너 로우 -->
 						<div class="col">
-							<img class="img-fluid" src="../resources/img/img01.png">
+							<img class="img-fluid" src="../resources/img/img02.jpeg">
 						</div>
 					</div>
 					

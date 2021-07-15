@@ -5,10 +5,12 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ja.finalproject.board.service.BoardServiceImpl;
 import com.ja.finalproject.vo.BoardVo;
@@ -26,10 +28,15 @@ public class BoardController {
 	
 	//로그인 성공시 or 로그아웃시 
 	@RequestMapping("mainPage.do")
-	public String mainPage(Model model) {
+	public String mainPage(
+			Model model, 
+			String search_type, 
+			String search_word,
+			@RequestParam(defaultValue = "1") int page_num){
 		// 할 것 많음
-
-		ArrayList<HashMap<String, Object>> contentList = boardService.getContents();
+		
+		ArrayList<HashMap<String, Object>> contentList = 
+				boardService.getContents(search_type, search_word, page_num);
 		model.addAttribute("contentList", contentList); //Q. request, session대신 model쓰는 이유??
 		
 		return "board/mainPage";
@@ -99,6 +106,8 @@ public class BoardController {
 		
 		return "redirect:./readContentPage.do?board_no=" + param.getBoard_no();
 	}
+	
+			
 }
 
 

@@ -14,7 +14,6 @@ import com.ja.finalproject.member.service.MemberServiceImpl;
 import com.ja.finalproject.vo.HobbyCategoryVo;
 import com.ja.finalproject.vo.MemberVo;
 
-
 //servlet-context.xml 등록
 
 @Controller
@@ -29,28 +28,28 @@ public class MemberController {
 	@Autowired
 	private MemberServiceImpl memberService;
 
-	//======첫화면 
+	// ======첫화면
 	@RequestMapping("loginPage.do")
 	public String loginPage() {
 
 		return "member/loginPage";
 	}
 
-	//======회원 가입 페이지 
+	// ======회원 가입 페이지
 	@RequestMapping("joinMemberPage.do")
 	public String joinMemberPage(Model model) {
-		
-		//취미 선택 리스트(db에서 불러와서 목록에 뿌리기)
+
+		// 취미 선택 리스트(db에서 불러와서 목록에 뿌리기)
 		ArrayList<HobbyCategoryVo> list = memberService.getHobbyCategoryList();
-		
-		model.addAttribute("hobbyCategoryList",list);
-		
+
+		model.addAttribute("hobbyCategoryList", list);
+
 		return "/member/joinMemberPage";
 	}
 
-	//======회원 가입 기입 후 sumbit 
+	// ======회원 가입 기입 후 sumbit
 	@RequestMapping("joinMemberProcess.do")
-	public String joinMemberProcess(MemberVo param, int [] hobby_category_no) {// MemberVo 멤버변수명과 일치해야 값 setting됨
+	public String joinMemberProcess(MemberVo param, int[] hobby_category_no) {// MemberVo 멤버변수명과 일치해야 값 setting됨
 
 		// 2 tier(큰 규모일수록 더 많은 tier)
 		// memberSQLMapper.joinMember(param);
@@ -64,7 +63,7 @@ public class MemberController {
 		return "member/joinMemberComplete";
 	}
 
-	//======login 시도
+	// ======login 시도
 	@RequestMapping("loginProcess.do")
 	public String loginProcess(HttpSession session, MemberVo param) {
 
@@ -74,8 +73,8 @@ public class MemberController {
 
 		if (sessionUser != null) {
 			// 인증 성공
-			session.setAttribute("sessionUser", sessionUser);//중요 
-		
+			session.setAttribute("sessionUser", sessionUser);// 중요
+
 			return "redirect:../board/mainPage.do";
 
 		} else {
@@ -85,15 +84,62 @@ public class MemberController {
 		}
 
 	}
-	//======logout 시도
+
+	// ======logout 시도
 	@RequestMapping("logoutProcess.do")
 	public String logoutProcess(HttpSession session) {
-		
+
 		session.invalidate();
-		
+
 		return "redirect:../board/mainPage.do";
 	}
 	
+	// ==========================================================================================
+	// ===============self try
 
+	@RequestMapping("readMyPage.do")
+	public String readMyPage(HttpSession session, Model model) {
+
+		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
+
+		ArrayList<HobbyCategoryVo> myList = memberService.getHobby(vo);
+
+		model.addAttribute("myHobbyCategoryList", myList);
+
+		return "member/readMyPage";
+	}
+	
+	//
+	@RequestMapping("editMyPage.do")
+	public String editMyPage(Model model) {
+
+		// 취미 선택 리스트(db에서 불러와서 목록에 뿌리기)
+		ArrayList<HobbyCategoryVo> list = memberService.getHobbyCategoryList();
+
+		model.addAttribute("hobbyCategoryList", list);
+
+		return "member/editMyPage";
+	}
+	
+	//
+	@RequestMapping("editMyPageProcess.do")
+	public String editMyPageProcess(HttpSession session, Model model, MemberVo vo, int[] hobby_category_no){
+		
+		//MemberVo vo = (MemberVo)session.getAttribute("sessionUser");
+		
+		MemberVo updateVo = memberService.updateMyInfo(vo, hobby_category_no);
+		session.setAttribute("sessionUser", updateVo);
+		
+		ArrayList<HobbyCategoryVo> myList = memberService.getHobby(updateVo);
+		model.addAttribute("myHobbyCategoryList", myList);
+
+		return "/member/readMyPage";
+	}
 
 }
+
+
+
+
+
+
