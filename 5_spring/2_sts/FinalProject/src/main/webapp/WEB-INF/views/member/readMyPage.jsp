@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,8 @@
 			</c:choose>
 			성별 : 
 			<input type="text" name="member_nick" value="${sessionUser.member_gender}" disabled><br>
-			생년월일 : <input type="date" name="member_birth" value="${sessionUser.member_birth}" disabled><br>
+			<!--  input type="date" name="member_birth" value="${sessionUser.member_birth}" disabled><br-->
+			생년월일 :<fmt:formatDate value="${sessionUser.member_birth}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/><br>
 			전화번호 : <input type="text" name="member_phone" value="${sessionUser.member_phone}" disabled><br>
 			E-Mail : <input type="text" name="member_email" value="${sessionUser.member_email}" disabled><br>
 			취미 :	

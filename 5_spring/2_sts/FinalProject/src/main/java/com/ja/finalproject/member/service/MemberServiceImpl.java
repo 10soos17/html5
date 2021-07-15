@@ -57,26 +57,30 @@ public class MemberServiceImpl {
 		return memberSQLMapper.getCategoryList();
 	}
 
-	// ==========================================================================================
+	// ==========================회원정보수정================================================================
 	// ===============self try
 	public ArrayList<HobbyCategoryVo> getHobby(MemberVo vo) {
 
-		ArrayList<HobbyCategoryVo> list = new ArrayList<>();
+		ArrayList<HobbyCategoryVo> hobbyCategoryList = new ArrayList<>();
 
 		ArrayList<Integer> hobbyList = memberSQLMapper.getHobby(vo.getMember_no());
 
 		for (int hc_no : hobbyList) {
 			HobbyCategoryVo hobbyCategoryVo = memberSQLMapper.getMyHobbyCategory(hc_no);
 			if (hobbyCategoryVo != null) {
-				list.add(hobbyCategoryVo);
-				System.out.println(hobbyCategoryVo.getHobby_category_name());
+				hobbyCategoryList.add(hobbyCategoryVo);
+				//System.out.println(hobbyCategoryVo.getHobby_category_name());
 			}
 		}
 
-		return list;
+		return hobbyCategoryList;
 	}
 	
-	//
+	//불러왔을 때 null값이면 안돌리게 수정할 것 
+	//hobby 기존 것과 새것 비교 
+	//(query)기존 것 불러오 select -> 
+	//(java)빠진 것 삭제(deleteSet) + 추가된 것 추가(addSet) -> 
+	//(query)delete + insert
 	public MemberVo updateMyInfo(MemberVo vo, int[] hobby_category_no) {
 
 		memberSQLMapper.updateMyInfo(vo);

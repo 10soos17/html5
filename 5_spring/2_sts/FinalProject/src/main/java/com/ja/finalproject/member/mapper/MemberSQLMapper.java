@@ -31,13 +31,14 @@ public interface MemberSQLMapper {
 	
 	public void registerHobby(HobbyVo vo);
 	
-	// ==========================================================================================
+	// ===============================회원정보수정===========================================================
 	// ===============self try
-	public void deleteHobby(HobbyVo vo);
 	
 	public ArrayList<Integer> getHobby(int m_no);
 	
 	public HobbyCategoryVo getMyHobbyCategory(int hc_no);
+	
+	public void deleteHobby(HobbyVo vo);
 	
 	public void updateMyInfo(MemberVo thisVo);
 }

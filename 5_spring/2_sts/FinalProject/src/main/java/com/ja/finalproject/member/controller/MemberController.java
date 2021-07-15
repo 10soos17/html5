@@ -24,7 +24,7 @@ public class MemberController {
 	// @Autowired
 	// private MemberSQLMapper memberSQLMapper;
 
-	// 3tier
+	// 3 tier
 	@Autowired
 	private MemberServiceImpl memberService;
 
@@ -94,7 +94,7 @@ public class MemberController {
 		return "redirect:../board/mainPage.do";
 	}
 	
-	// ==========================================================================================
+	// ==================================회원정보수정========================================================
 	// ===============self try
 
 	@RequestMapping("readMyPage.do")
@@ -103,7 +103,6 @@ public class MemberController {
 		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
 
 		ArrayList<HobbyCategoryVo> myList = memberService.getHobby(vo);
-
 		model.addAttribute("myHobbyCategoryList", myList);
 
 		return "member/readMyPage";

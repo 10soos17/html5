@@ -1,11 +1,13 @@
-package com.ja.finalproject.board.controller;
+package com.ja.finalproject.board.controller0;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +22,28 @@ import com.ja.finalproject.vo.MemberVo;
 
 @Controller
 @RequestMapping("/board/*")
-public class BoardController {
+public class BoardController0 {
 
 	@Autowired
 	private BoardServiceImpl boardService;
 	
-	//로그인 성공시 or 로그아웃시
-	//myBatis 쿼리할 때, 목적에 따라 조건문 설정해서 가져올 데이터 나눔
-	//1. 모든글 : 첫화면(DB(serviceIml->mapper,xml) 전체 글 목록 조회, 페이징 위해서 전체글 개수 count 값 쿼리 -> (controller)model에 데이터 저장-> jsp에 뿌려주기)
-	//2. 검색 화면 : 검색화면(DB(serviceIml->mapper,xml) 조건에 따른 글 목록 조회, 페이징 위해서 조건에 맞는 글 개수 count 값 쿼리 -> (controller)model에 데이터 저장
-	//*** 조건 검색 시, 넘어온 search_type, search_word 값 Model에 저장 -> (jsp)페이징할때 param에 붙여주기 
+	//로그인 성공시 or 로그아웃시 
 	@RequestMapping("mainPage.do")
 	public String mainPage(
+			HttpSession session,
 			Model model, 
 			String search_type, 
 			String search_word,
-			@RequestParam(defaultValue = "1") int page_num){
+			@RequestParam(defaultValue = "1") int page_num){//@RequestParam(defaultValue = "1") 
 		// 할 것 많음
 		
 		ArrayList<HashMap<String, Object>> contentList = 
 				boardService.getContents(search_type, search_word, page_num);
 		
+		System.out.println(page_num);
+		System.out.println(search_type);
+		System.out.println(search_word);
+
 		//전체 글 수 
 		int count = boardService.getContentCount(search_type, search_word, page_num);
 		//전체 페이지 수(각 페이지 10개 글)
@@ -55,14 +58,13 @@ public class BoardController {
 		if(endPage > totalPageCount){
 			endPage = totalPageCount;
 		}
-
-		String addParam = "";
+//		String addParam = "";
 		
-		if(search_type != null && search_word != null) {
-			addParam += "&search_type=" + search_type;
-			addParam += "&search_word=" + search_word;
-		}
-		model.addAttribute("addParam", addParam);
+//		if(search_type != null && search_word != null) {
+//			addParam += "&search_type=" + search_type;
+//			addParam += "&search_word=" + search_word;
+//		}
+//		model.addAttribute("addParam", addParam);
 		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("beginPage", beginPage);
@@ -70,6 +72,18 @@ public class BoardController {
 		model.addAttribute("totalPageCount", totalPageCount);
 		
 		model.addAttribute("contentList", contentList); //Q. request, session대신 model쓰는 이유??
+//		
+		model.addAttribute("search_type", search_type);
+		model.addAttribute("search_word", search_word);
+//		session.setAttribute("search_type", search_type);
+//		session.setAttribute("search_word", search_word);
+		//session.setAttribute("page_num", page_num);
+//		session.setAttribute("currentPage", currentPage);
+//		session.setAttribute("beginPage", beginPage);
+//		session.setAttribute("endPage", endPage);
+//		session.setAttribute("totalPageCount", totalPageCount);
+//		
+//		model.addAttribute("contentList", contentList);
 		
 		return "board/mainPage";
 	}
@@ -136,7 +150,6 @@ public class BoardController {
 		
 		boardService.updateContent(param);
 		
-		// 글 목록 저장 시, 링크 걸었던 주소로 연결   
 		return "redirect:./readContentPage.do?board_no=" + param.getBoard_no();
 	}
 	
