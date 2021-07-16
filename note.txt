@@ -1869,6 +1869,22 @@ Spring framework
 ===
 https://www.erdcloud.com/
 
+-<!-- $: #:pre comfiling해서 자동으로 ''넣어줌 -> #을 쓰는 것을 권장(injection방지) -->
+
+-	//select
+	//2개 이상의 매개변수를 넘길 때, 
+	//매개변수명 매핑시켜야 myBatis에서 동적쿼리 조건문에서 사용 가능
+	public ArrayList<BoardVo> getContents(
+			@Param("search_word") String search_word, 
+			@Param("select_type") String select_type);
+	
+-||: oracle 문법-문자열연산
+    ex. FP_Board.board_title like '%' || #{search_word} || '%'
+
+- xml에서 특수문자 처리 :<![CDATA[ ... ]]
+ ex. <![CDATA[
+  where t2.rnum 
+	]]>
 -변수명 관례
     service객체 만들때 클래스명 뒤에 주로 Impl 불여줌 but 생성된 객체 변수명에서는 impl 빼기
 
@@ -1894,3 +1910,19 @@ https://www.erdcloud.com/
     ex.
         java쪽에서 ...(,Model model) 인자로 값 받고 model.addAttribute("content",map);
         jsp쪽에서 ${content.boardVo.board_title} 로 값 읽을 수 있음 
+
+[2차] - 응용 및 API 활용 
+취미
+html 이스케이프 
+
+검색
+페이징
+
+비밀번호 암호화
+파일 업로드
+회원 가입 이메일(thread)
+접근 제어 - 에러페이지 처리
+Javascript 유효성 검사
+
+좋아요(추천) 
+리플(코멘트)
