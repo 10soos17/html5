@@ -103,7 +103,7 @@ public class BoardController {
 				continue;
 			}
 			
-			String rootFolderName = "C:/uploadFolder/";
+			String rootFolderName = "/Users/soos/Desktop/uploadFolder/";//"C:/uploadFolder/";
 			
 			//랜덤 파일 네임 만들기 : 충돌 방지 (시간 + 랜덤 활용)
 			String originalFilename = boardFile.getOriginalFilename();
@@ -202,10 +202,7 @@ public class BoardController {
 		MemberVo memberVo = (MemberVo)session.getAttribute("sessionUser");
 		int memberNo = memberVo.getMember_no();
 		vo.setMember_no(memberNo);
-		
-		
-		
-	
+
 		boardService.writeComment(vo);
 		
 		return "redirect:./readContentPage.do?board_no=" + vo.getBoard_no();

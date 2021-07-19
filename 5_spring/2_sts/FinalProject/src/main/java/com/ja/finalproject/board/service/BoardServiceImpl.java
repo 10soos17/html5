@@ -23,7 +23,8 @@ public class BoardServiceImpl {
 	private MemberSQLMapper memberSQLMapper;
 
 	public void writeContent(BoardVo vo, ArrayList<BoardImageVo> boardImageVoList) {
-		
+		//board DB PK 먼저 만들고 -> boardVo setting -> insert boardDB
+		//						-> BoardImageVo setting -> insert boardImageDB 
 		int board_no = boardSQLMapper.createBoardPK();
 		
 		vo.setBoard_no(board_no);
@@ -84,9 +85,10 @@ public class BoardServiceImpl {
 		return count;
 	}
 	
-	//게시판 글 클릭시, board_no로 board db정보 받아오고 
-	//board_no = member_no로 Member db정보 받기
-	//-> HashMap<String, Object>에 두 db정보 합치기 
+	//게시판 글 클릭시, board_no로 Board db정보 받아오고 
+	//board_no = member_no로 Member db정보 받아오고
+	//board_no = member_no로 BoardImage db 정보 받기 
+	//-> HashMap<String, Object>에 세 db정보 합치기 
 	public HashMap<String, Object> getContent(int board_no) {
 		
 		BoardVo boardVo = boardSQLMapper.getContentByNo(board_no);

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ja.finalproject.board.mapper.BoardSQLMapper"><!--class경로 -->
+
+	<select id="createBoardPK" resultType="int">
+		select
+		FP_Board_seq.nextval from Dual
+	</select>
+
+	<insert id="writeContent"><!-- id는 메소드명 -->
+		insert into FP_Board values(
+		#{board_no},
+		#{member_no},
+		#{board_title},
+		#{board_content},
+		0,
+		SYSDATE)
+	</insert>
+
+	<!-- 댓글 관련 -->
+	<insert id="writeComment">
+		insert into FP_Comment values(
+		FP_Comment_seq.nextval,
+		#{member_no},
+		#{board_no},
+		#{comment_content},
+		SYSDATE
+		)
+	</insert>
+
+	<delete id="deleteComment">
+		delete from FP_Comment
+		where comment_no = #{comment_no}
+	</delete>
+	
+	<update id="updateComment">
+		update FP_Comment
+		set comment_content = #{comment_content}
+		where comment_no = #{comment_no}
+	</update>
+
+	<select id="getCommentInfoByBoardNo"
+		resultType="com.ja.finalproject.vo.BoardCommentVo">
+		select * from FP_Comment
+		where board_no = #{board_no}
+	</select>
+
+	<!-- 좋아요 관련 -->
+	<!-- 해당 글 추천개수 확인 -->
+	<select id="getRecommendNo" resultType="int">
+		select count(*) from FP_Recommend
+		where board_no = #{board_no}
+	</select>
+	
+	<!-- 해당글을 회원이 추천했는지 여부 파악 -> 0이면 비우기, 아니면 채우기-->
+	<select id="checkRecommend" resultType="int">
+		select count(*) from FP_Recommend
+		where board_no = #{board_no}
+		and member_no = #{member_no}
+	</select>
+
+	<insert id="upRecommend">
+		insert into FP_Recommend values(
+		FP_Recommend_seq.nextval,
+		#{board_no},
+		#{member_no},
+		SYSDATE
+		)
+	</insert>
+	
+	<delete id="downRecommend">
+		delete from FP_Recommend
+		where board_no = #{board_no}
+		and member_no = #{member_no}
+	</delete>
+
+	<!-- 동적 쿼리(java에서 처리 대신 myBatis에서 처리하도록 만들기) -->
+	<!-- $: ,#:pre comfiling해서 자동으로 ''(문자열연산) 넣어줌 -> #을 쓰는 것을 권장(injection방지) -->
+	<select id="getContents"
+		resultType="com.ja.finalproject.vo.BoardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
+
+		select * from (
+		select t1.*, ROWNUM as rnum from (
+		select FP_Board.*
+		from FP_Board, FP_Member
+		where FP_Board.member_no = FP_Member.member_no
+		<if test="search_type != null and search_word != null">
+			<choose>
+				<when test="search_type == 'title'">
+					and FP_Board.board_title like '%' || #{search_word}
+					|| '%'
+				</when>
+				<when test="search_type == 'content'">
+					and FP_Board.board_content like '%' ||
+					#{search_word} || '%'
+				</when>
+				<when test="search_type == 'nick'">
+					and FP_Member.member_nick like '%' || #{search_word}
+					|| '%'
+				</when>
+			</choose>
+		</if>
+		order by board_no DESC
+		) t1
+		) t2
+	<![CDATA[
+	where t2.rnum >= (#{page_num}-1)*10+1 
+	and t2.rnum <= #{page_num} * 10
+	]]>
+
+	</select>
+
+	<select id="getContentCount" resultType="int">
+		select count(*) from FP_Board, FP_Member
+		where FP_Board.member_no =
+		FP_Member.member_no
+		<if test="search_type != null and search_word != null">
+			<choose>
+				<when test="search_type == 'title'">
+					and FP_Board.board_title like '%' || #{search_word}
+					|| '%'
+				</when>
+				<when test="search_type == 'content'">
+					and FP_Board.board_content like '%' ||
+					#{search_word} || '%'
+				</when>
+				<when test="search_type == 'nick'">
+					and FP_Member.member_nick like '%' || #{search_word}
+					|| '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<select id="getContentByNo"
+		resultType="com.ja.finalproject.vo.BoardVo">
+		select * from FP_Board where board_no = #{board_no}
+	</select>
+
+	<delete id="deleteContent">
+		delete from fp_board where board_no = #{board_no}
+	</delete>
+
+	<update id="updateContent">
+		update fp_board set board_title = #{board_title},
+		board_content = #{board_content} where board_no = #{board_no}
+	</update>
+
+	<update id="increaseReadCount">
+		update fp_board set board_readcount = board_readcount
+		+ 1 where board_no = #{board_no}
+	</update>
+
+	<insert id="registerImage">
+		insert into FP_BoardImage values(
+		FP_BoardImage_seq.nextval,
+		#{board_no},
+		#{image_url},
+		#{image_ori}
+		)
+	</insert>
+
+	<select id="getImageInfoByBoardNo"
+		resultType="com.ja.finalproject.vo.BoardImageVo">
+		select * from FP_BoardImage
+		where board_no = #{board_no}
+		order by image_no ASC
+	</select>
+	
+	
+	
+</mapper>
