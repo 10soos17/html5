@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.rubato.member.mapper.MemberSQLMapper">
+
+	<!-- RBT_Member_seq -->
+	<select id = "createMemberPK" resultType="int">
+		select RBT_Member_seq.nextval from Dual
+	</select>
+
+	<!-- RBT_Member table -->
+	<insert id="joinMember">
+		insert into RBT_Member values(
+		#{member_no},
+		#{member_id},
+		#{member_pw},
+		#{member_nick},
+		#{member_gender},
+		#{member_birth},
+		#{member_phone},
+		#{member_email},
+		SYSDATE
+		)
+	</insert>
+
+	<select id="getMemberByIdAndPw" resultType="com.ja.rubato.vo.MemberVo">
+		select RBT_Member.* from RBT_Member, RBT_MailAuth
+		where RBT_MailAuth.member_no = RBT_Member.member_no
+		and RBT_Member.member_id = #{member_id}
+		and RBT_Member.member_pw = #{member_pw}
+		and RBT_MailAuth.mailauth_complete = 'Y'
+	</select>
+
+	<select id="getMemberByNo" resultType="com.ja.rubato.vo.MemberVo">
+		select * from RBT_Member where member_no = #{no}
+	</select>
+
+	<!-- RBT_hobby_category table -->
+	<select id="getCategoryList" resultType="com.ja.rubato.vo.HobbyCategoryVo">
+		select * from RBT_hobby_category order by hobby_category_no ASC
+	</select>
+
+	<!-- RBT_Hobby table -->
+	<insert id="registerHobby">
+		insert into RBT_Hobby values(
+		RBT_Hobby_seq.nextval,
+		#{member_no},
+		#{hobby_category_no}
+		)
+	</insert>
+
+	<!-- RBT_MailAuth table -->
+	<insert id="createMailAuthInfo">
+		insert into RBT_MailAuth values(
+			RBT_MailAuth_seq.nextval,
+			#{member_no},
+			#{mailauth_key},
+			'N',
+			Null
+		)
+	</insert>
+
+	<update id="certifyMail">
+		update RBT_MailAuth
+		set mailauth_complete = 'Y', mailauth_date = SYSDATE
+		where mailauth_key = #{mailauth_key}
+	</update>
+
+</mapper>

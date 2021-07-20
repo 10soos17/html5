@@ -1,7 +1,7 @@
---DDL 정의 
---(0707 ~ ) 
+--DDL 정의
+--(0707 ~ )
 
---1.FP_Member Table 스키마 
+--1.FP_Member Table 스키마
 
 drop table FP_Member;
 
@@ -20,20 +20,21 @@ create table FP_Member(
 drop sequence FP_Member_seq;
 create sequence FP_Member_seq;
 
+commit;
 --test
 
 select * from FP_Member;
 
 --회원 가입 쿼리
 insert into FP_Member values(
-    FP_MEMBER_SEQ.nextval, 
-    's001', 
-    '1111', 
-    '한조', 
-    'M', 
-    '90-11-11', 
-    '010', 
-    'ssss@sss.ss', 
+    FP_MEMBER_SEQ.nextval,
+    's001',
+    '1111',
+    '한조',
+    'M',
+    '90-11-11',
+    '010',
+    'ssss@sss.ss',
     SYSDATE
 );
 
@@ -74,7 +75,7 @@ order by board_no desc;
 
 update FP_Board set member_no = '2' where member_no = '5';
 
---글 작성 쿼리 
+--글 작성 쿼리
 insert into FP_Board values(
     FP_Board_seq.nextval,
     2,
@@ -104,7 +105,7 @@ commit;
 
 
 ----------------------------
---3.Hobby_Category Table 스키마 
+--3.Hobby_Category Table 스키마
 drop table FP_Hobby_Category;
 create table FP_Hobby_Category(
     hobby_category_no NUMBER,
@@ -125,7 +126,7 @@ commit;
 
 select * from fp_hobby_category order by hobby_category_no ASC;
 
---4. Hobby able 스키마 
+--4. Hobby able 스키마
 drop table FP_Hobby;
 create table FP_Hobby(
     hobby_no NUMBER,
@@ -173,8 +174,8 @@ select * from(
     select t1.*, ROWNUM as rnum from(
         select * from FP_Board order by board_no desc
     ) t1
-) t2 
-where t2.rnum >= (2-1)*10+1 and t2.rnum <= 2*10; 
+) t2
+where t2.rnum >= (2-1)*10+1 and t2.rnum <= 2*10;
 
 select count(*) from fp_board;
 
@@ -232,3 +233,62 @@ insert into FP_Comment values(
      SYSDATE
 );
 commit;
+
+--7. FP_Recommend table
+DROP TABLE FP_Recommend;
+CREATE TABLE FP_Recommend(
+    recommend_no NUMBER,
+    board_no NUMBER,
+    member_no NUMBER,
+    recommend_date DATE
+);
+
+drop sequence FP_Recommend_seq;
+create sequence FP_Recommend_seq;
+
+select * from FP_Recommend;
+
+insert into FP_Recommend values(
+    FP_Recommend_seq.nextval,
+    336,
+    1,
+    SYSDATE
+);
+
+commit;
+
+--8. FP_MailAuth table
+drop table FP_MailAuth;
+create table FP_MailAuth(
+    mailauth_no NUMBER,
+    member_no NUMBER,
+    mailauth_key VARCHAR2(100),
+    mailauth_complete VARCHAR2(4),
+    mailauth_date DATE
+);
+
+drop sequence FP_MailAuth_seq;
+create sequence FP_MailAuth_seq;
+
+commit;
+
+--test
+--회원 가입시
+insert into FP_MailAuth values(
+	FP_MailAuth_seq.nextval,
+    3,
+    'aweff-afwefwee-fweewfwefwf',
+    'N',
+    Null
+);
+--
+
+update FP_MailAuth set mailauth_complete = 'Y', mailauth_date = SYSDATE
+where mailauth_key = 'aweff-afwefwee-fweewfwefwf';
+
+select  * from FP_Member, FP_MailAuth
+where FP_mailauth.member_no = FP_Member.member_no
+and FP_Member.member_id = 's001'
+and FP_Member.member_pw = '1'
+and FP_MailAuth.mailauth_complete = 'Y'
+;

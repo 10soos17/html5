@@ -1912,17 +1912,36 @@ https://www.erdcloud.com/
         jsp쪽에서 ${content.boardVo.board_title} 로 값 읽을 수 있음 
 
 [2차] - 응용 및 API 활용 
-취미
-html 이스케이프 
+1.취미 : db category table로 취미 목록 관리 
+2.html 이스케이프 
 
-검색
-페이징
+3.검색 :
+4.페이징 : 
 
-비밀번호 암호화
-파일 업로드
-회원 가입 이메일(thread)
-접근 제어 - 에러페이지 처리
-Javascript 유효성 검사
+5.비밀번호 암호화 : 
+6.파일 업로드 : 
+7.회원 가입 이메일(thread) 
+: 구글로그인 실습(https://velog.io/@max9106/Spring-Boot-Gmail-SMTP-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%EB%A9%94%EC%9D%BC%EB%B3%B4%EB%82%B4%EA%B8%B0)
+  + .xml 에 추가(메일주소, key : lkuqhezhbxdkopnl)
+8.접근 제어 - 에러페이지 처리 : interceptor, 후반부에 할 것 
 
-좋아요(추천) 
-리플(코멘트)
+9.Javascript 유효성 검사 : 
+
+10.좋아요(추천) 
+11.리플(코멘트)
+
+* String, StringBuilder, StringBuffer의 차이
+* vanilla js(표준)
+
+--------
+[루바토실습]
+페이지 4개만 있음 -> 나머지 구현
+테이블 새로 만들어도 됨!
+
+1.회원가입
+2.로그인
+3.자유게시판
+4.글쓰기 보기 수정(파일 업로드 나중에 해도 됨)
+5.리플
++
+기타 등등 하고싶은 것들 

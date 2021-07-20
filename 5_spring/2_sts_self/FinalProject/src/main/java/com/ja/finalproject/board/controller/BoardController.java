@@ -33,6 +33,7 @@ public class BoardController {
 	@Autowired
 	private BoardServiceImpl boardService;
 
+	//==============================자유게시판 
 	// 로그인 성공시 or 로그아웃시
 	// myBatis 쿼리할 때, 목적에 따라 조건문 설정해서 가져올 데이터 나눔
 	// 1. 모든글 : 첫화면(DB(serviceIml->mapper,xml) 전체 글 목록 조회, 페이징 위해서 전체글 개수 count 값 쿼리
@@ -80,7 +81,41 @@ public class BoardController {
 
 		return "board/mainPage";
 	}
+	
+	//==============================게시판 글 목록 클릭 시
+	@RequestMapping("readContentPage.do")
+	public String readContentPage(int board_no, Model model, HttpSession session) {
 
+		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
+		int loginMember_no;
+		
+		//System.out.println("readContentPageCheck"+vo);
+		
+		if(vo == null) {//로그인 안한 경우 
+			loginMember_no = -1;
+			boardService.increaseReadCount(board_no);
+
+		}else {	//로그인 한 경우 
+			loginMember_no = vo.getMember_no();
+			// 조회수 증가
+			HashSet<Integer> visited = (HashSet) session.getAttribute("visited");
+	
+			if (!visited.contains(board_no)) {
+				boardService.increaseReadCount(board_no);
+				visited.add(board_no);
+				// System.out.println("first visited"+ board_no);
+			}
+		}
+		// 조회
+		HashMap<String, Object> map = boardService.getContent(board_no, loginMember_no);
+		
+		model.addAttribute("content", map);
+		
+
+		return "board/readContentPage";
+	}
+	
+	//==============================글쓰기 관련 
 	// mainPage.do에서 글쓰기 클릭 시
 	@RequestMapping("writeContentPage.do")
 	public String writeContentPage() {
@@ -90,60 +125,59 @@ public class BoardController {
 
 	// writeContentPage.do에서 submit 시
 	@RequestMapping("writeContentProcess.do")
-	public String writeContentProcess(BoardVo param, MultipartFile [] board_files ,HttpSession session) {
-		
-		ArrayList<BoardImageVo> boardImageVoList = 
-				new ArrayList<BoardImageVo>();
-		
-		//"C:/uploadFolder/aaa.jpg"	
+	public String writeContentProcess(BoardVo param, MultipartFile[] board_files, HttpSession session) {
 
-		//파일 업로드 
-		for(MultipartFile boardFile : board_files) {
-			
-			//예외처리: 하나도 안 날려도 한바퀴는 돈다.
-			if(boardFile.isEmpty()) {
+		ArrayList<BoardImageVo> boardImageVoList = new ArrayList<BoardImageVo>();
+
+		// "C:/uploadFolder/aaa.jpg"
+
+		// 파일 업로드
+		for (MultipartFile boardFile : board_files) {
+
+			// 예외처리: 하나도 안 날려도 한바퀴는 돈다.
+			if (boardFile.isEmpty()) {
 				continue;
 			}
-			
-			String rootFolderName = "/Users/soos/Desktop/uploadFolder/";//"C:/uploadFolder/";
-			
-			//랜덤 파일 네임 만들기 : 충돌 방지 (시간 + 랜덤 활용)
+
+			String rootFolderName = "/Users/soos/Desktop/uploadFolder/";// "C:/uploadFolder/";
+
+			// 랜덤 파일 네임 만들기 : 충돌 방지 (시간 + 랜덤 활용)
 			String originalFilename = boardFile.getOriginalFilename();
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 			String uuidName = UUID.randomUUID().toString();
-			long currentTimeMillis  = System.currentTimeMillis();
+			long currentTimeMillis = System.currentTimeMillis();
 			String randomFileName = uuidName + "_" + currentTimeMillis + ext;
-			
-			//오늘 날짜 폴더 만들기 
+
+			// 오늘 날짜 폴더 만들기
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			String todayFolderName = sdf.format(today);
 			String uploadFolderName = rootFolderName + todayFolderName;
-			
-			File uploadFolder = new File(uploadFolderName); 
-			
-			if(!uploadFolder.exists()) {
+
+			File uploadFolder = new File(uploadFolderName);
+
+			if (!uploadFolder.exists()) {
 				uploadFolder.mkdirs();
 			}
-			
+
 			String saveFilePathName = uploadFolderName + "/" + randomFileName;
-			
+
 			try {
 				boardFile.transferTo(new File(saveFilePathName));
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			//데이터 
+
+			// 데이터
 			BoardImageVo boardImageVo = new BoardImageVo();
 			boardImageVo.setImage_ori(originalFilename);
 			boardImageVo.setImage_url(todayFolderName + "/" + randomFileName);
-		
+
 			boardImageVoList.add(boardImageVo);
 		}
-		
-		//아래 데이터 처리
-		
+
+		// 아래 데이터 처리
+
 		// 공부해야 할 부분
 
 		MemberVo sessionUser = (MemberVo) session.getAttribute("sessionUser");
@@ -157,28 +191,7 @@ public class BoardController {
 		return "redirect:./mainPage.do";
 	}
 
-	// 게시판 글 목록 클릭 시
-	@RequestMapping("readContentPage.do")
-	public String readContentPage(int board_no, Model model, HttpSession session) {
-		
-		MemberVo vo = (MemberVo)session.getAttribute("sessionUser");
-		int loginMember_no = vo.getMember_no();
-		// 조회수 증가
-		HashSet<Integer> visited = (HashSet)session.getAttribute("visited");
-
-		if(!visited.contains(board_no)) {
-			boardService.increaseReadCount(board_no);	
-			visited.add(board_no);
-			//System.out.println("first visited"+ board_no);
-		}
-		// 조회
-		HashMap<String, Object> map = boardService.getContent(board_no, loginMember_no);
-
-		model.addAttribute("content", map);
-
-		return "board/readContentPage";
-	}
-
+	
 	@RequestMapping("deleteContentProcess.do")
 	public String deleteContentProcess(int board_no) {
 
@@ -187,12 +200,12 @@ public class BoardController {
 		return "redirect:./mainPage.do";
 	}
 
-	@RequestMapping("updateContentPage.do") 
+	@RequestMapping("updateContentPage.do")
 	public String updateContentPage(int board_no, Model model, HttpSession session) {
 
-		MemberVo vo = (MemberVo)session.getAttribute("sessionUser");
+		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
 		int loginMember_no = vo.getMember_no();
-		
+
 		HashMap<String, Object> map = boardService.getContent(board_no, loginMember_no);
 
 		model.addAttribute("content", map);
@@ -208,62 +221,64 @@ public class BoardController {
 		return "redirect:./readContentPage.do?board_no=" + param.getBoard_no();
 	}
 	
+	//==============================댓글 관련 
 	@RequestMapping("writeComment.do")
 	public String writeComment(BoardCommentVo param, HttpSession session) {
-		
-		//System.out.println(param.getComment_content());
-		
-		MemberVo memberVo = (MemberVo)session.getAttribute("sessionUser");
+
+		// System.out.println(param.getComment_content());
+
+		MemberVo memberVo = (MemberVo) session.getAttribute("sessionUser");
 		int memberNo = memberVo.getMember_no();
 		param.setMember_no(memberNo);
 
 		boardService.writeComment(param);
-		
+
 		return "redirect:./readContentPage.do?board_no=" + param.getBoard_no();
 	}
-	
+
 	@RequestMapping("deleteComment.do")
 	public String deleteComment(int comment_no, int board_no) {
 		boardService.deleteComment(comment_no);
-		
+
 		return "redirect:./readContentPage.do?board_no=" + board_no;
 	}
-	
+
 	@RequestMapping("updateCommentPage.do")
 	public String updateCommentPage(BoardCommentVo param, int board_no, Model model, HttpSession session) {
-		
-		MemberVo vo = (MemberVo)session.getAttribute("sessionUser");
+
+		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
 		int loginMember_no = vo.getMember_no();
-		
+
 		HashMap<String, Object> map = boardService.getContent(board_no, loginMember_no);
 
 		model.addAttribute("content", map);
-		
-	return  "board/updateCommentPage";
+
+		return "board/updateCommentPage";
 	}
-	
+
 	@RequestMapping("updateCommentProcess.do")
-	public String updateCommentProcess(int board_no, String comment_content,int comment_no){
-		
-		//System.out.println("comment_content: "+comment_content+"board_no"+board_no+"comment_no"+comment_no);
+	public String updateCommentProcess(int board_no, String comment_content, int comment_no) {
+
+		// System.out.println("comment_content:
+		// "+comment_content+"board_no"+board_no+"comment_no"+comment_no);
 		boardService.updateComment(comment_content, comment_no);
-		
+
 		return "redirect:./readContentPage.do?board_no=" + board_no;
 	}
-	
+
+	//==============================종아요 관련 
 	@RequestMapping("changeRecommend.do")
 	public String changeRecommend(int board_no, int member_no, int recommend) {
-		
-		if(recommend == 0) {
+
+		if (recommend == 0) {
 			boardService.upRecommend(board_no, member_no);
-			//System.out.println("up"+recommend);
-		}else {
+			// System.out.println("up"+recommend);
+		} else {
 			boardService.downRecommend(board_no, member_no);
-			//System.out.println("down"+recommend);
+			// System.out.println("down"+recommend);
 		}
-		
+
 		return "redirect:./readContentPage.do?board_no=" + board_no;
 	}
-	
-	
+
 }
