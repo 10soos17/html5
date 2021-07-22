@@ -20,15 +20,15 @@
 <body>
 
 	<jsp:include page="../commons/globalNav.jsp"></jsp:include>
-	
+
 		<div style="width: 1200px; margin: 0 auto">
 		<div class="row">
-		
+
 			<div class="col"></div>
 			<div class="col-8">
-			
+
 				<div class="row mt-5"><!-- 배너 -->
-				
+
 					<div class="col">
 					<div class="row mt-5">
 						<div class="col"></div>
@@ -39,13 +39,13 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mt-3"><!-- 데이터 로우 -->
 					<div class="col">
 					<div class="row mt-5">
 						<div class="col"></div>
 						<div class="col-6">
-							<h2>제목 : ${content.boardVo.board_title}         
+							<h2>제목 : ${content.boardVo.board_title}
 							작성자 : ${content.memberVo.member_nick}</h2>
 						</div>
 						<div class="col"></div>
@@ -58,24 +58,24 @@
 					<div class="row mt-2">
 						<div class="col"></div>
 						<div class="col-6">
-														
+
 							작성일 : <fmt:formatDate value="${content.boardVo.board_writedate}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
 							조회수: ${content.boardVo.board_readcount}<br>
-	
+
 							<c:forEach items="${content.boardImageVoList}" var="boardImageVo">
 								<img src="/upload/${boardImageVo.image_url}"><br>
 							</c:forEach>
-						
+
 							<br> 내용 :
 							<br> ${content.boardVo.board_content}
 							<br>
-						
+
 						</div>
 						<div class="col"></div>
 						</div>
 					</div>
-				</div>	
-				
+				</div>
+
 				<div class="row mt-3"><!-- 데이터 로우 -->
 					<div class="col">
 					<div class="row mt-5">
@@ -85,7 +85,7 @@
 							<!-- 좋아요 표시, 카운트 -->
 							<!-- 로그인 여부 -->
 							<!-- 클릭 : 빨간색, / 재클릭 : 빈, -->
-							<!-- db: table생성 
+							<!-- db: table생성
 							ex.1번회원이 1번글 추천시 추천글 카운트+
 								카운트 읽기:
 								추천여부확인: select * from table where m_no="" and b_no =""; 개수 나오면 추천한것, 안나오면 추천하지 않은 것
@@ -93,16 +93,16 @@
 								취소: delete from table where m_no="" and b_no="";
 							-->
 							<form action="./changeRecommend.do" method="post">
-						
+
 								<c:choose>
 									<c:when test="${!empty sessionUser && sessionUser.member_no != content.memberVo.member_no}">
-											<input type="hidden" name="board_no" value="${content.boardVo.board_no}"> 
+											<input type="hidden" name="board_no" value="${content.boardVo.board_no}">
 											<input type="hidden" name="member_no" value="${sessionUser.member_no}">
 										<c:choose>
 											<c:when test="${content.recommendCheck > 0}">
 												<Button name="recommend" value="${content.recommendCheck}">
 													<i class="bi bi-heart-fill fs-1"></i>
-												</button>
+												</Button>
 						   						좋아요 수: ${content.recommendNo}
 											</c:when>
 											<c:otherwise>
@@ -138,16 +138,16 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mt-1"><!-- 데이터 로우 -->
 					<div class="col">
 					<div class="row mt-1">
 						<div class="col"></div>
 						<div class="col-6">
 						<!--
-						보여줄때 : board_no(board) 
+						보여줄때 : board_no(board)
 						작성: 가져오기 member_no(login user session) + board_no(board) & insert(recommend)-->
-					
+
 						<!-- 1. 리플 -->
 						<!-- 로그인해야보이도록 할 부분 -->
 						<hr>
@@ -158,44 +158,44 @@
 								<textarea name="comment_content" rows="4" cols="40"></textarea>
 								<input type="submit" value="댓글 작성">
 							</form>
-					
+
 						</c:if>
-					
+
 						<hr>
-					
+
 						<c:forEach items="${content.boardCommentVoList}" var="boardCommentVo">
-					
-							<input type="text" name="comment_content" value="${boardCommentVo.comment_content}" style="border-color:rgb(0,0,0,0); background-color: rgb(0,0,0,0);" disabled> 
+
+							<input type="text" name="comment_content" value="${boardCommentVo.comment_content}" style="border-color:rgb(0,0,0,0); background-color: rgb(0,0,0,0);" disabled>
 							<br>
-							||작성자 : ${content.boardCommentMemberVoList.get(content.boardCommentVoList.indexOf(boardCommentVo)).member_nick} 
+							||작성자 : ${content.boardCommentMemberVoList.get(content.boardCommentVoList.indexOf(boardCommentVo)).member_nick}
 							||작성일 : <fmt:formatDate value="${boardCommentVo.comment_writedate}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
-							
+
 							<c:if test="${sessionUser.member_no == content.boardCommentMemberVoList.get(content.boardCommentVoList.indexOf(boardCommentVo)).member_no}">
 								<form action="./updateCommentPage.do" method="post">
-									<input type="hidden" name="board_no" value="${content.boardVo.board_no}"> 
+									<input type="hidden" name="board_no" value="${content.boardVo.board_no}">
 									<input type="hidden" name="comment_no" value="${boardCommentVo.comment_no}">
 									<button name="" value="수정">수정</button>
 								</form>
 								<form action="./deleteComment.do" method="post">
-									<input type="hidden" name="board_no" value="${content.boardVo.board_no}"> 
+									<input type="hidden" name="board_no" value="${content.boardVo.board_no}">
 									<input type="hidden" name="comment_no" value="${boardCommentVo.comment_no}">
 									<button name="" value="삭제">삭제</button>
 								</form>
 							</c:if>
 							<hr>
-					
+
 						</c:forEach>
 
-						
+
 						</div>
 						<div class="col"></div>
 						</div>
 					</div>
 				</div>
-				
+
 				</div>
 				<div class="col"></div>
-				
+
 			</div>
 		</div>
 

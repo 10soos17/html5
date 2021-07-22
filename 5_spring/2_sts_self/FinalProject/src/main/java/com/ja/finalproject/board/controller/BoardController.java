@@ -33,7 +33,7 @@ public class BoardController {
 	@Autowired
 	private BoardServiceImpl boardService;
 
-	//==============================자유게시판 
+	//==============================자유게시판
 	// 로그인 성공시 or 로그아웃시
 	// myBatis 쿼리할 때, 목적에 따라 조건문 설정해서 가져올 데이터 나눔
 	// 1. 모든글 : 첫화면(DB(serviceIml->mapper,xml) 전체 글 목록 조회, 페이징 위해서 전체글 개수 count 값 쿼리
@@ -81,25 +81,25 @@ public class BoardController {
 
 		return "board/mainPage";
 	}
-	
+
 	//==============================게시판 글 목록 클릭 시
 	@RequestMapping("readContentPage.do")
 	public String readContentPage(int board_no, Model model, HttpSession session) {
 
 		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
 		int loginMember_no;
-		
+
 		//System.out.println("readContentPageCheck"+vo);
-		
-		if(vo == null) {//로그인 안한 경우 
+
+		if(vo == null) {//로그인 안한 경우
 			loginMember_no = -1;
 			boardService.increaseReadCount(board_no);
 
-		}else {	//로그인 한 경우 
+		}else {	//로그인 한 경우
 			loginMember_no = vo.getMember_no();
 			// 조회수 증가
 			HashSet<Integer> visited = (HashSet) session.getAttribute("visited");
-	
+
 			if (!visited.contains(board_no)) {
 				boardService.increaseReadCount(board_no);
 				visited.add(board_no);
@@ -108,14 +108,14 @@ public class BoardController {
 		}
 		// 조회
 		HashMap<String, Object> map = boardService.getContent(board_no, loginMember_no);
-		
+
 		model.addAttribute("content", map);
-		
+
 
 		return "board/readContentPage";
 	}
-	
-	//==============================글쓰기 관련 
+
+	//==============================글쓰기 관련
 	// mainPage.do에서 글쓰기 클릭 시
 	@RequestMapping("writeContentPage.do")
 	public String writeContentPage() {
@@ -191,7 +191,7 @@ public class BoardController {
 		return "redirect:./mainPage.do";
 	}
 
-	
+
 	@RequestMapping("deleteContentProcess.do")
 	public String deleteContentProcess(int board_no) {
 
@@ -220,8 +220,8 @@ public class BoardController {
 
 		return "redirect:./readContentPage.do?board_no=" + param.getBoard_no();
 	}
-	
-	//==============================댓글 관련 
+
+	//==============================댓글 관련
 	@RequestMapping("writeComment.do")
 	public String writeComment(BoardCommentVo param, HttpSession session) {
 
@@ -266,7 +266,7 @@ public class BoardController {
 		return "redirect:./readContentPage.do?board_no=" + board_no;
 	}
 
-	//==============================종아요 관련 
+	//==============================종아요 관련
 	@RequestMapping("changeRecommend.do")
 	public String changeRecommend(int board_no, int member_no, int recommend) {
 

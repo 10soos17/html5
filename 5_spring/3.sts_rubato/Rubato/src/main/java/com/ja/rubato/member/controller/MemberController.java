@@ -97,7 +97,7 @@ public class MemberController {
 			session.setAttribute("sessionUser", sessionUser);
 			session.setAttribute("visited", visited);
 		
-			return "board/mainPage"; //"redirect:../board/mainPage.do";
+			return "redirect:../member/index.do";//board/mainPage"; //
 			
 		}else {
 			//인증 실패

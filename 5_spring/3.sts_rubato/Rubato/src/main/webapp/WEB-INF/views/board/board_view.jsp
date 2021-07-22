@@ -1,179 +1,189 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
 <meta charset="utf-8">
 <title>클래식기타 커뮤니티</title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<link rel="stylesheet" type="text/css" href="css/header.css">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/header.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/footer.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/board_left.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/board_view_main.css">
 </head>
 <body>
-<div id="wrap">
-<header>
-  <a href="index.html"><img id="logo" src="img/logo.png"></a>
-<nav id="top_menu">
-  HOME | LOGIN | JOIN | NOTICE
-</nav>
-<nav id="main_menu">
-  <ul>
-    <li><a href="board_list.html">자유 게시판</a></li>
-    <li><a href="#">기타 연주</a></li>
-    <li><a href="#">공동 구매</a></li>
-    <li><a href="#">연주회 안내</a></li>
-    <li><a href="#">회원 게시판</a></li>
-  </ul>
-</nav>
-</header> <!-- header -->
-<aside>
-  <article id="login_box">
-    <img id="login_title" src="img/ttl_login.png">
-    <div id="input_button">
-    <ul id="login_input">
-      <li><input type="text"></li>
-      <li><input type="password"></li>
-    </ul>
-    <img id="login_btn" src="img/btn_login.gif">
-    </div> 
-    <div class="clear"></div>
-    <div id="join_search">
-      <img src="img/btn_join.gif">
-      <img src="img/btn_search.gif">
-    </div>
-  </article>
-  <article id="guestbook">
-    <div id="guestbook_title">
-      <img src="img/ttl_memo.gif">
-    </div>
-    <ul>
-      <li>안녕하세요!</li>
-      <li>안녕하세요!</li>
-      <li>안녕하세요!</li>
-      <li>안녕하세요!</li>
-    </ul>
-  </article>
-</aside>
 
-<section id="main">
-  <img src="img/main_img.png">
-  <section id="notice_free_youtube">
-    <article id="notice"> 	<!-- 공지사항 -->
-      <div class="latest_title">
-        <img class="latest_img" src="img/latest1.gif">
-        <img class="more" src="img/more.gif">
-        <div class="clear"></div>					
-      </div>
-      <div class="latest_content">
-        <img class="image" src="img/book_pen.gif">
-        <ul class="list">
-          <li>
-            <div class="subject">루바토 개편과 사이트 이용...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>								
-          <li>
-            <div class="subject">루바토 개편과 사이트 이용...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>		
-          <li>
-            <div class="subject">루바토 개편과 사이트 이용...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>	
-          <li>
-            <div class="subject">루바토 개편과 사이트 이용...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>				
-        </ul>							
-      </div>
-    </article>
-    <article id="free"> 	<!—자유 게시판 -->
-      <div class="latest_title">
-        <img class="latest_img" src="img/latest2.gif">
-        <img class="more" src="img/more.gif">
-        <div class="clear"></div>					
-      </div>
-      <div class="latest_content">
-        <img class="image" src="img/book_pen.gif">
-        <ul class="list">
-          <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>		
-          </li>
-          <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>		
-          <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>	
-          <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
-            <div class="clear"></div>	
-          </li>								
-        </ul>							
-      </div>
-    </article>			
-    <article id="youtube">	    <!—YOUTUBE 동영상 -->		
-      <div class="latest_title">
-        <img class="latest_img" src="img/latest3.gif">
-        <img class="more" src="img/more.gif">
-        <div class="clear"></div>					
-      </div>				
-      <img id="youtube_img" src="img/bach.jpg">
-    </article>
-  </section> <!-- notice_free_youtube -->
-  <section id="gallery">
-    <img src="img/latest4.gif">
-    <div id="gallery_box">
-      <div id="gallery_list">
-        <div class="items">
-          <ul>
-            <li><img src="img/img1.jpg"></li>
-            <li>기타 페스티벌 4중주</li>
-          </ul>
-        </div>
-        <div class="items">
-          <ul>
-            <li><img src="img/img1.jpg"></li>
-            <li>기타 페스티벌 4중주</li>
-          </ul>
-        </div>
-        <div class="items">
-          <ul>
-            <li><img src="img/img1.jpg"></li>
-            <li>기타 페스티벌 4중주</li>
-          </ul>
-        </div>
-      </div> <!-- galley_list -->
-    </div> <!-- gallery_box -->		
-  </section> <!-- gallery -->
-</section> <!-- section main -->
-<div class="clear"></div>
+	<div id="wrap">
+		<jsp:include page="../commons/header.jsp"></jsp:include>
 
-<footer>
-  <img id="footer_logo" src="img/footer_logo.gif">
-  <ul id="address">
-    <li>서울시 강남구 삼성동 1234 우 : 123-1234</li>  
-    <li>TEL : 031-123-1234  Email : email@domain.com</li>
-    <li>COPYRIGHT (C) 루바토 ALL RIGHTS RESERVED</li>
-  </ul>
-  <ul id="footer_sns">
-    <li><img src="img/facebook.gif"></li>  
-    <li><img src="img/blog.gif"></li>
-    <li><img src="img/twitter.gif"></li>
-  </ul>
-</footer> <!-- footer -->
 
-</div> <!-- wrap -->
+		<section id="main">
+			<img src="../resources/img/comm.gif">
+			<h2 id="board_title">자유 게시판</h2>
+			<div id="view_title_box">
+				<span id="info">
+					<h2>제목 : ${content.boardVo.board_title} 작성자 :
+						${content.memberVo.member_nick}</h2>
+				</span> <span>작성일 : <fmt:formatDate
+						value="${content.boardVo.board_writedate}"
+						pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" /> 조회수:
+					${content.boardVo.board_readcount}
+				</span><br>
+			</div>
+			<p id="view_content">
+				<c:forEach items="${content.boardImageVoList}" var="boardImageVo">
+					<img src="/board_upload/${boardImageVo.image_url}">
+					<br>
+				</c:forEach>
+				<br> ${content.boardVo.board_content}
+			</p>
+			<!-- 2. -->
+			<!-- 좋아요 표시, 카운트 -->
+			<!-- 로그인 여부 -->
+			<!-- 클릭 : 빨간색, / 재클릭 : 빈, -->
+			<!-- db: table생성 
+							ex.1번회원이 1번글 추천시 추천글 카운트+
+								카운트 읽기:
+								추천여부확인: select * from table where m_no="" and b_no =""; 개수 나오면 추천한것, 안나오면 추천하지 않은 것
+								추천: insert ...member_no, board_no
+								취소: delete from table where m_no="" and b_no="";
+							-->
+
+			<form action="./changeRecommend.do" method="post">
+
+				<c:choose>
+					<c:when
+						test="${!empty sessionUser && sessionUser.member_no != content.memberVo.member_no}">
+						<input type="hidden" name="board_no"
+							value="${content.boardVo.board_no}">
+						<input type="hidden" name="member_no"
+							value="${sessionUser.member_no}">
+						<c:choose>
+							<c:when test="${content.recommendCheck > 0}">
+								<Button name="recommend" value="${content.recommendCheck}">
+									<i class="bi bi-heart-fill fs-1"></i>
+								</Button>
+								좋아요 수: ${content.recommendNo}
+							</c:when>
+							<c:otherwise>
+								<Button name="recommend" value="${content.recommendCheck}">
+									<i class="bi bi-heart text-danger fs-1"></i>
+								</Button>
+								좋아요 수: ${content.recommendNo}
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<Button disabled>
+							<i class="bi bi-heart text-danger fs-1"></i>
+						</Button>
+						좋아요 수: ${content.recommendNo}
+					</c:otherwise>
+				</c:choose>
+			</form>
+
+
+
+			<!--보여줄때 : board_no(board) 
+			작성: 가져오기 member_no(login user session) + board_no(board) & insert(recommend)-->
+
+			<!-- 1. 리플 -->
+			<!-- 로그인해야보이도록 할 부분 -->
+			<!--comment-->
+
+			<hr>
+			<c:if test="${!empty sessionUser}">
+							댓글 : ${sessionUser.member_nick}<br>
+				<form action="./writeComment.do" method="post">
+					<div id="comment_box">
+						<img id="title_comment" src="../resources/img/title_comment.gif">
+						<input type="hidden" name="board_no"
+							value="${content.boardVo.board_no}">
+						<textarea name="comment_content" rows="4" cols="40"></textarea>
+						<Button>
+							<img id="ok_ripple" src="../resources/img/ok_ripple.gif">
+						</Button>
+					</div>
+				</form>
+			</c:if>
+
+			<hr>
+
+			<c:forEach items="${content.boardCommentVoList}" var="boardCommentVo">
+
+				<input type="text" name="comment_content"
+					value="${boardCommentVo.comment_content}"
+					style="border-color: rgb(0, 0, 0, 0); background-color: rgb(0, 0, 0, 0);"
+					disabled>
+				<br>
+							||작성자 : ${content.boardCommentMemberVoList.get(content.boardCommentVoList.indexOf(boardCommentVo)).member_nick} 
+							||작성일 : <fmt:formatDate
+					value="${boardCommentVo.comment_writedate}"
+					pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
+
+				<c:if
+					test="${sessionUser.member_no == content.boardCommentMemberVoList.get(content.boardCommentVoList.indexOf(boardCommentVo)).member_no}">
+					<form action="./updateCommentBoard.do" method="post">
+						<input type="hidden" name="board_no"
+							value="${content.boardVo.board_no}"> <input type="hidden"
+							name="comment_no" value="${boardCommentVo.comment_no}">
+						<button name="" value="수정">수정</button>
+					</form>
+					<form action="./deleteComment.do" method="post">
+						<input type="hidden" name="board_no"
+							value="${content.boardVo.board_no}"> <input type="hidden"
+							name="comment_no" value="${boardCommentVo.comment_no}">
+						<button name="" value="삭제">삭제</button>
+					</form>
+				</c:if>
+				<hr>
+
+			</c:forEach>
+
+
+			<div id="buttons">
+				<!--로그인상태 && 글 소유자가 본인일 경우만 보이도록 -->
+				<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
+				<c:if
+					test="${!empty sessionUser && sessionUser.member_no == content.memberVo.member_no}">
+					<a
+						href="./deleteContentProcess.do?board_no=${content.boardVo.board_no}"><img
+						src="../resources/img/delete.png"></a>
+					<a
+						href="./updateContentBoard.do?board_no=${content.boardVo.board_no}">수정</a>
+					<a href="./board_write.do"><img
+						src="../resources/img/write.png"></a>
+
+				</c:if>
+
+				<a href="./board_list.do"><img src="../resources/img/list.png"></a>
+
+			</div>
+
+		</section>
+		<!-- section main -->
+
+		<jsp:include page="../commons/footer.jsp"></jsp:include>
+
+	</div>
+	<!-- wrap -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
 </html>

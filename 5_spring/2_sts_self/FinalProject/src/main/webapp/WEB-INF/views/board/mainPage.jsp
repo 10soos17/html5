@@ -17,7 +17,7 @@
 <body>
 
 	<jsp:include page="../commons/globalNav.jsp"></jsp:include>
-	
+
 	<div style="width: 1200px; margin: 0 auto">
 		<div class="row">
 
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<form action="./mainPage.do" method="get">
 				<div class="row mt-2"><!-- 검색 -->
 					<div class="col">
@@ -52,7 +52,7 @@
 					</div>
 				</div>
 				</form>
-				
+
 				<div class="row mt-3"><!-- 데이터 로우 -->
 					<div class="col">
 						<table class="table">
@@ -78,10 +78,10 @@
 				<div class="row mt-2"> <!-- 페이징 및 글 쓰기 버튼 -->
 					<div class="col-2"></div>
 					<div class="col">
-					
+
 						<nav>
 						  <ul class="pagination mb-0">
-						  
+
 						  	<c:choose>
 						  		<c:when test="${beginPage <= 1}">
 						  			<li class="page-item disabled"><a class="page-link" href="./mainPage.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
@@ -90,7 +90,7 @@
 						  			<li class="page-item"><a class="page-link" href="./mainPage.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
 						  		</c:otherwise>
 						  	</c:choose>
-						  	
+
 						  	<c:forEach begin="${beginPage}" end="${endPage}" var="i">
 						  		<c:choose>
 						  			<c:when test="${currentPage == i}">
@@ -101,7 +101,7 @@
 						  			</c:otherwise>
 						  		</c:choose>
 						    </c:forEach>
-						    
+
 						   <c:choose>
 						  		<c:when test="${endPage >= totalPageCount}">
 						   			 <li class="page-item disabled"><a class="page-link" href="./mainPage.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
@@ -110,10 +110,10 @@
 						   		 	<li class="page-item"><a class="page-link" href="./mainPage.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
 						  		</c:otherwise>
 						  	</c:choose>
-						  	
+
 						  </ul>
-						</nav>	
-							
+						</nav>
+
 					</div>
 					<div class="col-2 d-grid">
 						<c:if test="${!empty sessionUser}">

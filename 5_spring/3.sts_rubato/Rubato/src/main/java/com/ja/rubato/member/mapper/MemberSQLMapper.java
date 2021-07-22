@@ -20,7 +20,7 @@ public interface MemberSQLMapper {
 	public MemberVo getMemberByIdAndPw(MemberVo vo);
 	
 	//select
-	public MemberVo getmemberByNo(int no);
+	public MemberVo getMemberByNo(int no);
 
 	//===============FP_HobbyCategory table, FP_Hobby table
 

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,58 +14,17 @@
 	href="../resources/css/header.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/footer.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/board_left.css">
+
 <link rel="stylesheet" type="text/css" href="../resources/css/main.css">
 </head>
 <body>
+
 	<div id="wrap">
-		<header>
-			<a href="index.html"><img id="logo"
-				src="../resources/img/logo.png"></a>
-			<nav id="top_menu">HOME | LOGIN | JOIN | NOTICE</nav>
-			<nav id="main_menu">
-				<ul>
-					<li><a href="board_list.html">자유 게시판</a></li>
-					<li><a href="#">기타 연주</a></li>
-					<li><a href="#">공동 구매</a></li>
-					<li><a href="#">연주회 안내</a></li>
-					<li><a href="#">회원 게시판</a></li>
-				</ul>
-			</nav>
-		</header>
-		<!-- header -->
-		<aside>
-			<article id="login_box">
-				<img id="login_title" src="../resources/img/ttl_login.png">
-				<div id="input_button">
-				
-					<!-- login -->
-					<form action="./loginProcess.do" method="post">
-					<ul id="login_input">
-						<li><input type="text" name="member_id"></li>
-						<li><input type="password" name="member_pw"></li>
-					</ul>
-					<button style="border:0px;"><img id="login_btn" src="../resources/img/btn_login.gif"></button>
-					</form>
-				
-				</div>
-				<div class="clear"></div>
-				<div id="join_search">
-					<a href="./joinMemberPage.do"><img src="../resources/img/btn_join.gif"></a>
-					 <img src="../resources/img/btn_search.gif">
-				</div>
-			</article>
-			<article id="guestbook">
-				<div id="guestbook_title">
-					<img src="../resources/img/ttl_memo.gif">
-				</div>
-				<ul>
-					<li>안녕하세요!</li>
-					<li>안녕하세요!</li>
-					<li>안녕하세요!</li>
-					<li>안녕하세요!</li>
-				</ul>
-			</article>
-		</aside>
+
+		<jsp:include page="../commons/header.jsp"></jsp:include>
+
 
 		<section id="main">
 			<img src="../resources/img/main_img.png">
@@ -172,22 +134,8 @@
 			<!-- gallery -->
 		</section>
 		<!-- section main -->
-		<div class="clear"></div>
 
-		<footer>
-			<img id="footer_logo" src="../resources/img/footer_logo.gif">
-			<ul id="address">
-				<li>서울시 강남구 삼성동 1234 우 : 123-1234</li>
-				<li>TEL : 031-123-1234 Email : email@domain.com</li>
-				<li>COPYRIGHT (C) 루바토 ALL RIGHTS RESERVED</li>
-			</ul>
-			<ul id="footer_sns">
-				<li><img src="../resources/img/facebook.gif"></li>
-				<li><img src="../resources/img/blog.gif"></li>
-				<li><img src="../resources/img/twitter.gif"></li>
-			</ul>
-		</footer>
-		<!-- footer -->
+		<jsp:include page="../commons/footer.jsp"></jsp:include>
 
 	</div>
 	<!-- wrap -->

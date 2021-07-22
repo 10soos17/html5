@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ja.rubato.freeboard.mapper.FreeboardSQLMapper"><!--class경로 -->
+
+	<!-- RBT_freeboard table -->
+	<select id="createFreeboardPK" resultType="int">
+		select
+		RBT_Freeboard_seq.nextval from Dual
+	</select>
+
+	<!-- 동적 쿼리(java에서 처리 대신 myBatis에서 처리하도록 만들기) -->
+	<!-- $: ,#:pre comfiling해서 자동으로 ''(문자열연산) 넣어줌 -> #을 쓰는 것을 권장(injection방지) -->
+	<select id="getContents"
+		resultType="com.ja.rubato.vo.FreeboardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
+
+		select * from (
+		select t1.*, ROWNUM as rnum from (
+		select * from
+		RBT_Freeboard
+		<if test="search_type != null and search_word != null">
+			<choose>
+				<when test="search_type == 'title'">
+					and freeboard_title like '%' || #{search_word}
+					|| '%'
+				</when>
+				<when test="search_type == 'content'">
+					and freeboard_content like '%' ||
+					#{search_word} ||
+					'%'
+				</when>
+				<when test="search_type == 'nick'">
+					and freeboard_nick like '%' || #{search_word}
+					|| '%'
+				</when>
+			</choose>
+		</if>
+		order by freeboard_no DESC
+		) t1
+		) t2
+	<![CDATA[
+	where t2.rnum >= (#{page_num}-1)*10+1 
+	and t2.rnum <= #{page_num} * 10
+	]]>
+
+	</select>
+
+	<select id="getContentCount" resultType="int">
+		select count(*) from RBT_Freeboard
+		<if test="search_type != null and search_word != null">
+			<choose>
+				<when test="search_type == 'title'">
+					and freeboard_title like '%' || #{search_word}
+					|| '%'
+				</when>
+				<when test="search_type == 'content'">
+					and freeboard_content like '%' ||
+					#{search_word} ||
+					'%'
+				</when>
+				<when test="search_type == 'nick'">
+					and freeboard_nick like '%' || #{search_word}
+					|| '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<!-- 글작성 -->
+	<insert id="writeContent">
+		insert into RBT_Freeboard values(
+		#{freeboard_no},
+		#{freeboard_nick},
+		#{freeboard_pw},
+		#{freeboard_title},
+		#{freeboard_content},
+		0,
+		SYSDATE,
+		0
+		)
+	</insert>
+
+	<delete id="deleteContent">
+		delete from RBT_Freeboard where freeboard_no =
+		#{freeboard_no}
+	</delete>
+
+	<!-- RBT_FreeboardImage table -->
+	<insert id="registerImage">
+		insert into RBT_FreeboardImage values(
+		RBT_FreeboardImage_seq.nextval,
+		#{freeboard_no},
+		#{freeboard_image_url},
+		#{freeboard_image_ori}
+		)
+	</insert>
+
+</mapper>

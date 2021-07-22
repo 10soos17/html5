@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <link
@@ -12,6 +13,7 @@
 <head>
 <meta charset="utf-8">
 <title>클래식기타 커뮤니티</title>
+
   <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
   <link rel="stylesheet" type="text/css" href="../resources/css/header.css">
   <link rel="stylesheet" type="text/css" href="../resources/css/footer.css">
@@ -36,7 +38,7 @@
 					</div>
 
 					<!-- 검색 -->
-					<form action="./board_list.do" method="get">
+					<form action="./freeboard_list.do" method="get">
 						<div id="search_select">
 							<select name="search_type">
 								<option value="title">제목</option>
@@ -64,18 +66,9 @@
 					<th>일시</th>
 					<th>조회수</th>
 				</tr>
+
 				<!-- 글 목록 불러오기 -->
-				<c:forEach items="${contentList}" var="data">
-					<tr>
-						<td class="col1">${data.boardVo.board_no}</td>
-						<td class="col2"><a
-							href="./board_view.do?board_no=${data.boardVo.board_no}">${data.boardVo.board_title}</a></td>
-						<td class="col3">${data.memberVo.member_nick}</td>
-						<td class="col4">${data.boardVo.board_readcount}</td>
-						<td class="col5"><fmt:formatDate
-								value="${data.boardVo.board_writedate}" pattern="MM.dd" /></td>
-					</tr>
-				</c:forEach>
+
 			</table>
 
 			<!-- 페이징 및 글 쓰기 버튼 -->
@@ -87,11 +80,11 @@
 							<c:choose>
 								<c:when test="${beginPage <= 1}">
 									<li class="page-item disabled"><a class="page-link"
-										href="./board_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+										href="./freeboard_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./board_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+										href="./freeboard_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
 								</c:otherwise>
 							</c:choose>
 
@@ -99,11 +92,11 @@
 								<c:choose>
 									<c:when test="${currentPage == i}">
 										<li class="page-item active"><a class="page-link"
-											href="./board_list.do?page_num=${i}${addParam}">${i}</a></li>
+											href="./freeboard_list.do?page_num=${i}${addParam}">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="./board_list.do?page_num=${i}${addParam}">${i}</a></li>
+											href="./freeboard_list.do?page_num=${i}${addParam}">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -111,11 +104,11 @@
 							<c:choose>
 								<c:when test="${endPage >= totalPageCount}">
 									<li class="page-item disabled"><a class="page-link"
-										href="./board_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+										href="./freeboard_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./board_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+										href="./freeboard_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
 								</c:otherwise>
 							</c:choose>
 
@@ -126,6 +119,7 @@
 				</div>
 
 				<!-- 글쓰기 -->
+				
 				<div class="col2">
 
 					<div id="buttons">
@@ -133,11 +127,12 @@
 						<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
 						<!-- c:if
 					test="${!empty sessionUser && sessionUser.member_no == content.memberVo.member_no}"-->
-						<a href="./board_write.do"><img src="../resources/img/write.png"></a>
+						<a href="./freeboard_deleteContentProcess.do?freeboard_no=${freeboardList_view.freeboard_no}">
+						<a href="./freeboard_write.do"><img src="../resources/img/write.png"></a>
 
 						<!--/c:if-->
 
-						<a href="./board_list.do"><img src="../resources/img/list.png"></a>
+						<a href="./freeboard_list.do"><img src="../resources/img/list.png"></a>
 
 					</div>
 		</section>
