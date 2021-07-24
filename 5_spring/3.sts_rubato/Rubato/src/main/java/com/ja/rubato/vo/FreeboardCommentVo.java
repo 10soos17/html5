@@ -6,7 +6,7 @@ public class FreeboardCommentVo {
 	
 	private int freeboard_comment_no;
     private String freeboard_nick;
-    private int freeboard_comment_pw;
+    private String freeboard_comment_pw; 
     private int freeboard_no;
     private String freeboard_comment_content;
     private Date freeboard_comment_writedate;
@@ -14,7 +14,7 @@ public class FreeboardCommentVo {
     public FreeboardCommentVo() {
 	}
     
-	public FreeboardCommentVo(int freeboard_comment_no, String freeboard_nick, int freeboard_comment_pw, int freeboard_no,
+	public FreeboardCommentVo(int freeboard_comment_no, String freeboard_nick, String freeboard_comment_pw, int freeboard_no,
 			String freeboard_comment_content, Date freeboard_comment_writedate) {
 		this.freeboard_comment_no = freeboard_comment_no;
 		this.freeboard_nick = freeboard_nick;
@@ -39,11 +39,11 @@ public class FreeboardCommentVo {
 		this.freeboard_nick = freeboard_nick;
 	}
 	
-	public int getFreeboard_comment_pw() {
+	public String getFreeboard_comment_pw() {
 		return freeboard_comment_pw;
 	}
 
-	public void setFreeboard_comment_pw(int freeboard_comment_pw) {
+	public void setFreeboard_comment_pw(String freeboard_comment_pw) {
 		this.freeboard_comment_pw = freeboard_comment_pw;
 	}
 

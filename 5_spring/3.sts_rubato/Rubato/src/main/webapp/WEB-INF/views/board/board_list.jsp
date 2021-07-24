@@ -27,9 +27,9 @@
 
 		<section id="main">
 			<img src="../resources/img/comm.gif">
-			<h2 id="board_title">자유 게시판</h2>
+			<h2 id="board_title">회원 게시판</h2>
 			<div id="total_search">
-				<div id="total">▷ 총 게시물이 있습니다.</div>
+				<div id="total">▷ 총 ${contentList.size()}게시물이 있습니다.</div>
 				<div id="search">
 					<div id="select_img">
 						<img src="../resources/img/select_search.gif">
@@ -131,11 +131,11 @@
 					<div id="buttons">
 						<!--로그인상태 && 글 소유자가 본인일 경우만 보이도록 -->
 						<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
-						<!-- c:if
-					test="${!empty sessionUser && sessionUser.member_no == content.memberVo.member_no}"-->
+						<c:if
+					test="${!empty sessionUser}">
 						<a href="./board_write.do"><img src="../resources/img/write.png"></a>
 
-						<!--/c:if-->
+						</c:if>
 
 						<a href="./board_list.do"><img src="../resources/img/list.png"></a>
 

@@ -26,7 +26,7 @@
 
 		<section id="main">
 			<img src="../resources/img/comm.gif">
-			<h2 id="board_title">자유 게시판</h2>
+			<h2 id="board_title">회원 게시판</h2>
 			<div id="view_title_box">
 				<span id="info"><h2>제목 : ${content.boardVo.board_title}
 						작성자 : ${content.memberVo.member_nick}</h2></span> <span>작성일 : <fmt:formatDate
@@ -37,7 +37,7 @@
 			</div>
 			<p id="view_content">
 				<c:forEach items="${content.boardImageVoList}" var="boardImageVo">
-					<img src="/upload/${boardImageVo.image_url}">
+					<img src="/board_upload/${boardImageVo.image_url}">
 					<br>
 				</c:forEach>
 				<br> ${content.boardVo.board_content}
@@ -92,21 +92,7 @@
 
 
 
-			<!--로그인상태 && 글 소유자가 본인일 경우만 보이도록 -->
-			<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
-			<!--로그인상태 && 글 소유자가 본인일 경우만 보이도록 -->
-				<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
-				<c:if
-					test="${!empty sessionUser && sessionUser.member_no == content.memberVo.member_no}">
-					<a href="./deleteContentProcess.do?board_no=${content.boardVo.board_no}"><img src="../resources/img/delete.png"></a>
-					<a href="./updateContentBoard.do?board_no=${content.boardVo.board_no}">수정</a>
-					<a href="./board_write.do"><img src="../resources/img/write.png"></a>
-
-				</c:if>
-
-				<a href="./board_list.do"><img src="../resources/img/list.png"></a>
-
-
+	
 			<!--
 						보여줄때 : board_no(board) 
 						작성: 가져오기 member_no(login user session) + board_no(board) & insert(recommend)-->

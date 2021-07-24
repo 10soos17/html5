@@ -31,24 +31,23 @@ import com.ja.rubato.vo.MemberVo;
 @RequestMapping("/freeboard/*")
 public class FreeboardController {
 
-	
 	@Autowired
 	private FreeboardServiceImpl freeboardService;
 
 	@RequestMapping("freeboard_list.do")
-	public String mainPage(Model model, String search_type, String search_word,
-			@RequestParam(defaultValue = "1") int page_num) {
+	public String mainPage(Model model, String freeboard_search_type, String freeboard_search_word,
+			@RequestParam(defaultValue = "1") int freeboard_page_num) {
 		// 할 것 많음
-		//System.out.println(search_type+":"+search_word+":"+page_num);
+		// System.out.println(search_type+":"+search_word+":"+page_num);
 
-		ArrayList<FreeboardVo> freeboardList = freeboardService.getContents(search_type, search_word, page_num);
-		System.out.println(search_type+":"+search_word+":"+page_num);
+		ArrayList<FreeboardVo> freeboardList = freeboardService.getContents(freeboard_search_type, freeboard_search_word, freeboard_page_num);
+		System.out.println(freeboard_search_type + ":" + freeboard_search_word + ":" + freeboard_page_num);
 		// 전체 글 수
-		int count = freeboardService.getContentCount(search_type, search_word, page_num);
+		int count = freeboardService.getContentCount(freeboard_search_type, freeboard_search_word, freeboard_page_num);
 		// 전체 페이지 수(각 페이지 10개 글)
 		int totalPageCount = (int) Math.ceil(count / 10.0);
 		// 현재 페이지 번호
-		int currentPage = page_num;
+		int currentPage = freeboard_page_num;
 		// 보여줄 시작 페이지번호
 		int beginPage = ((currentPage - 1) / 5) * 5 + 1;
 		// 보여줄 끝 페이지번호
@@ -60,9 +59,9 @@ public class FreeboardController {
 
 		String addParam = "";
 
-		if (search_type != null && search_word != null) {
-			addParam += "&search_type=" + search_type;
-			addParam += "&search_word=" + search_word;
+		if (freeboard_search_type != null && freeboard_search_word != null) {
+			addParam += "&search_type=" + freeboard_search_type;
+			addParam += "&search_word=" + freeboard_search_word;
 		}
 		model.addAttribute("addParam", addParam);
 
@@ -75,44 +74,27 @@ public class FreeboardController {
 
 		return "freeboard/freeboard_list";
 	}
-	
-//	//==============================게시판 글 목록 클릭 시
-//	@RequestMapping("freeboard_view.do")
-//	public String readContentPage(int board_no, Model model, HttpSession session) {
-//
-//		System.out.println(board_no);
-//		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
-//		int loginMember_no;
-//		
-//		//System.out.println("readContentPageCheck"+vo);
-//		
-//		if(vo == null) {//로그인 안한 경우 
-//			loginMember_no = -1;
-//			freeboardService.increaseReadCount(board_no);
-//			System.out.println(board_no);
-//
-//		}else {	//로그인 한 경우 
-//			loginMember_no = vo.getMember_no();
-//			// 조회수 증가
-//			HashSet<Integer> visited = (HashSet) session.getAttribute("visited");
-//	
-//			if (!visited.contains(board_no)) {
-//				freeboardService.increaseReadCount(board_no);
-//				visited.add(board_no);
-//				// System.out.println("first visited"+ board_no);
-//			}
-//		}
-//		// 조회
-//		HashMap<String, Object> map = freeboardService.getContent(board_no, loginMember_no);
-//		
-//		model.addAttribute("content", map);
-//		
-//
-//		return "freeboard/freeboard_view";
-//	}
-//	
-	//==============================board 글쓰기 관련 
-	//
+
+	// ==============================게시판 글 목록 클릭 시
+	@RequestMapping("freeboard_view.do")
+	public String readContentPage(int freeboard_no, Model model) {
+
+		System.out.println(freeboard_no);
+
+		// System.out.println("readContentPageCheck"+vo);
+
+		freeboardService.increaseReadCount(freeboard_no);
+
+		// 조회
+		HashMap<String, Object> map = freeboardService.getContent(freeboard_no);
+
+		model.addAttribute("content", map);
+
+		return "freeboard/freeboard_view";
+	}
+
+	// ==============================board 글쓰기 관련
+
 	@RequestMapping("freeboard_write.do")
 	public String writeContentPage() {
 
@@ -180,87 +162,112 @@ public class FreeboardController {
 		return "redirect:./freeboard_list.do";
 	}
 
-	
 	@RequestMapping("deleteContentProcess.do")
-	public String deleteContentProcess(int freeboard_no) {
-
-		freeboardService.deleteContent(freeboard_no);
-
-		return "redirect:../freeboard/freeboard_list.do";
+	public String deleteContentProcess(FreeboardVo param, String this_pw) {
+		
+		if (param.getFreeboard_pw().equals(this_pw)) {
+			
+			freeboardService.deleteContent(param.getFreeboard_no());
+			
+			return "redirect:./freeboard_view.do?freeboard_no=" + param.getFreeboard_no();
+		} else {
+			
+			return "redirect:./freeboard_viewFail.do";
+		}
 	}
 
-//	@RequestMapping("updateContentBoard.do")
-//	public String updateContentBoard(int board_no, Model model, HttpSession session) {
-//
-//		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
-//		int loginMember_no = vo.getMember_no();
-//
-//		HashMap<String, Object> map = freeboardService.getContent(board_no, loginMember_no);
-//
-//		model.addAttribute("content", map);
-//
-//		return "freeboard/updateContentBoard";
-//	}
-//
-//	@RequestMapping("updateContentProcess.do")
-//	public String updateContentProcess(BoardVo param) {
-//
-//		freeboardService.updateContent(param);
-//		
-//		return "redirect:./freeboard_view.do?board_no=" + param.getBoard_no();
-//	}
-//	
-//	//==============================댓글 관련 
-//	@RequestMapping("writeComment.do")
-//	public String writeComment(FreeboardCommentVo param, HttpSession session) {
-//
-//
-//
-//		return "redirect:./freeboard_view.do?board_no=";// + param.getBoard_no();
-//	}
-//
-//	@RequestMapping("deleteComment.do")
-//	public String deleteComment(int comment_no, int freeboard_no) {
-//		freeboardService.deleteComment(comment_no);
-//
-//		return "redirect:./freeboard_view.do?freeboard_no=" + freeboard_no;
-//	}
-//
+	@RequestMapping("updateContentPage.do")
+	public String updateContentPage(int freeboard_no, Model model) {
+
+		HashMap<String, Object> map = freeboardService.getContent(freeboard_no);
+
+		model.addAttribute("content", map);
+
+		return "freeboard/updateContentPage";
+	}
+
+	@RequestMapping("updateContentProcess.do")
+	public String updateContentProcess(FreeboardVo param, String this_pw) {
+		
+	
+		if (param.getFreeboard_pw().equals(this_pw)) {
+			
+			freeboardService.updateContent(param);
+			
+			return "redirect:./freeboard_view.do?freeboard_no=" + param.getFreeboard_no();
+		} else {
+			
+			return "redirect:./freeboard_viewFail.do";
+		}
+	
+	}
+	
+	// ==============================댓글 관련
+	@RequestMapping("writeComment.do")
+	public String writeComment(FreeboardCommentVo param) {
+		System.out.println("comment:" + param.getFreeboard_no() + param.getFreeboard_nick());
+
+		freeboardService.writeComment(param);
+
+		return "redirect:./freeboard_view.do?freeboard_no=" + param.getFreeboard_no();
+	}
+
+	@RequestMapping("freeboard_viewFail.do")
+	public String freeboard_viewFail() {
+		return "freeboard/freeboard_viewFail";
+	}
+	
+	@RequestMapping("deleteComment.do")
+	public String deleteComment(FreeboardCommentVo param, String this_pw) {
+		System.out.println(
+				"comment_content:" + param.getFreeboard_comment_content() + "freeboardNO:" + param.getFreeboard_no()+"inputPw"+param.getFreeboard_comment_pw()+"this_pw:"+this_pw);
+
+		
+		if (param.getFreeboard_comment_pw().equals(this_pw)) {
+			
+			freeboardService.deleteComment(param);
+			
+			return "redirect:./freeboard_view.do?freeboard_no=" + param.getFreeboard_no();
+		} else {
+			
+			return "redirect:./freeboard_viewFail.do";
+		}
+	}
+
 //	@RequestMapping("updateCommentBoard.do")
-//	public String updateCommentBoard(BoardCommentVo param, int board_no, Model model, HttpSession session) {
-//
-//		MemberVo vo = (MemberVo) session.getAttribute("sessionUser");
-//		int loginMember_no = vo.getMember_no();
-//
-//		HashMap<String, Object> map = freeboardService.getContent(board_no, loginMember_no);
+//	public String updateCommentBoard(FreeboardCommentVo param, Model model) {
+//		
+//		HashMap<String, Object> map = freeboardService.getContent(param.getFreeboard_no());
 //
 //		model.addAttribute("content", map);
 //
 //		return "freeboard/updateCommentBoard";
 //	}
-//
-//	@RequestMapping("updateCommentProcess.do")
-//	public String updateCommentProcess(int freeboard_no, String comment_content, int comment_no) {
-//
-//		// System.out.println("comment_content:
-//		// "+comment_content+"board_no"+board_no+"comment_no"+comment_no);
-//		freeboardService.updateComment(comment_content, comment_no);
-//
-//		return "redirect:./freeboard_view.do?freeboard_no=" + freeboard_no;
-//	}
-//
-//	//==============================종아요 관련 
-//	@RequestMapping("changeRecommend.do")
-//	public String changeRecommend(int freeboard_no, int member_no, int recommend) {
-//
-//		if (recommend == 0) {
-//			freeboardService.upRecommend(freeboard_no, member_no);
-//			// System.out.println("up"+recommend);
-//		} else {
-//			freeboardService.downRecommend(freeboard_no, member_no);
-//			// System.out.println("down"+recommend);
-//		}
-//
-//		return "redirect:./freeboard_view.do?freeboard_no=" + freeboard_no;
-//	}
+
+	@RequestMapping("updateComment.do")
+	public String updateCommentProcess(FreeboardCommentVo param, String this_pw) {
+
+		System.out.println(
+				"comment_content:" + param.getFreeboard_comment_content() + "freeboardNO:" + param.getFreeboard_no()+"inputPw"+param.getFreeboard_comment_pw()+"this_pw:"+this_pw);
+
+		if (param.getFreeboard_comment_pw().equals(this_pw)) {
+			
+			freeboardService.updateComment(param);
+			
+			return "redirect:./freeboard_view.do?freeboard_no=" + param.getFreeboard_no();
+		} else {
+			
+			return "redirect:./freeboard_viewFail.do";
+		}
+
+	}
+
+	// ==============================종아요 관련
+	@RequestMapping("upRecommend.do")
+	public String upRecommend(int freeboard_no) {
+
+		freeboardService.upRecommend(freeboard_no);
+
+		return "redirect:./freeboard_view.do?freeboard_no=" + freeboard_no;
+	}
 }

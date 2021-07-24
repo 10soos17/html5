@@ -24,7 +24,7 @@
 	//유효성 검사
 	function frmSubmit() {
 
-		var frm1 = document.getElementById("frm1");
+		var frm = document.getElementById("freeboardwrite_frm");
 
 		//조건 확인: 입력 여부
 		//아이디 중복 검사: 서버측에서 판단(db 때문에)
@@ -45,7 +45,7 @@
 			//return;
 		}
 
-		frm1.submit();
+		frm.submit();
 	}
 </script>
 </head>
@@ -60,7 +60,7 @@
 			<h2 id="board_title">자유 게시판</h2>
 
 			<!-- 글쓰기 폼 -->
-			<form action="./writeContentProcess.do" method="post"
+			<form id="freeboardwrite_frm" action="./writeContentProcess.do" method="post"
 				enctype="multipart/form-data">
 
 				<div id="write_title">

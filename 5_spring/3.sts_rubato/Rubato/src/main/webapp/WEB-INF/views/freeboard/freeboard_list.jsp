@@ -31,7 +31,7 @@
 			<img src="../resources/img/comm.gif">
 			<h2 id="board_title">자유 게시판</h2>
 			<div id="total_search">
-				<div id="total">▷ 총 게시물이 있습니다.</div>
+				<div id="total">▷ 총 ${freeboardList.size()} 게시물이 있습니다.</div>
 				<div id="search">
 					<div id="select_img">
 						<img src="../resources/img/select_search.gif">
@@ -40,14 +40,14 @@
 					<!-- 검색 -->
 					<form action="./freeboard_list.do" method="get">
 						<div id="search_select">
-							<select name="search_type">
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-								<option value="nick">글쓴이</option>
+							<select name="freeboard_search_type">
+								<option value="freeboard_title">제목</option>
+								<option value="freeboard_content">내용</option>
+								<option value="freeboard_nick">글쓴이</option>
 							</select>
 						</div>
 						<div id="search_input">
-							<input type="text" name="search_word">
+							<input type="text" name="freeboard_search_word">
 						</div>
 						<div id="search_btn">
 							<Button>
@@ -68,7 +68,15 @@
 				</tr>
 
 				<!-- 글 목록 불러오기 -->
-
+				<c:forEach items="${freeboardList}" var="data">
+					<tr>
+						<td class="col1">${data.freeboard_no}</td>
+						<td class="col2"><a href="./freeboard_view.do?freeboard_no=${data.freeboard_no}">${data.freeboard_title}</a></td>
+						<td class="col3">${data.freeboard_nick}</td>
+						<td class="col4">${data.freeboard_readcount}</td>
+						<td class="col5"><fmt:formatDate value="${data.freeboard_writedate}" pattern="MM.dd" /></td>
+					</tr>
+				</c:forEach>
 			</table>
 
 			<!-- 페이징 및 글 쓰기 버튼 -->
@@ -80,11 +88,11 @@
 							<c:choose>
 								<c:when test="${beginPage <= 1}">
 									<li class="page-item disabled"><a class="page-link"
-										href="./freeboard_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+										href="./freeboard_list.do?freeboard_page_num=${beginPage-1}${addParam}">&lt;</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./freeboard_list.do?page_num=${beginPage-1}${addParam}">&lt;</a></li>
+										href="./freeboard_list.do?freeboard_page_num=${beginPage-1}${addParam}">&lt;</a></li>
 								</c:otherwise>
 							</c:choose>
 
@@ -92,11 +100,11 @@
 								<c:choose>
 									<c:when test="${currentPage == i}">
 										<li class="page-item active"><a class="page-link"
-											href="./freeboard_list.do?page_num=${i}${addParam}">${i}</a></li>
+											href="./freeboard_list.do?freeboard_page_num=${i}${addParam}">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="./freeboard_list.do?page_num=${i}${addParam}">${i}</a></li>
+											href="./freeboard_list.do?freeboard_page_num=${i}${addParam}">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -104,11 +112,11 @@
 							<c:choose>
 								<c:when test="${endPage >= totalPageCount}">
 									<li class="page-item disabled"><a class="page-link"
-										href="./freeboard_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+										href="./freeboard_list.do?freeboard_page_num=${endPage+1}${addParam}">&gt;</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./freeboard_list.do?page_num=${endPage+1}${addParam}">&gt;</a></li>
+										href="./freeboard_list.do?freeboard_page_num=${endPage+1}${addParam}">&gt;</a></li>
 								</c:otherwise>
 							</c:choose>
 

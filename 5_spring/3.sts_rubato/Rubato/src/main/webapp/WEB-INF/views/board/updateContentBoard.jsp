@@ -23,7 +23,7 @@
 
 		<section id="main">
 			<img src="../resources/img/comm.gif">
-			<h2 id="board_title">자유 게시판</h2>
+			<h2 id="board_title">회원 게시판</h2>
 
 			<!-- 글쓰기 폼 -->
 				<form action="./updateContentProcess.do" method="post">

@@ -24,12 +24,79 @@
 	href="../resources/css/board_left.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/board_view_main.css">
+	
+<script>
+	//유효성 검사
+	function frmSubmit() {
+
+		var frm1 = document.getElementById("frm1");
+
+		//조건 확인: 입력 여부
+		//아이디 중복 검사: 서버측에서 판단(db 때문에)
+
+		var pwText = document.getElementById("pwText_comment");
+		if (pwText.value == "") {
+			alert("비밀번호를 입력해주세요~!");
+			pwText.focus();
+			return;
+		}
+
+		var pwConfirmText = document.getElementById("pwConfirmText_comment");
+		if (pwText.value != pwConfirmText.value) {
+			alert("비밀번호 확인을 다시 해주세요~!");
+			pwText.value = "";
+			pwConfirmText.value = "";
+			pwText.focus();
+			return;
+		}
+
+		frm1.submit();
+	
+	}
+
+
+	function deleteComment(){
+		var frm = document.getElementById("freeboardCommentDelete_form")
+
+		if(document.querySelector('#comment_deleteBtn').value === '제출'){
+			document.querySelector('#comment_pw_delete').style.display = 'none'
+			document.querySelector('#comment_deleteBtn').value = '삭제︎'
+			frm.submit();
+			return;
+			
+		}else{
+			document.querySelector('#comment_pw_delete').style.display = 'flex';
+			document.querySelector('#comment_deleteBtn').value = '제출';
+			return;
+		}
+	}
+	
+	function updateComment(){
+		var frm = document.getElementById("freeboardCommentUpdate_form")
+		
+		if(document.querySelector('#comment_updateBtn').value === '제출︎'){
+			document.querySelector('#comment_pw_update').style.display = 'none'
+			document.querySelector('#comment_updateBtn').value = '수정'
+			frm.submit();
+			document.getElementById("comment_content").disabled = true;
+			return;
+			
+		}else{
+			document.querySelector('#comment_pw_update').style.display = 'flex'
+			document.querySelector('#comment_updateBtn').value = '제출︎'
+			document.getElementById("comment_content").disabled = false;
+			return;
+		}
+	}
+	
+	
+</script>
 </head>
 <body>
 
 	<div id="wrap">
+	
 		<jsp:include page="../commons/header.jsp"></jsp:include>
-
 
 		<section id="main">
 			<img src="../resources/img/comm.gif">
@@ -47,110 +114,105 @@
 			<p id="view_content">
 				<c:forEach items="${content.freeboardImageVoList}"
 					var="boardImageVo">
-					<img src="/freeboard_upload/${freeboardImageVo.image_url}">
+					<img src="/freeboard_upload/${boardImageVo.freeboard_image_url}">
 					<br>
 				</c:forEach>
 				<br> ${content.freeboardVo.freeboard_content}
 			</p>
-			<!-- 2. -->
-			<!-- 좋아요 표시, 카운트 -->
-			<!-- 로그인 여부 -->
-			<!-- 클릭 : 빨간색, / 재클릭 : 빈, -->
-			<!-- db: table생성 
-							ex.1번회원이 1번글 추천시 추천글 카운트+
-								카운트 읽기:
-								추천여부확인: select * from table where m_no="" and b_no =""; 개수 나오면 추천한것, 안나오면 추천하지 않은 것
-								추천: insert ...member_no, board_no
-								취소: delete from table where m_no="" and b_no="";
-							-->
 
-			<form action="./changeRecommend.do" method="post">
-				<input type="hidden" name="board_no"
-					value="${content.boardVo.board_no}">
-				<Button name="recommend" value="${content.recommendCheck}">
+			<!-- 좋아요 표시, 카운트-->
+
+			<form action="./upRecommend.do" method="post">
+				<input type="hidden" name="freeboard_no" value="${content.freeboardVo.freeboard_no}">
+				<Button >
 					<i class="bi bi-heart text-danger fs-1"></i>
 				</Button>
-				좋아요 수: ${content.recommendNo}
+				좋아요 수: ${content.freeboardVo.freeboard_recommendcount}
 			</form>
 
-
-
-			<!--보여줄때 : board_no(board) 
-			작성: 가져오기 member_no(login user session) + board_no(board) & insert(recommend)-->
-
-			<!-- 1. 리플 -->
-			<!-- 로그인해야보이도록 할 부분 -->
-			<!--comment-->
-
+			<!-- 리플 -->
 			<hr>
 
-			댓글 : ${sessionUser.member_nick}<br>
+			댓글 : 
+			<br>
 			<form action="./writeComment.do" method="post">
 				<div id="comment_box">
-					<img id="title_comment" src="../resources/img/title_comment.gif">
-					<input type="hidden" name="freeboard_no"
-						value="${content.freeboardVo.freeboard_no}">
-					<textarea name="freeboard_comment_content" rows="4" cols="40"></textarea>
+				
+					<!-- img id="title_comment" src="../resources/img/title_comment.gif"-->
+					
+					<input type="hidden" name="freeboard_no" value="${content.freeboardVo.freeboard_no}">
+					<br>
+					닉네임: <input type="text" name="freeboard_nick">
+					<textarea name="freeboard_comment_content" rows="2" cols="10"></textarea>
+					<br>
+					비밀번호: <input type="password" id="pwText_comment">
+					<br>
+					비밀번호 확인: <input type="password" id="pwConfirmText_comment" name="freeboard_comment_pw">
+					
 					<Button>
 						<img id="ok_ripple" src="../resources/img/ok_ripple.gif">
 					</Button>
+					
 				</div>
 			</form>
-
-
+			<br><br><br>
 			<hr>
+			
+			<c:forEach items="${content.freeboardCommentVoList}" var="freeboardCommentVo">
 
-			<c:forEach items="${content.freeboardCommentVoList}"
-				var="freeboardCommentVo">
 
-				<input type="text" name="freeboard_comment_content"
+				
+				<form id="freeboardCommentUpdate_form" action="./updateComment.do" method="post">
+				
+				<input type="text" id="comment_content" name="freeboard_comment_content"
 					value="${freeboardCommentVo.freeboard_comment_content}"
 					style="border-color: rgb(0, 0, 0, 0); background-color: rgb(0, 0, 0, 0);"
 					disabled>
-				<br>
-							||작성자 : ${content.freeboardCommentMemberVoList.get(content.freeboardCommentVoList.indexOf(freeboardCommentVo)).member_nick} 
+					<br>
+							||작성자 : ${freeboardCommentVo.freeboard_nick} 
 							||작성일 : <fmt:formatDate
 					value="${freeboardCommentVo.freeboard_comment_writedate}"
 					pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
-
-
-				
-				<form action="./updateCommentboard.do" method="post">
 				
 					<input type="hidden" name="freeboard_no"
-						value="${content.freeboardVo.freeboard_no}"> <input
-						type="hidden" name="comment_no"
-						value="${freeboardCommentVo.feeboard_comment_no}">
-					<input type="password" name="freeboard_comment_pw" style="display:none;">
-					<input type="submit" value="수정">
+						value="${freeboardCommentVo.freeboard_no}"> 
+					<input
+						type="hidden" name="freeboard_comment_no"
+						value="${freeboardCommentVo.freeboard_comment_no}">
+					<br> 비밀번호: <input type="hidden" name="this_pw" value="${freeboardCommentVo.freeboard_comment_pw}">
+						
+					<input type="password" id="comment_pw_update" name="freeboard_comment_pw" style="display:none;">
+	
+					<input type="button" id="comment_updateBtn" value="수정" onclick="updateComment()">
 				</form>
 				
-				<form action="./deleteComment.do" method="post">
-					<input type="hidden" name="board_no"
-						value="${content.freeboardVo.freeboard_no}"> <input
-						type="hidden" name="comment_no"
+				<form id="freeboardCommentDelete_form" action="./deleteComment.do" method="post">
+				
+					<input type="hidden" name="freeboard_no"
+						value="${freeboardCommentVo.freeboard_no}"> 
+					<input
+						type="hidden" name="freeboard_comment_no"
 						value="${freeboardCommentVo.freeboard_comment_no}">
-					<input type="password" name="freeboard_comment_pw" style="display:none;">
-					<input type="submit" value="삭제">
+					<br> 비밀번호: <input type="hidden" name="this_pw" value="${freeboardCommentVo.freeboard_comment_pw}">
+						
+					<input type="password" id="comment_pw_delete" name="freeboard_comment_pw" style="display:none;">
 					
+					<input type="button" id="comment_deleteBtn" value="삭제" onclick="deleteComment()">
+			
 				</form>
 
 				<hr>
 
 			</c:forEach>
 
-				<!--로그인상태 && 글 소유자가 본인일 경우만 보이도록 -->
-				<!-- sessionUser 값 있는가 && sessionUser의 MemberVo의 member_no, content속성에 BoardVo의 board_no 동일한가-->
 
 			<div id="buttons">
-
-				<!-- input type="password" name="freeboard_pw" style="display:none;"--> 
 				
 				<a
-					href="./deleteContentProcess.do?board_no=${content.boardVo.board_no}"><img
+					href="./deleteContentProcess.do?freeboard_no=${content.freeboardVo.freeboard_no}"><img
 					src="../resources/img/delete.png"></a> <a
-					href="./updateContentBoard.do?board_no=${content.boardVo.board_no}">수정</a>
-				<a href="./board_write.do"><img src="../resources/img/write.png"></a>
+					href="./updateContentPage.do?freeboard_no=${content.freeboardVo.freeboard_no}">수정</a>
+				<a href="./freeboard_write.do"><img src="../resources/img/write.png"></a>
 				
 				<a href="./freeboard_list.do"><img
 					src="../resources/img/list.png"></a>
@@ -159,6 +221,7 @@
 			</div>
 
 		</section>
+		
 		<!-- section main -->
 
 		<jsp:include page="../commons/footer.jsp"></jsp:include>

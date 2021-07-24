@@ -33,7 +33,7 @@
 
 		<section id="main">
 			<img src="../resources/img/comm.gif">
-			<h2 id="board_title">자유 게시판</h2>
+			<h2 id="board_title">회원 게시판</h2>
 			<div id="view_title_box">
 				<span id="info">
 					<h2>제목 : ${content.boardVo.board_title} 작성자 :

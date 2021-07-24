@@ -142,7 +142,7 @@ public class BoardController {
 				continue;
 			}
 
-			String rootFolderName = "/Users/soos/Desktop/uploadFolder/boardFolder";// "C:/uploadFolder/";
+			String rootFolderName = "/Users/soos/Desktop/uploadFolder/boardFolder/";// "C:/uploadFolder/";
 
 			// 랜덤 파일 네임 만들기 : 충돌 방지 (시간 + 랜덤 활용)
 			String originalFilename = boardFile.getOriginalFilename();

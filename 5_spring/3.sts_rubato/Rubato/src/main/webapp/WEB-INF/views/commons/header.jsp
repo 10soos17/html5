@@ -10,7 +10,7 @@
 	<header>
 		<a href="../member/index.do"><img id="logo"
 			src="../resources/img/logo.png"></a>
-		<nav id="top_menu">HOME | LOGIN | JOIN | NOTICE</nav>
+		<nav id="top_menu"><a href="../member/index.do">HOME</a> | <a href="../member/index.do">LOGIN</a> | <a href="../member/joinMemberPage.do">JOIN</a> | NOTICE</nav>
 		<nav id="main_menu">
 			<ul>
 				<li><a href="../freeboard/freeboard_list.do">자유 게시판</a></li>

@@ -14,26 +14,25 @@
 
 	<!-- 동적 쿼리(java에서 처리 대신 myBatis에서 처리하도록 만들기) -->
 	<!-- $: ,#:pre comfiling해서 자동으로 ''(문자열연산) 넣어줌 -> #을 쓰는 것을 권장(injection방지) -->
-	<select id="getContents"
-		resultType="com.ja.rubato.vo.FreeboardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
+	<select id="getContents" resultType="com.ja.rubato.vo.FreeboardVo"><!-- resultType은 한행에 관한 것을 묻는 것 -->
 
 		select * from (
 		select t1.*, ROWNUM as rnum from (
 		select * from
 		RBT_Freeboard
-		<if test="search_type != null and search_word != null">
+		<if test="freeboard_search_type != null and freeboard_search_word != null">
 			<choose>
-				<when test="search_type == 'title'">
-					and freeboard_title like '%' || #{search_word}
+				<when test="freeboard_search_type == 'freeboard_title'">
+					where freeboard_title like '%' || #{freeboard_search_word}
 					|| '%'
 				</when>
-				<when test="search_type == 'content'">
-					and freeboard_content like '%' ||
-					#{search_word} ||
+				<when test="freeboard_search_type == 'freeboard_content'">
+					where freeboard_content like '%' ||
+					#{freeboard_search_word} ||
 					'%'
 				</when>
-				<when test="search_type == 'nick'">
-					and freeboard_nick like '%' || #{search_word}
+				<when test="freeboard_search_type == 'freeboard_nick'">
+					where freeboard_nick like '%' || #{freeboard_search_word}
 					|| '%'
 				</when>
 			</choose>
@@ -42,32 +41,39 @@
 		) t1
 		) t2
 	<![CDATA[
-	where t2.rnum >= (#{page_num}-1)*10+1 
-	and t2.rnum <= #{page_num} * 10
+	where t2.rnum >= (#{freeboard_page_num}-1)*10+1 
+	and t2.rnum <= #{freeboard_page_num} * 10
 	]]>
 
 	</select>
 
 	<select id="getContentCount" resultType="int">
-		select count(*) from RBT_Freeboard
-		<if test="search_type != null and search_word != null">
+		select count(*) from RBT_Freeboard 
+		<if test="freeboard_search_type != null and freeboard_search_word != null">
 			<choose>
-				<when test="search_type == 'title'">
-					and freeboard_title like '%' || #{search_word}
+				<when test="freeboard_search_type == 'freeboard_title'">
+					where freeboard_title like '%' || #{freeboard_search_word}
 					|| '%'
 				</when>
-				<when test="search_type == 'content'">
-					and freeboard_content like '%' ||
-					#{search_word} ||
+				<when test="freeboard_search_type == 'freeboard_content'">
+					where freeboard_content like '%' ||
+					#{freeboard_search_word} ||
 					'%'
 				</when>
-				<when test="search_type == 'nick'">
-					and freeboard_nick like '%' || #{search_word}
+				<when test="freeboard_search_type == 'freeboard_nick'">
+					where freeboard_nick like '%' || #{freeboard_search_word}
 					|| '%'
 				</when>
 			</choose>
 		</if>
 	</select>
+
+
+	<select id="getContentByNo"
+		resultType="com.ja.rubato.vo.FreeboardVo">
+		select * from RBT_Freeboard where freeboard_no = #{freeboard_no}
+	</select>
+
 
 	<!-- 글작성 -->
 	<insert id="writeContent">
@@ -97,5 +103,68 @@
 		#{freeboard_image_ori}
 		)
 	</insert>
+
+	<update id="increaseReadCount">
+		update RBT_Freeboard set freeboard_readcount =
+		freeboard_readcount
+		+ 1 where freeboard_no = #{freeboard_no}
+	</update>
+
+	<select id="getImageInfoByBoardNo"
+		resultType="com.ja.rubato.vo.FreeboardImageVo">
+		select * from RBT_FreeboardImage
+		where freeboard_no =
+		#{freeboard_no}
+		order by freeboard_image_no ASC
+	</select>
+
+	<select id="getCommentInfoByBoardNo"
+		resultType="com.ja.rubato.vo.FreeboardCommentVo">
+		select * from RBT_FreeboardComment
+		where freeboard_no =
+		#{freeboard_no}
+	</select>
+
+	<update id="upRecommend">
+		update RBT_Freeboard set freeboard_recommendcount =
+		freeboard_recommendcount + 1
+		where freeboard_no = #{freeboard_no}
+	</update>
+
+	<insert id="writeComment">
+		insert into RBT_FreeboardComment values(
+		RBT_FreeboardComment_seq.nextval,
+		#{freeboard_nick},
+		#{freeboard_comment_pw},
+		#{freeboard_no},
+		#{freeboard_comment_content},
+		SYSDATE
+		)
+	</insert>
+
+	<delete id="deleteComment">
+		delete from RBT_FreeboardComment
+		where
+		freeboard_comment_no = #{freeboard_comment_no}
+		and freeboard_no =
+		#{freeboard_no}
+	</delete>
+
+	<update id="updateComment">
+		update RBT_FreeboardComment
+		set
+		freeboard_comment_content = #{freeboard_comment_content}
+		where
+		freeboard_comment_pw = #{freeboard_comment_pw}
+		and freeboard_comment_no = #{freeboard_comment_no}
+		and freeboard_no = #{freeboard_no}
+	</update>
+	
+	<update id="updateContent">
+		update RBT_Freeboard set freeboard_title = #{freeboard_title},
+		freeboard_content = #{freeboard_content} where freeboard_no = #{freeboard_no}
+	</update>
+	
+
 
 </mapper>
